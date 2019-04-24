@@ -3,17 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@sentry/browser": "^5.1.1",
+    "history": "^4.9.0",
+    "husky": "^2.1.0",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.17.0",
+    "rbx": "^2.1.0",
     "react": "^16.8.6",
+    "react-debounce-input": "^3.2.0",
     "react-dom": "^16.8.6",
+    "react-loadable": "^5.5.0",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
     "storeon": "^0.8.0",
     "typescript": "3.4.5"
   },
   "devDependencies": {
+    "@types/history": "^4.7.2",
     "@types/jest": "24.0.11",
     "@types/node": "11.13.7",
     "@types/react": "16.8.14",
     "@types/react-dom": "16.8.4",
+    "@types/react-loadable": "^5.5.1",
+    "@types/react-router-dom": "^4.3.2",
     "node-sass": "^4.11.0",
     "redux-devtools-extension": "^2.13.8"
   },
@@ -36,6 +48,18 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "post-merge": "npm update"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,tsx,ts,tsx,json,css,scss,md": [
+      "prettier",
+      "git add"
     ]
   }
 }
