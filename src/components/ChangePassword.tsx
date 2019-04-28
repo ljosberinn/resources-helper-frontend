@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, ChangeEvent } from 'react';
+import React, { useState, FormEvent, ChangeEvent, memo } from 'react';
 import i18next from 'i18next';
 import { Icon, Control, Label, Input, Button, Field } from 'rbx';
 import { DebounceInput } from 'react-debounce-input';
@@ -7,18 +7,12 @@ interface ChangePasswordProps {
   t: i18next.TFunction;
 }
 
-export const ChangePassword = ({ t }: ChangePasswordProps) => {
+export const ChangePassword = memo(({ t }: ChangePasswordProps) => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [repeatedNewPassword, setRepeatedNewPassword] = useState('');
   const [isVerifying, setIsVerifying] = useState(false);
-  const [hasMatchingNewPasswords, setHasMatchingNewPasswords] = useState(false);
-  const [newPasswordIsOldPassword, setNewPasswordIsOldPassword] = useState(false);
   const [error, setError] = useState('');
-
-  if (newPasswordIsOldPassword && error.length === 0) {
-    setError(t('newPasswordIdenticalToOld'));
-  }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,15 +30,29 @@ export const ChangePassword = ({ t }: ChangePasswordProps) => {
   const handleNewPassworddChange = (e: ChangeEvent<HTMLInputElement>) => {
     const password = e.target.value;
     setNewPassword(password);
-    setHasMatchingNewPasswords(password === repeatedNewPassword);
-    setNewPasswordIsOldPassword(currentPassword === password);
+    checkForErrors(repeatedNewPassword, password);
+  };
+
+  const checkForErrors = (existingVariable: string, newPassword: string) => {
+    if (existingVariable.length > 0 && existingVariable !== newPassword) {
+      setError(t('repeatedPasswordMismatch'));
+      return;
+    }
+
+    if (newPassword === currentPassword) {
+      setError(t('newPasswordIdenticalToOld'));
+      return;
+    }
+
+    if (error.length > 0) {
+      setError('');
+    }
   };
 
   const handleRepeatedNewPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     const password = e.target.value;
     setRepeatedNewPassword(password);
-    setHasMatchingNewPasswords(newPassword === password);
-    setNewPasswordIsOldPassword(currentPassword === password);
+    checkForErrors(newPassword, password);
   };
 
   const tCurrentPassword = t('currentPassword');
@@ -59,9 +67,16 @@ export const ChangePassword = ({ t }: ChangePasswordProps) => {
     repeatedNewPassword.length === 0 ||
     newPassword !== repeatedNewPassword;
 
-  let verificationClass = '';
-  if (newPassword.length > 0 && repeatedNewPassword.length > 0 && error.length === 0) {
-    verificationClass = hasMatchingNewPasswords ? 'is-success' : 'is-danger';
+  // todo: fix this ugly mess
+  let verificationClass = 'is-danger';
+  if (newPassword.length > 0 && repeatedNewPassword.length > 0) {
+    if (newPassword !== currentPassword && repeatedNewPassword !== currentPassword) {
+      if (newPassword === repeatedNewPassword) {
+        verificationClass = 'is-succces';
+      }
+    }
+  } else {
+    verificationClass = '';
   }
 
   return (
@@ -72,7 +87,7 @@ export const ChangePassword = ({ t }: ChangePasswordProps) => {
         <Control iconLeft iconRight>
           <Input
             as={DebounceInput}
-            type="password"
+            type="text"
             autoComplete="current-password"
             size="small"
             placeholder={tCurrentPassword}
@@ -89,7 +104,7 @@ export const ChangePassword = ({ t }: ChangePasswordProps) => {
 
           <Input
             as={DebounceInput}
-            type="password"
+            type="text"
             autoComplete="new-password"
             size="small"
             placeholder={tNewPassword}
@@ -107,7 +122,7 @@ export const ChangePassword = ({ t }: ChangePasswordProps) => {
 
           <Input
             as={DebounceInput}
-            type="password"
+            type="text"
             autoComplete="repeat-new-password"
             size="small"
             placeholder={tRepeatNewPassword}
@@ -119,10 +134,11 @@ export const ChangePassword = ({ t }: ChangePasswordProps) => {
           <Icon align="right" />
         </Control>
       </Field>
+      {error.length > 0 && <p className="has-text-danger">{error}</p>}
+
       <Button type="submit" disabled={isDisabled} className={isVerifying ? 'is-loading is-primary' : 'is-primary'}>
         {t('changePassword')}
       </Button>
-      {error.length > 0 && <p className="has-text-error">{error}</p>}
     </form>
   );
-};
+});

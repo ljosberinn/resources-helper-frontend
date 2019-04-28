@@ -11,10 +11,8 @@ interface WorldMapMineVisibilityProps {
 export const WorldMapMineVisibility = memo(({ handleChange, checked, t }: WorldMapMineVisibilityProps) => (
   <Field>
     <Label>{t('worldMapMineVisibilityLabel')}</Label>
-    <Label>
-      <Checkbox checked={checked} onChange={handleChange} />{' '}
-      {t(checked ? 'worldMapMineVisibility_visible' : 'worldMapMineVisibility_invisible')}
-    </Label>
+    <Checkbox className="is-checkradio is-small" id="worldmap-mine-visibility" checked={checked} onChange={handleChange} />
+    <label htmlFor="worldmap-mine-visibility">{t(checked ? 'worldMapMineVisibility_visible' : 'worldMapMineVisibility_invisible')}</label>
     <Help>{t('worldMapMineVisibilityHelp')}</Help>
   </Field>
 ));

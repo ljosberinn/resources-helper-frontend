@@ -19,7 +19,7 @@ export type PriceRanges = 1 | 24 | 48 | 72 | 96 | 120 | 144 | 168;
 
 export interface IUserPriceSettings {
   type: PriceExportTypes;
-  range: PriceRanges;
+  age: PriceRanges;
 }
 
 export interface IUserPlayerInfo {

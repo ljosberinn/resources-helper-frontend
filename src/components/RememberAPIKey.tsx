@@ -9,9 +9,8 @@ interface RememberAPIKeyProps {
 
 export const RememberAPIKey = memo(({ handleChange, remembersAPIKey, t }: RememberAPIKeyProps) => (
   <Field>
-    <Label>
-      <Checkbox onChange={handleChange} checked={remembersAPIKey} /> {t('rememberAPIKey')}
-    </Label>
+    <Checkbox className="is-checkradio is-small" id="remember-api-key" onChange={handleChange} checked={remembersAPIKey} />
+    <Label htmlFor="remember-api-key">{t('rememberAPIKey')}</Label>
     <Help>{t('rememberAPIKey')}</Help>
   </Field>
 ));

@@ -1,5 +1,5 @@
 import { createBrowserHistory } from 'history';
-import 'rbx/index.css';
+import './index.sass';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Router, Switch } from 'react-router';

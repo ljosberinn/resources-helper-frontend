@@ -9,7 +9,7 @@ const userState: IUserState = {
     locale: 'en',
     prices: {
       type: 'json',
-      range: 72,
+      age: 72,
     },
     worldMapHeadquarterIsVisible: false,
     worldMapMinesAreVisible: false,
@@ -49,6 +49,21 @@ export const user = (store: createStore.Store<IPreloadedState>) => {
   });
 
   /** SETTINGS */
+
+  store.on('user/priceAge', ({ user }, payload) => {
+    return {
+      user: {
+        ...user,
+        settings: {
+          ...user.settings,
+          prices: {
+            ...user.settings.prices,
+            age: payload,
+          },
+        },
+      },
+    } as Partial<IPreloadedState>;
+  });
 
   store.on('user/setLanguage', ({ user }, payload) => {
     return {

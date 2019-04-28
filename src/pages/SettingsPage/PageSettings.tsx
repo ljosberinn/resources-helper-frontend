@@ -67,10 +67,10 @@ export const PageSettings = ({ dispatch, user }: PageSettingsProps) => {
       <RememberAPIKey handleChange={handleRememberAPIKeyChange} remembersAPIKey={settings.remembersAPIKey} t={t} />
       <APIKeyInput handleChange={handleAPIKeyInputChange} apiKey={user.API.key} t={t} />
       <hr />
-      <PriceAgeSelect handleChange={handlePriceAgeChange} currentValue={settings.prices.range} t={t} />
-      <hr />
-      {!user.API.isAPIUser && (
+      <PriceAgeSelect handleChange={handlePriceAgeChange} currentValue={settings.prices.age} t={t} />
+      {user.API.isAPIUser && (
         <>
+          <hr />
           <WorldMapMineVisibility handleChange={handleWorldMapMineVisibilityChange} checked={settings.worldMapMinesAreVisible} t={t} />
           <WorldMapHeadquarterVisibility
             handleChange={handleWorldMapHeadquarterVisibilityChange}

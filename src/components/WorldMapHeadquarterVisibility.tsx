@@ -11,10 +11,10 @@ interface WorldMapHeadquarterVisibilityProps {
 export const WorldMapHeadquarterVisibility = memo(({ handleChange, checked, t }: WorldMapHeadquarterVisibilityProps) => (
   <Field>
     <Label>{t('worldMapHeadquarterVisibilityLabel')}</Label>
-    <Label>
-      <Checkbox checked={checked} onChange={handleChange} />{' '}
+    <Checkbox className="is-checkradio is-small" id="worldmap-headquarter-visibility" checked={checked} onChange={handleChange} />
+    <label htmlFor="worldmap-headquarter-visibility">
       {t(checked ? 'worldMapHeadquarterVisibility_visible' : 'worldMapHeadquarterVisibility_invisible')}
-    </Label>
+    </label>
     <Help>{t('worldMapHeadquarterVisibilityHelp')}</Help>
   </Field>
 ));
