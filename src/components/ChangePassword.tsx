@@ -12,16 +12,26 @@ const getVerificationClass = (currentPassword: string, newPassword: string, repe
     return '';
   }
 
-  if (newPassword.length > 0 || repeatedNewPassword.length > 0) {
-    const passwordDiffersFromPreviousPassword = newPassword !== currentPassword && repeatedNewPassword !== currentPassword;
-    const passwordsMatch = newPassword === repeatedNewPassword;
+  const passwordDiffersFromPreviousPassword = newPassword !== currentPassword && repeatedNewPassword !== currentPassword;
+  const passwordsMatch = newPassword === repeatedNewPassword;
 
-    if (passwordDiffersFromPreviousPassword && passwordsMatch) {
-      return 'is-success';
-    }
+  if (passwordDiffersFromPreviousPassword && passwordsMatch) {
+    return 'is-success';
   }
 
   return 'is-danger';
+};
+
+const checkForErrors = (currentPassword: string, newPassword: string, repeatedNewPassword: string) => {
+  if (newPassword.length > 0 && newPassword !== repeatedNewPassword) {
+    return 'repeatedPasswordMismatch';
+  }
+
+  if (newPassword === currentPassword || repeatedNewPassword === currentPassword) {
+    return 'newPasswordIdenticalToOld';
+  }
+
+  return '';
 };
 
 export const ChangePassword = memo(({ t }: ChangePasswordProps) => {
@@ -42,34 +52,34 @@ export const ChangePassword = memo(({ t }: ChangePasswordProps) => {
     }, 3500);
   };
 
-  const handleCurrentPasswordChange = (e: ChangeEvent<HTMLInputElement>) => setCurrentPassword(e.target.value);
+  const handleError = (error: string) => {
+    if (error.length > 0) {
+      setError(t(error));
+      return;
+    }
+
+    setError('');
+  };
+
+  const handleCurrentPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const password = e.target.value;
+    setCurrentPassword(password);
+
+    handleError(checkForErrors(password, newPassword, repeatedNewPassword));
+  };
 
   const handleNewPassworddChange = (e: ChangeEvent<HTMLInputElement>) => {
     const password = e.target.value;
     setNewPassword(password);
-    checkForErrors(repeatedNewPassword, password);
-  };
 
-  const checkForErrors = (existingVariable: string, newPassword: string) => {
-    if (existingVariable.length > 0 && existingVariable !== newPassword) {
-      setError(t('repeatedPasswordMismatch'));
-      return;
-    }
-
-    if (newPassword === currentPassword) {
-      setError(t('newPasswordIdenticalToOld'));
-      return;
-    }
-
-    if (error.length > 0) {
-      setError('');
-    }
+    handleError(checkForErrors(currentPassword, password, repeatedNewPassword));
   };
 
   const handleRepeatedNewPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     const password = e.target.value;
     setRepeatedNewPassword(password);
-    checkForErrors(newPassword, password);
+
+    handleError(checkForErrors(currentPassword, newPassword, password));
   };
 
   const tCurrentPassword = t('currentPassword');
