@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { IUserState } from '../../types/user';
 import { Box } from 'rbx';
 import { IUseStoreon } from '../../store';
@@ -10,7 +10,7 @@ interface AccountSettingsProps extends IUseStoreon {
   user: IUserState;
 }
 
-export const AccountSettings = ({ user }: AccountSettingsProps) => {
+export const AccountSettings = memo(({ user }: AccountSettingsProps) => {
   const { t } = useTranslation();
 
   return (
@@ -20,4 +20,4 @@ export const AccountSettings = ({ user }: AccountSettingsProps) => {
       <DeleteAccount t={t} />
     </Box>
   );
-};
+});

@@ -7,6 +7,23 @@ interface ChangePasswordProps {
   t: i18next.TFunction;
 }
 
+const getVerificationClass = (currentPassword: string, newPassword: string, repeatedNewPassword: string) => {
+  if (newPassword.length === 0 && repeatedNewPassword.length === 0) {
+    return '';
+  }
+
+  if (newPassword.length > 0 || repeatedNewPassword.length > 0) {
+    const passwordDiffersFromPreviousPassword = newPassword !== currentPassword && repeatedNewPassword !== currentPassword;
+    const passwordsMatch = newPassword === repeatedNewPassword;
+
+    if (passwordDiffersFromPreviousPassword && passwordsMatch) {
+      return 'is-success';
+    }
+  }
+
+  return 'is-danger';
+};
+
 export const ChangePassword = memo(({ t }: ChangePasswordProps) => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -67,17 +84,7 @@ export const ChangePassword = memo(({ t }: ChangePasswordProps) => {
     repeatedNewPassword.length === 0 ||
     newPassword !== repeatedNewPassword;
 
-  // todo: fix this ugly mess
-  let verificationClass = 'is-danger';
-  if (newPassword.length > 0 && repeatedNewPassword.length > 0) {
-    if (newPassword !== currentPassword && repeatedNewPassword !== currentPassword) {
-      if (newPassword === repeatedNewPassword) {
-        verificationClass = 'is-succces';
-      }
-    }
-  } else {
-    verificationClass = '';
-  }
+  const verificationClass = getVerificationClass(currentPassword, newPassword, repeatedNewPassword);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -87,7 +94,7 @@ export const ChangePassword = memo(({ t }: ChangePasswordProps) => {
         <Control iconLeft iconRight>
           <Input
             as={DebounceInput}
-            type="text"
+            type="password"
             autoComplete="current-password"
             size="small"
             placeholder={tCurrentPassword}
@@ -104,7 +111,7 @@ export const ChangePassword = memo(({ t }: ChangePasswordProps) => {
 
           <Input
             as={DebounceInput}
-            type="text"
+            type="password"
             autoComplete="new-password"
             size="small"
             placeholder={tNewPassword}
@@ -122,7 +129,7 @@ export const ChangePassword = memo(({ t }: ChangePasswordProps) => {
 
           <Input
             as={DebounceInput}
-            type="text"
+            type="password"
             autoComplete="repeat-new-password"
             size="small"
             placeholder={tRepeatNewPassword}

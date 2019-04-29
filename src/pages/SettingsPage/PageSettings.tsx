@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback } from 'react';
+import React, { ChangeEvent, useCallback, memo } from 'react';
 import { LanguageSelection } from '../../components/LanguageSelection';
 import { RememberAPIKey } from '../../components/RememberAPIKey';
 import { APIKeyInput } from '../../components/APIKeyInput';
@@ -16,7 +16,7 @@ interface PageSettingsProps extends IUseStoreon {
 
 const APIKeyRegExp = new RegExp(/^[a-f0-9]{45}/);
 
-export const PageSettings = ({ dispatch, user }: PageSettingsProps) => {
+export const PageSettings = memo(({ dispatch, user }: PageSettingsProps) => {
   const { t, i18n } = useTranslation();
 
   const { settings } = user;
@@ -81,4 +81,4 @@ export const PageSettings = ({ dispatch, user }: PageSettingsProps) => {
       )}
     </Box>
   );
-};
+});
