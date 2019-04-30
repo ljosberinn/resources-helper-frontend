@@ -4,6 +4,7 @@ import { IUseStoreon } from '../../store';
 import { IUserState } from '../../types/user';
 import { PageSettings } from './PageSettings';
 import { AccountSettings } from './AccountSettings';
+import { useTranslation } from 'react-i18next';
 
 interface SettingsPageStoreon extends IUseStoreon {
   user: IUserState;
@@ -11,11 +12,12 @@ interface SettingsPageStoreon extends IUseStoreon {
 
 const SettingsPage = () => {
   const { dispatch, user }: SettingsPageStoreon = useStoreon('user');
+  const { t, i18n } = useTranslation();
 
   return (
     <>
-      <PageSettings user={user} dispatch={dispatch} />
-      <AccountSettings user={user} dispatch={dispatch} />
+      <PageSettings user={user} dispatch={dispatch} t={t} i18n={i18n} />
+      <AccountSettings user={user} dispatch={dispatch} t={t} />
     </>
   );
 };

@@ -1,18 +1,17 @@
-import React, { memo } from 'react';
-import { IUserState } from '../../types/user';
+import i18next from 'i18next';
 import { Box } from 'rbx';
-import { IUseStoreon } from '../../store';
+import React, { memo } from 'react';
 import { ChangePassword } from '../../components/ChangePassword';
 import { DeleteAccount } from '../../components/DeleteAccount';
-import { useTranslation } from 'react-i18next';
+import { IUseStoreon } from '../../store';
+import { IUserState } from '../../types/user';
 
 interface AccountSettingsProps extends IUseStoreon {
   user: IUserState;
+  t: i18next.TFunction;
 }
 
-export const AccountSettings = memo(({ user }: AccountSettingsProps) => {
-  const { t } = useTranslation();
-
+export const AccountSettings = memo(({ user, t }: AccountSettingsProps) => {
   return (
     <Box>
       <h1>{t('accountSettings')}</h1>

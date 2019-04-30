@@ -8,7 +8,7 @@ interface ChangePasswordProps {
 }
 
 const getVerificationClass = (currentPassword: string, newPassword: string, repeatedNewPassword: string) => {
-  if (newPassword.length === 0 && repeatedNewPassword.length === 0) {
+  if (newPassword.length === 0 || repeatedNewPassword.length === 0) {
     return '';
   }
 
@@ -23,7 +23,7 @@ const getVerificationClass = (currentPassword: string, newPassword: string, repe
 };
 
 const checkForErrors = (currentPassword: string, newPassword: string, repeatedNewPassword: string) => {
-  if (newPassword.length > 0 && newPassword !== repeatedNewPassword) {
+  if (newPassword.length > 0 && repeatedNewPassword.length > 0 && newPassword !== repeatedNewPassword) {
     return 'repeatedPasswordMismatch';
   }
 

@@ -8,17 +8,17 @@ import { WorldMapHeadquarterVisibility } from '../../components/WorldMapHeadquar
 import { Box } from 'rbx';
 import { IUseStoreon } from '../../store';
 import { IUserState, Language } from '../../types/user';
-import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 
 interface PageSettingsProps extends IUseStoreon {
   user: IUserState;
+  t: i18next.TFunction;
+  i18n: i18next.i18n;
 }
 
 const APIKeyRegExp = new RegExp(/^[a-f0-9]{45}/);
 
-export const PageSettings = memo(({ dispatch, user }: PageSettingsProps) => {
-  const { t, i18n } = useTranslation();
-
+export const PageSettings = memo(({ dispatch, user, t, i18n }: PageSettingsProps) => {
   const { settings } = user;
 
   const handleLanguageChange = useCallback(
