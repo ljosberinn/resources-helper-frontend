@@ -9,5 +9,5 @@ interface APIKeyInputProps {
 }
 
 export const APIKeyInput = memo(({ handleChange, apiKey, t }: APIKeyInputProps) => (
-  <Input type="text" max={45} onChange={handleChange} defaultValue={apiKey} placeholder={t('APIKey')} />
+  <Input type="text" onChange={handleChange} defaultValue={apiKey} placeholder={t('APIKey')} />
 ));

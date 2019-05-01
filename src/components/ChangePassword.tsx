@@ -140,7 +140,7 @@ export const ChangePassword = memo(({ t }: ChangePasswordProps) => {
           <Input
             as={DebounceInput}
             type="password"
-            autoComplete="repeat-new-password"
+            autoComplete="new-password"
             size="small"
             placeholder={tRepeatNewPassword}
             onChange={handleRepeatedNewPasswordChange}
