@@ -11,12 +11,12 @@ i18n
     backend: {
       loadPath: `/api/locales.json?lang={{lng}}`,
       addPath: `/api/locales.json?add&lang={{lng}}`,
-      crossDomain: true,
+      crossDomain: false,
     },
-    saveMissing: true,
     fallbackLng: 'en',
+    saveMissing: true,
     debug: process.env.NODE_ENV === 'development',
-    keySeparator: false,
+    whitelist: (process.env.REACT_APP_ENABLED_LANGUAGES as string).split(','),
   });
 
 export default i18n;
