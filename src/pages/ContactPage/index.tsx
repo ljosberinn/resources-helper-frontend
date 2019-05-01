@@ -9,7 +9,7 @@ const ContactPage = () => {
   return (
     <>
       <Helmet>
-        <title>{t('contactPageTitle')}</title>
+        <title>{t('contactLink')} - Resources Helper</title>
       </Helmet>
       <Container as="main">WIP</Container>
     </>

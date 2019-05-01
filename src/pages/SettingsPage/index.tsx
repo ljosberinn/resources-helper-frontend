@@ -18,7 +18,7 @@ const SettingsPage = () => {
   return (
     <>
       <Helmet>
-        <title>{t('settings')}</title>
+        <title>{t('settingsLink')} - Resources Helper</title>
       </Helmet>
       <PageSettings user={user} dispatch={dispatch} t={t} i18n={i18n} />
       <AccountSettings user={user} dispatch={dispatch} t={t} />

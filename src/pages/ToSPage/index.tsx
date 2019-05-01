@@ -9,7 +9,7 @@ const ToSPage = () => {
   return (
     <>
       <Helmet>
-        <title>{t('tosPageTitle')}</title>
+        <title>{t('tosLink')} - Resources Helper</title>
       </Helmet>
       <Container as="main">WIP</Container>
     </>

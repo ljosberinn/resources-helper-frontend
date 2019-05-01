@@ -26,7 +26,7 @@ const MinesPage = () => {
   return (
     <>
       <Helmet>
-        <title>{t('minesPageTitle')}</title>
+        <title>{t('minesLink')} - Resources Helper</title>
       </Helmet>
       <Table fullwidth narrow striped bordered hoverable>
         <tbody>
