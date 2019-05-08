@@ -11,7 +11,6 @@ i18n
     backend: {
       loadPath: `/api/locales.json?lang={{lng}}`,
       addPath: `/api/locales.json?add&lang={{lng}}`,
-      crossDomain: false,
     },
     fallbackLng: 'en',
     saveMissing: true,
