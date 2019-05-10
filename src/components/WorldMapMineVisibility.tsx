@@ -12,7 +12,7 @@ export const WorldMapMineVisibility = memo(({ handleChange, checked, t }: WorldM
   <Field>
     <Label>{t('worldMapMineVisibilityLabel')}</Label>
     <Checkbox className="is-checkradio is-small" id="worldmap-mine-visibility" checked={checked} onChange={handleChange} />
-    <label htmlFor="worldmap-mine-visibility">{t(checked ? 'worldMapMineVisibility_visible' : 'worldMapMineVisibility_invisible')}</label>
+    <Label htmlFor="worldmap-mine-visibility">{t(checked ? 'worldMapMineVisibility_visible' : 'worldMapMineVisibility_invisible')}</Label>
     <Help>{t('worldMapMineVisibilityHelp')}</Help>
   </Field>
 ));

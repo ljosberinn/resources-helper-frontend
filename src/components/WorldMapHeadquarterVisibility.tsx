@@ -12,9 +12,9 @@ export const WorldMapHeadquarterVisibility = memo(({ handleChange, checked, t }:
   <Field>
     <Label>{t('worldMapHeadquarterVisibilityLabel')}</Label>
     <Checkbox className="is-checkradio is-small" id="worldmap-headquarter-visibility" checked={checked} onChange={handleChange} />
-    <label htmlFor="worldmap-headquarter-visibility">
+    <Label htmlFor="worldmap-headquarter-visibility">
       {t(checked ? 'worldMapHeadquarterVisibility_visible' : 'worldMapHeadquarterVisibility_invisible')}
-    </label>
+    </Label>
     <Help>{t('worldMapHeadquarterVisibilityHelp')}</Help>
   </Field>
 ));

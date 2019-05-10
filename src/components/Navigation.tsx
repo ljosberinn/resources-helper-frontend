@@ -34,7 +34,7 @@ export const Navigation = ({ routes }: NavigationProps) => {
               return null;
             })
             .map(({ component, title, path }, index) => (
-              <Navbar.Item as={Link} to={path} onMouseOver={() => component.preload()} key={index}>
+              <Navbar.Item as={Link} to={path} onMouseOver={() => component.preload()} onFocus={() => component.preload()} key={index}>
                 {t(title)}
               </Navbar.Item>
             ))}

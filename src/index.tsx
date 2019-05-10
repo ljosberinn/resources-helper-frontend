@@ -4,9 +4,13 @@ import './i18n';
 import './index.scss';
 import ResourcesHelper from './ResourcesHelper';
 
-if (process.env.NODE_ENV === 'development') {
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+if (isDevelopment) {
   const whyDidYouRender = require('@welldone-software/why-did-you-render');
+  const axe = require('react-axe');
   whyDidYouRender(React);
+  axe(React, ReactDOM, 1000);
 } else {
   const Sentry = require('@sentry/browser');
   const LogRocket = require('logrocket');
