@@ -1,4 +1,4 @@
-import { Navbar } from 'rbx';
+import { Column, Menu } from 'rbx';
 import React from 'react';
 import createStore from 'storeon';
 import useStoreon from 'storeon/react';
@@ -21,25 +21,27 @@ export const Navigation = ({ routes }: NavigationProps) => {
   const { t } = useTranslation();
 
   return (
-    <Navbar color="primary">
-      <Navbar.Burger />
-      <Navbar.Menu>
-        <Navbar.Segment align="start">
-          {routes
-            .filter(route => {
-              if (!route.requiresAuth || (route.requiresAuth && user.isAuthenticated)) {
-                return route;
-              }
+    <Column.Group>
+      <Column size={2}>
+        <Menu className="section">
+          <Menu.Label>Some fancy label</Menu.Label>
+          <Menu.List>
+            {routes
+              .filter(route => {
+                if (!route.requiresAuth || (route.requiresAuth && user.isAuthenticated)) {
+                  return route;
+                }
 
-              return null;
-            })
-            .map(({ component, title, path }, index) => (
-              <Navbar.Item as={Link} to={path} onMouseOver={() => component.preload()} onFocus={() => component.preload()} key={index}>
-                {t(title)}
-              </Navbar.Item>
-            ))}
-        </Navbar.Segment>
-      </Navbar.Menu>
-    </Navbar>
+                return null;
+              })
+              .map(({ component, title, path }, index) => (
+                <Menu.List.Item as={Link} to={path} onMouseOver={() => component.preload()} onFocus={() => component.preload()} key={index}>
+                  {t(title)}
+                </Menu.List.Item>
+              ))}
+          </Menu.List>
+        </Menu>
+      </Column>
+    </Column.Group>
   );
 };

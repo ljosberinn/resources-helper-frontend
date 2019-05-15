@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './i18n';
-import './index.scss';
+import './styles/index.scss';
 import ResourcesHelper from './ResourcesHelper';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
