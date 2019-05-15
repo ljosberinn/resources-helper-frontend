@@ -1,0 +1,12 @@
+// proxied via '~bulmaswatch/superhero/variables'
+@import 'colors';
+@import '~bulma/bulma.sass';
+@import '~bulmaswatch/superhero/overrides';
+
+// TODO: could potentially be removed
+@import '~rbx/rbx.sass';
+@import '~bulma-checkradio/src/sass/index.sass';
+
+.hero .container {
+  width: 95%;
+}
