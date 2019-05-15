@@ -52,6 +52,7 @@ const FooterRoutes: IRoutes[] = [
 const NavRoutes: IRoutes[] = [
   { path: '/mines', component: LoadingFactory(import('./pages/MinesPage')), requiresAuth: false, title: 'minesLink' },
   { path: '/settings', component: LoadingFactory(import('./pages/SettingsPage')), requiresAuth: true, title: 'settingsLink' },
+  { path: '/demo', component: LoadingFactory(import('./pages/DemoPage')), requiresAuth: false, title: 'demoLink' },
 ];
 
 const AllRoutes = [...FooterRoutes, ...NavRoutes];
@@ -64,20 +65,20 @@ export interface IRoutes {
 }
 
 const ResourcesHelper = () => (
-  <Router history={createBrowserHistory()}>
-    <Hero color="light">
-      <Hero.Body as="header">
-        <Container>
-          <Title className="is-size-1 is-size-3-mobile">Resources Helper</Title>
-          <Suspense fallback={null}>
-            <PageSubTitle />
-          </Suspense>
-        </Container>
-      </Hero.Body>
-    </Hero>
-    <Container as="main">
-      <StoreContext.Provider value={store}>
-        <Suspense fallback={<Loading />}>
+  <StoreContext.Provider value={store}>
+    <Router history={createBrowserHistory()}>
+      <Hero>
+        <Hero.Body as="header">
+          <Container>
+            <Title className="is-size-1 is-size-3-mobile">Resources Helper</Title>
+            <Suspense fallback={null}>
+              <PageSubTitle />
+            </Suspense>
+          </Container>
+        </Hero.Body>
+      </Hero>
+      <main>
+        <Suspense fallback={null}>
           <Navigation routes={NavRoutes} />
           <Switch>
             <Route path="/" component={LandingPage} exact={true} />
@@ -89,14 +90,14 @@ const ResourcesHelper = () => (
             <Route component={() => <h1>404 - not found</h1>} />
           </Switch>
         </Suspense>
-      </StoreContext.Provider>
-    </Container>
-    <Footer className="has-text-centered">
-      <Suspense fallback={null}>
-        <FooterLinks routes={FooterRoutes} />
-      </Suspense>
-    </Footer>
-  </Router>
+      </main>
+      <Footer className="has-text-centered">
+        <Suspense fallback={null}>
+          <FooterLinks routes={FooterRoutes} />
+        </Suspense>
+      </Footer>
+    </Router>
+  </StoreContext.Provider>
 );
 
 export default ResourcesHelper;

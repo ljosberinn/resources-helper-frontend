@@ -5,7 +5,6 @@
   "dependencies": {
     "@sentry/browser": "^5.2.1",
     "@storeon/localstorage": "^0.4.0",
-    "@types/react-axe": "^3.1.0",
     "history": "^4.9.0",
     "i18next": "^15.1.1",
     "i18next-browser-languagedetector": "^3.0.1",
@@ -34,8 +33,9 @@
     "@types/react-helmet": "^5.0.8",
     "@types/react-loadable": "^5.5.1",
     "@types/react-router-dom": "^4.3.3",
+    "@types/react-axe": "^3.1.0",
     "@welldone-software/why-did-you-render": "^3.0.9",
-    "bulma": "^0.7.4",
+    "bulmaswatch": "^0.7.2",
     "bulma-checkradio": "^1.1.0",
     "eslint": "^5.16.0",
     "husky": "^2.3.0",

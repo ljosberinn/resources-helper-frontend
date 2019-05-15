@@ -3,7 +3,7 @@ import i18next from 'i18next';
 import { Icon, Control, Label, Input, Button, Field } from 'rbx';
 import { DebounceInput } from 'react-debounce-input';
 
-interface ChangePasswordProps {
+interface PasswordChangeProps {
   t: i18next.TFunction;
 }
 
@@ -34,7 +34,7 @@ const checkForErrors = (currentPassword: string, newPassword: string, repeatedNe
   return '';
 };
 
-export const ChangePassword = memo(({ t }: ChangePasswordProps) => {
+export const PasswordChange = memo(({ t }: PasswordChangeProps) => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [repeatedNewPassword, setRepeatedNewPassword] = useState('');
