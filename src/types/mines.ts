@@ -20,7 +20,21 @@ export interface IMineState {
   readonly dependantFactories: FactoryIDs[];
 }
 
-export type ResourceIDs = 2 | 3 | 8 | 10 | 12 | 13 | 14 | 15 | 20 | 26 | 49 | 53 | 81 | 90;
+export type ResourceIDs =
+  | 2
+  | 3
+  | 8
+  | 10
+  | 12
+  | 13
+  | 14
+  | 15
+  | 20
+  | 26
+  | 49
+  | 53
+  | 81
+  | 90;
 
 export type MinePrices =
   | 1000000
@@ -38,4 +52,18 @@ export type MinePrices =
   | 2000000000
   | 800000000;
 
-export type MaxMineRates = 1530 | 542 | 510 | 306 | 306 | 382 | 2040 | 673 | 510 | 408 | 281 | 765 | 1275 | 2040;
+export type MaxMineRates =
+  | 1530
+  | 542
+  | 510
+  | 306
+  | 306
+  | 382
+  | 2040
+  | 673
+  | 510
+  | 408
+  | 281
+  | 765
+  | 1275
+  | 2040;

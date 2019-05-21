@@ -8,6 +8,13 @@ interface APIKeyInputProps {
   t: i18next.TFunction;
 }
 
-export const APIKeyInput = memo(({ handleChange, apiKey, t }: APIKeyInputProps) => (
-  <Input type="text" onChange={handleChange} defaultValue={apiKey} placeholder={t('APIKey')} />
-));
+export const APIKeyInput = memo(
+  ({ handleChange, apiKey, t }: APIKeyInputProps) => (
+    <Input
+      type="text"
+      onChange={handleChange}
+      defaultValue={apiKey}
+      placeholder={t('APIKey')}
+    />
+  ),
+);

@@ -11,7 +11,7 @@ const ContactPage = () => {
       <Helmet>
         <title>{t('contactLink')} - Resources Helper</title>
       </Helmet>
-      <Container as="main">WIP</Container>
+      <Container>WIP</Container>
     </>
   );
 };

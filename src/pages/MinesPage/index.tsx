@@ -31,7 +31,9 @@ const MinesPage = () => {
       <Table fullwidth narrow striped bordered hoverable>
         <tbody>
           {MINE_ORDER.map(resourceID => {
-            const mine = mines.find(mine => mine.resourceID === resourceID) as IMineState;
+            const mine = mines.find(
+              mine => mine.resourceID === resourceID,
+            ) as IMineState;
             return (
               <tr key={mine.resourceID}>
                 {Object.values(mine).map((entry, index) => (

@@ -7,12 +7,17 @@ interface PasswordChangeProps {
   t: i18next.TFunction;
 }
 
-const getVerificationClass = (currentPassword: string, newPassword: string, repeatedNewPassword: string) => {
+const getVerificationClass = (
+  currentPassword: string,
+  newPassword: string,
+  repeatedNewPassword: string,
+) => {
   if (newPassword.length === 0 || repeatedNewPassword.length === 0) {
     return '';
   }
 
-  const passwordDiffersFromPreviousPassword = newPassword !== currentPassword && repeatedNewPassword !== currentPassword;
+  const passwordDiffersFromPreviousPassword =
+    newPassword !== currentPassword && repeatedNewPassword !== currentPassword;
   const passwordsMatch = newPassword === repeatedNewPassword;
 
   if (passwordDiffersFromPreviousPassword && passwordsMatch) {
@@ -22,12 +27,23 @@ const getVerificationClass = (currentPassword: string, newPassword: string, repe
   return 'is-danger';
 };
 
-const checkForErrors = (currentPassword: string, newPassword: string, repeatedNewPassword: string) => {
-  if (newPassword.length > 0 && repeatedNewPassword.length > 0 && newPassword !== repeatedNewPassword) {
+const checkForErrors = (
+  currentPassword: string,
+  newPassword: string,
+  repeatedNewPassword: string,
+) => {
+  if (
+    newPassword.length > 0 &&
+    repeatedNewPassword.length > 0 &&
+    newPassword !== repeatedNewPassword
+  ) {
     return 'repeatedPasswordMismatch';
   }
 
-  if (newPassword === currentPassword || repeatedNewPassword === currentPassword) {
+  if (
+    newPassword === currentPassword ||
+    repeatedNewPassword === currentPassword
+  ) {
     return 'newPasswordIdenticalToOld';
   }
 
@@ -75,7 +91,9 @@ export const PasswordChange = memo(({ t }: PasswordChangeProps) => {
     handleError(checkForErrors(currentPassword, password, repeatedNewPassword));
   };
 
-  const handleRepeatedNewPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleRepeatedNewPasswordChange = (
+    e: ChangeEvent<HTMLInputElement>,
+  ) => {
     const password = e.target.value;
     setRepeatedNewPassword(password);
 
@@ -94,7 +112,11 @@ export const PasswordChange = memo(({ t }: PasswordChangeProps) => {
     repeatedNewPassword.length === 0 ||
     newPassword !== repeatedNewPassword;
 
-  const verificationClass = getVerificationClass(currentPassword, newPassword, repeatedNewPassword);
+  const verificationClass = getVerificationClass(
+    currentPassword,
+    newPassword,
+    repeatedNewPassword,
+  );
 
   return (
     <form onSubmit={handleSubmit}>
@@ -153,7 +175,11 @@ export const PasswordChange = memo(({ t }: PasswordChangeProps) => {
       </Field>
       {error.length > 0 && <p className="has-text-danger">{error}</p>}
 
-      <Button type="submit" disabled={isDisabled} className={isVerifying ? 'is-loading is-primary' : 'is-primary'}>
+      <Button
+        type="submit"
+        disabled={isDisabled}
+        className={isVerifying ? 'is-loading is-primary' : 'is-primary'}
+      >
         {t('changePassword')}
       </Button>
     </form>

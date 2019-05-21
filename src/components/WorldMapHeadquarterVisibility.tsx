@@ -8,13 +8,24 @@ interface WorldMapHeadquarterVisibilityProps {
   t: i18next.TFunction;
 }
 
-export const WorldMapHeadquarterVisibility = memo(({ handleChange, checked, t }: WorldMapHeadquarterVisibilityProps) => (
-  <Field>
-    <Label>{t('worldMapHeadquarterVisibilityLabel')}</Label>
-    <Checkbox className="is-checkradio is-small" id="worldmap-headquarter-visibility" checked={checked} onChange={handleChange} />
-    <Label htmlFor="worldmap-headquarter-visibility">
-      {t(checked ? 'worldMapHeadquarterVisibility_visible' : 'worldMapHeadquarterVisibility_invisible')}
-    </Label>
-    <Help>{t('worldMapHeadquarterVisibilityHelp')}</Help>
-  </Field>
-));
+export const WorldMapHeadquarterVisibility = memo(
+  ({ handleChange, checked, t }: WorldMapHeadquarterVisibilityProps) => (
+    <Field>
+      <Label>{t('worldMapHeadquarterVisibilityLabel')}</Label>
+      <Checkbox
+        className="is-checkradio is-small"
+        id="worldmap-headquarter-visibility"
+        checked={checked}
+        onChange={handleChange}
+      />
+      <Label htmlFor="worldmap-headquarter-visibility">
+        {t(
+          checked
+            ? 'worldMapHeadquarterVisibility_visible'
+            : 'worldMapHeadquarterVisibility_invisible',
+        )}
+      </Label>
+      <Help>{t('worldMapHeadquarterVisibilityHelp')}</Help>
+    </Field>
+  ),
+);

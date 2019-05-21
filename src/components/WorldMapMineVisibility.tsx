@@ -8,11 +8,24 @@ interface WorldMapMineVisibilityProps {
   t: i18next.TFunction;
 }
 
-export const WorldMapMineVisibility = memo(({ handleChange, checked, t }: WorldMapMineVisibilityProps) => (
-  <Field>
-    <Label>{t('worldMapMineVisibilityLabel')}</Label>
-    <Checkbox className="is-checkradio is-small" id="worldmap-mine-visibility" checked={checked} onChange={handleChange} />
-    <Label htmlFor="worldmap-mine-visibility">{t(checked ? 'worldMapMineVisibility_visible' : 'worldMapMineVisibility_invisible')}</Label>
-    <Help>{t('worldMapMineVisibilityHelp')}</Help>
-  </Field>
-));
+export const WorldMapMineVisibility = memo(
+  ({ handleChange, checked, t }: WorldMapMineVisibilityProps) => (
+    <Field>
+      <Label>{t('worldMapMineVisibilityLabel')}</Label>
+      <Checkbox
+        className="is-checkradio is-small"
+        id="worldmap-mine-visibility"
+        checked={checked}
+        onChange={handleChange}
+      />
+      <Label htmlFor="worldmap-mine-visibility">
+        {t(
+          checked
+            ? 'worldMapMineVisibility_visible'
+            : 'worldMapMineVisibility_invisible',
+        )}
+      </Label>
+      <Help>{t('worldMapMineVisibilityHelp')}</Help>
+    </Field>
+  ),
+);

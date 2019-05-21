@@ -1,7 +1,11 @@
 import React from 'react';
 
 export const Loading = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="xMidYMid"
+  >
     <g transform="translate(50 50)">
       <g transform="matrix(.5 0 0 .5 -17 -17)">
         <g transform="rotate(315.585)">

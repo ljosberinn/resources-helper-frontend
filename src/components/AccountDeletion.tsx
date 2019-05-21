@@ -5,4 +5,6 @@ interface AccountDeletionProps {
   t: i18next.TFunction;
 }
 
-export const AccountDeletion = ({ t }: AccountDeletionProps) => <button>delete</button>;
+export const AccountDeletion = ({ t }: AccountDeletionProps) => (
+  <button>delete</button>
+);

@@ -13,7 +13,18 @@ export interface IUserSettings {
   worldMapMinesAreVisible: boolean;
 }
 
-export type Language = 'de' | 'en' | 'jp' | 'cn' | 'fr' | 'cz' | 'ru' | 'it' | 'es' | 'pt' | 'br';
+export type Language =
+  | 'de'
+  | 'en'
+  | 'jp'
+  | 'cn'
+  | 'fr'
+  | 'cz'
+  | 'ru'
+  | 'it'
+  | 'es'
+  | 'pt'
+  | 'br';
 export type PriceExportTypes = 'json' | 'csv' | 'xml';
 export type PriceRanges = 1 | 24 | 48 | 72 | 96 | 120 | 144 | 168;
 
