@@ -1,11 +1,11 @@
-import { Column, Menu } from 'rbx';
+import { Menu } from 'rbx';
 import React from 'react';
 import createStore from 'storeon';
 import useStoreon from 'storeon/react';
 import { IUserState } from '../types/user';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { FooterRoutes } from '../Routes';
+import { MetaRoutes, AccountRoutes, GameRoutes } from '../Routes';
 import { GitHubTag } from './GitHubTag';
 
 interface NavigationStoreon {
@@ -15,8 +15,16 @@ interface NavigationStoreon {
 
 const menus = [
   {
+    title: 'Site',
+    routes: AccountRoutes,
+  },
+  {
+    title: 'Resources',
+    routes: GameRoutes,
+  },
+  {
     title: 'Meta',
-    routes: FooterRoutes,
+    routes: MetaRoutes,
   },
 ];
 
@@ -27,7 +35,7 @@ export const Navigation = () => {
   return (
     <Menu className="section">
       {menus.map(({ title, routes }) => (
-        <>
+        <React.Fragment key={title}>
           <Menu.Label>{title}</Menu.Label>
           <Menu.List>
             {routes
@@ -37,19 +45,19 @@ export const Navigation = () => {
                   ? route
                   : null,
               )
-              .map(({ component, title, path }, index) => (
+              .map(({ component, title, path }) => (
                 <Menu.List.Item
                   as={Link}
                   to={path}
                   onMouseOver={() => component.preload()}
                   onFocus={() => component.preload()}
-                  key={index}
+                  key={title}
                 >
                   {t(title)}
                 </Menu.List.Item>
               ))}
           </Menu.List>
-        </>
+        </React.Fragment>
       ))}
       <a
         rel="noreferrer noopener"

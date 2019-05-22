@@ -1,8 +1,9 @@
 import React from 'react';
+import { Column, Button, Section, Title, Content, Tag } from 'rbx';
 
 const DemoPage = () => (
-  <div className="columns">
-    <div className="column is-2">
+  <Column.Group>
+    <Column size={2}>
       <aside className="menu section">
         <p className="menu-label"> Elements </p>
         <ul className="menu-list">
@@ -86,79 +87,97 @@ const DemoPage = () => (
           </li>
         </ul>
       </aside>
-    </div>
-    <div className="column">
-      <section className="section" id="typography">
-        <h1 className="title"> Typography </h1>
+    </Column>
+    <Column size={9}>
+      <Section>
+        <Title>Typography</Title>
         <hr />
-        <div className="columns">
-          <div className="column">
-            <h1 className="title is-1"> Title 1 </h1>
-            <h2 className="title is-2"> Title 2 </h2>
-            <h3 className="title is-3"> Title 3 </h3>
-            <h4 className="title is-4"> Title 4 </h4>
-            <h5 className="title is-5"> Title 5 </h5>
-            <h6 className="title is-6"> Title 6 </h6>{' '}
-          </div>
-          <div className="column">
-            <h1 className="subtitle is-1"> Subtitle 1 </h1>
-            <h2 className="subtitle is-2"> Subtitle 2 </h2>
-            <h3 className="subtitle is-3"> Subtitle 3 </h3>
-            <h4 className="subtitle is-4"> Subtitle 4 </h4>
-            <h5 className="subtitle is-5"> Subtitle 5 </h5>
-            <h6 className="subtitle is-6"> Subtitle 6 </h6>{' '}
-          </div>
-          <div className="column">
-            <h1 className="title"> Title </h1>
-            <h2 className="subtitle"> Subtitle </h2>
-            <p className="title is-1"> Title 1 </p>
-            <p className="subtitle is-3"> Subtitle 3 </p>
-            <p className="title is-2"> Title 2 </p>
-            <p className="subtitle is-4"> Subtitle 4 </p>
-            <p className="title is-3"> Title 3 </p>
-            <p className="subtitle is-5"> Subtitle 5 </p>
-          </div>
-        </div>
-      </section>
+        <Column.Group>
+          <Column>
+            <Title size={1}>Title 1</Title>
+            <Title size={2}>Title 2</Title>
+            <Title size={3}>Title 3</Title>
+            <Title size={4}>Title 4</Title>
+            <Title size={5}>Title 5</Title>
+            <Title size={6}>Title 6</Title>
+          </Column>
+          <Column>
+            <Title subtitle size={1}>
+              Subtitle 1
+            </Title>
+            <Title subtitle size={2}>
+              Subtitle 2
+            </Title>
+            <Title subtitle size={3}>
+              Subtitle 3
+            </Title>
+            <Title subtitle size={4}>
+              Subtitle 4
+            </Title>
+            <Title subtitle size={5}>
+              Subtitle 5
+            </Title>
+            <Title subtitle size={6}>
+              Subtitle 6
+            </Title>
+          </Column>
+          <Column>
+            <Title>Title</Title>
+            <Title subtitle> Subtitle </Title>
+            <Title size={1}>Title 1</Title>
+            <Title size={3} subtitle>
+              Subtitle 3
+            </Title>
+            <Title size={2}>Title 2</Title>
+            <Title size={4} subtitle>
+              Subtitle 4
+            </Title>
+            <Title size={3}>Title 3</Title>
+            <Title size={5} subtitle>
+              Subtitle 5
+            </Title>
+          </Column>
+        </Column.Group>
+      </Section>
 
-      <section className="section" id="box">
+      <Section>
         <h1 className="title"> Box </h1>
         <hr />
         <div className="box">
           <article className="media">
             <div className="media-left">
               <figure className="image is-64x64">
-                {' '}
-                <img alt="Image" src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg" />
+                <img
+                  alt=""
+                  src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg"
+                />
               </figure>
             </div>
             <div className="media-content">
               <div className="content">
                 <p>
-                  {' '}
-                  <strong> John Smith </strong> <small> @johnsmith </small> <small> 31m </small>
-                  <br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam
-                  condimentum luctus turpis.
+                  <strong> John Smith </strong> <small> @johnsmith </small>
+                  <small> 31m </small>
+                  <br /> Lorem ipsum dolor sit amet, consectetur adipiscing
+                  elit. Aenean efficitur sit amet massa fringilla egestas.
+                  Nullam condimentum luctus turpis.
                 </p>
               </div>
               <nav className="level">
                 <div className="level-left">
                   <a className="level-item">
                     <span className="icon is-small">
-                      {' '}
-                      <i className="fa fa-reply"> </i>{' '}
+                      <i className="fa fa-reply"> </i>
                     </span>
                   </a>
                   <a className="level-item">
                     <span className="icon is-small">
-                      {' '}
-                      <i className="fa fa-retweet"> </i>{' '}
+                      <i className="fa fa-retweet"> </i>
                     </span>
                   </a>
                   <a className="level-item">
                     <span className="icon is-small">
-                      {' '}
-                      <i className="fa fa-heart"> </i>{' '}
+                      <i className="fa fa-heart"> </i>
                     </span>
                   </a>
                 </div>
@@ -166,96 +185,136 @@ const DemoPage = () => (
             </div>
           </article>
         </div>
-      </section>
+      </Section>
 
-      <section className="section" id="button">
-        <h1 className="title"> Button </h1>
+      <Section>
+        <Title>Button</Title>
         <hr />
-        <div className="columns">
-          <div className="column">
-            <div className="buttons">
-              <a className="button"> Button </a>
-              <a className="button is-white"> White </a>
-              <a className="button is-light"> Light </a>
-              <a className="button is-dark"> Dark </a>
-              <a className="button is-black"> Black </a>
-              <a className="button is-link"> Link </a>
-              <a className="button is-text"> Link </a>
-            </div>
-            <div className="buttons">
-              <a className="button is-primary"> Primary </a>
-              <a className="button is-info"> Info </a>
-              <a className="button is-success"> Success </a>
-              <a className="button is-warning"> Warning </a>
-              <a className="button is-danger"> Danger </a>
-            </div>
-            <div className="buttons">
-              <a className="button is-focused"> Focus </a>
-              <a className="button is-primary is-focused"> Focus </a>
-              <a className="button is-info is-focused"> Focus </a>
-              <a className="button is-success is-focused"> Focus </a>
-              <a className="button is-warning is-focused"> Focus </a>
-              <a className="button is-danger is-focused"> Focus </a>
-            </div>
-            <div className="buttons">
-              <a className="button is-hovered"> Hover </a>
-              <a className="button is-primary is-hovered"> Hover </a>
-              <a className="button is-info is-hovered"> Hover </a>
-              <a className="button is-success is-hovered"> Hover </a>
-              <a className="button is-warning is-hovered"> Hover </a>
-              <a className="button is-danger is-hovered"> Hover </a>
-            </div>
-            <div className="buttons">
-              <a className="button is-active"> Active </a>
-              <a className="button is-primary is-active"> Active </a>
-              <a className="button is-info is-active"> Active </a>
-              <a className="button is-success is-active"> Active </a>
-              <a className="button is-warning is-active"> Active </a>
-              <a className="button is-danger is-active"> Active </a>
-            </div>
-            <div className="buttons">
-              <a className="button is-loading"> Loading </a>
-              <a className="button is-primary is-loading"> Loading </a>
-              <a className="button is-info is-loading"> Loading </a>
-              <a className="button is-success is-loading"> Loading </a>
-              <a className="button is-warning is-loading"> Loading </a>
-              <a className="button is-danger is-loading"> Loading </a>
-            </div>
+        <Column.Group>
+          <Column>
+            <Button.Group>
+              <Button>Button</Button>
+              <Button color="white">White</Button>
+              <Button color="light">light</Button>
+              <Button color="dark">dark</Button>
+              <Button color="black">black</Button>
+              <Button color="link">link</Button>
+              <Button text>text</Button>
+            </Button.Group>
+            <Button.Group>
+              <Button color="primary">primary</Button>
+              <Button color="info">info</Button>
+              <Button color="success">success</Button>
+              <Button color="warning">warning</Button>
+              <Button color="danger">danger</Button>
+            </Button.Group>
+            <Button.Group>
+              <Button state="focused">focused</Button>
+              <Button color="primary" state="focused">
+                primary
+              </Button>
+              <Button color="info" state="focused">
+                info
+              </Button>
+              <Button color="success" state="focused">
+                success
+              </Button>
+              <Button color="warning" state="focused">
+                warning
+              </Button>
+              <Button color="danger" state="focused">
+                danger
+              </Button>
+            </Button.Group>
+            <Button.Group>
+              <Button state="hovered">hovered</Button>
+              <Button color="primary" state="hovered">
+                primary
+              </Button>
+              <Button color="info" state="hovered">
+                info
+              </Button>
+              <Button color="success" state="hovered">
+                success
+              </Button>
+              <Button color="warning" state="hovered">
+                warning
+              </Button>
+              <Button color="danger" state="hovered">
+                danger
+              </Button>
+            </Button.Group>
+            <Button.Group>
+              <Button state="active">active</Button>
+              <Button color="primary" state="active">
+                primary
+              </Button>
+              <Button color="info" state="active">
+                info
+              </Button>
+              <Button color="success" state="active">
+                success
+              </Button>
+              <Button color="warning" state="active">
+                warning
+              </Button>
+              <Button color="danger" state="active">
+                danger
+              </Button>
+            </Button.Group>
+            <Button.Group>
+              <Button state="loading">loading</Button>
+              <Button color="primary" state="loading">
+                primary
+              </Button>
+              <Button color="info" state="loading">
+                info
+              </Button>
+              <Button color="success" state="loading">
+                success
+              </Button>
+              <Button color="warning" state="loading">
+                warning
+              </Button>
+              <Button color="danger" state="loading">
+                danger
+              </Button>
+            </Button.Group>
             <p className="field">
-              <a className="button">
+              <a href="#" className="button">
                 <span className="icon is-small">
                   <i className="fa fa-bold"> </i>
                 </span>
               </a>
-              <a className="button">
+              <a href="#" className="button">
                 <span className="icon is-small">
                   <i className="fa fa-italic"> </i>
                 </span>
               </a>
-              <a className="button">
+              <a href="#" className="button">
                 <span className="icon is-small">
                   <i className="fa fa-underline"> </i>
                 </span>
               </a>
-              <a className="button">
+              <a href="#" className="button">
                 <span className="icon">
                   <i className="fa fa-github"> </i>
                 </span>
                 <span> GitHub </span>
               </a>
-              <a className="button is-primary">
+              <a href="#" className="button is-primary">
                 <span className="icon">
                   <i className="fa fa-twitter"> </i>
                 </span>
                 <span> Twitter </span>
               </a>
-              <a className="button is-success">
+              <a href="#" className="button is-success">
                 <span className="icon is-small">
                   <i className="fa fa-check"> </i>
                 </span>
                 <span> Save </span>
               </a>
-              <a className="button is-danger is-outlined">
+              <a href="#" className="button is-danger is-outlined">
                 <span> Delete </span>
                 <span className="icon is-small">
                   <i className="fa fa-times"> </i>
@@ -264,7 +323,7 @@ const DemoPage = () => (
             </p>
             <div className="field has-addons">
               <p className="control">
-                <a className="button">
+                <a href="#" className="button">
                   <span className="icon is-small">
                     <i className="fa fa-bold" />
                   </span>
@@ -272,7 +331,7 @@ const DemoPage = () => (
                 </a>
               </p>
               <p className="control">
-                <a className="button">
+                <a href="#" className="button">
                   <span className="icon is-small">
                     <i className="fa fa-italic" />
                   </span>
@@ -280,7 +339,7 @@ const DemoPage = () => (
                 </a>
               </p>
               <p className="control">
-                <a className="button">
+                <a href="#" className="button">
                   <span className="icon is-small">
                     <i className="fa fa-underline" />
                   </span>
@@ -291,7 +350,7 @@ const DemoPage = () => (
 
             <div className="field has-addons">
               <p className="control">
-                <a className="button">
+                <a href="#" className="button">
                   <span className="icon is-small">
                     <i className="fa fa-align-left" />
                   </span>
@@ -299,7 +358,7 @@ const DemoPage = () => (
                 </a>
               </p>
               <p className="control">
-                <a className="button">
+                <a href="#" className="button">
                   <span className="icon is-small">
                     <i className="fa fa-align-center" />
                   </span>
@@ -307,7 +366,7 @@ const DemoPage = () => (
                 </a>
               </p>
               <p className="control">
-                <a className="button">
+                <a href="#" className="button">
                   <span className="icon is-small">
                     <i className="fa fa-align-right" />
                   </span>
@@ -315,152 +374,189 @@ const DemoPage = () => (
                 </a>
               </p>
             </div>
-            <div className="buttons">
-              <a className="button is-rounded">Rounded</a>
-              <a className="button is-primary is-rounded">Rounded</a>
-              <a className="button is-link is-rounded">Rounded</a>
-              <a className="button is-info is-rounded">Rounded</a>
-              <a className="button is-success is-rounded">Rounded</a>
-              <a className="button is-danger is-rounded">Rounded</a>
-            </div>
-          </div>
-          <div className="column">
-            <div className="buttons">
-              <a className="button is-small"> Small </a>
-              <a className="button"> Normal </a>
-              <a className="button is-medium"> Medium </a>
-              <a className="button is-large"> Large </a>
-            </div>
-            <div className="buttons">
-              <a className="button is-outlined"> Outlined </a>
-              <a className="button is-primary is-outlined"> Outlined </a>
-              <a className="button is-info is-outlined"> Outlined </a>
-              <a className="button is-success is-outlined"> Outlined </a>
-              <a className="button is-danger is-outlined"> Outlined </a>
+            <Button.Group>
+              <Button rounded>rounded</Button>
+              <Button color="primary" rounded>
+                rounded
+              </Button>
+              <Button color="link" rounded>
+                rounded
+              </Button>
+              <Button color="info" rounded>
+                rounded
+              </Button>
+              <Button color="success" rounded>
+                rounded
+              </Button>
+              <Button color="danger" rounded>
+                rounded
+              </Button>
+            </Button.Group>
+          </Column>
+          <Column>
+            <Button.Group>
+              <Button size="small">small</Button>
+              <Button>normal</Button>
+              <Button size="medium">medium</Button>
+              <Button size="large">large</Button>
+            </Button.Group>
+            <Button.Group>
+              <Button color="primary" outlined>
+                outlined
+              </Button>
+              <Button color="info" outlined>
+                outlined
+              </Button>
+              <Button color="success" outlined>
+                outlined
+              </Button>
+              <Button color="danger" outlined>
+                outlined
+              </Button>
+            </Button.Group>
+            <div className="buttons notification is-primary">
+              <Button color="primary" inverted outlined>
+                inverted outlined
+              </Button>
+              <Button color="info" inverted outlined>
+                inverted outlined
+              </Button>
+              <Button color="success" inverted outlined>
+                inverted outlined
+              </Button>
+              <Button color="danger" inverted outlined>
+                inverted outlined
+              </Button>
             </div>
             <div className="buttons notification is-primary">
-              <a className="button is-primary is-inverted is-outlined"> Invert Outlined </a>
-              <a className="button is-info is-inverted is-outlined"> Invert Outlined </a>
-              <a className="button is-success is-inverted is-outlined"> Invert Outlined </a>
-              <a className="button is-danger is-inverted is-outlined"> Invert Outlined </a>
+              <Button color="primary" inverted>
+                inverted
+              </Button>
+              <Button color="info" inverted>
+                inverted
+              </Button>
+              <Button color="success" inverted>
+                inverted
+              </Button>
+              <Button color="danger" inverted>
+                inverted
+              </Button>
             </div>
-            <div className="buttons notification is-primary">
-              <a className="button is-primary is-inverted"> Inverted </a>
-              <a className="button is-info is-inverted"> Inverted </a>
-              <a className="button is-success is-inverted"> Inverted </a>
-              <a className="button is-danger is-inverted"> Inverted </a>
-            </div>
-            <p className="buttons">
-              <a className="button is-small">
+            <Button.Group>
+              <a href="#" className="button is-small">
                 <span className="icon is-small">
                   <i className="fa fa-github"> </i>
                 </span>
                 <span> GitHub </span>
               </a>
-              <a className="button">
+              <a href="#" className="button">
                 <span className="icon">
                   <i className="fa fa-github"> </i>
                 </span>
                 <span> GitHub </span>
               </a>
-              <a className="button is-medium">
+              <a href="#" className="button is-medium">
                 <span className="icon">
                   <i className="fa fa-github"> </i>
                 </span>
                 <span> GitHub </span>
               </a>
-              <a className="button is-large">
+              <a href="#" className="button is-large">
                 <span className="icon is-medium">
                   <i className="fa fa-github"> </i>
                 </span>
                 <span> GitHub </span>
               </a>
-            </p>
+            </Button.Group>
             <p className="field">
-              <a className="button is-small">
+              <a href="#" className="button is-small">
                 <span className="icon is-small">
                   <i className="fa fa-header"> </i>
                 </span>
               </a>
             </p>
             <p className="field">
-              <a className="button">
+              <a href="#" className="button">
                 <span className="icon is-small">
                   <i className="fa fa-header"> </i>
                 </span>
               </a>
-              <a className="button">
+              <a href="#" className="button">
                 <span className="icon">
                   <i className="fa fa-header fa-lg"> </i>
                 </span>
               </a>
             </p>
             <p className="field">
-              <a className="button is-medium">
+              <a href="#" className="button is-medium">
                 <span className="icon is-small">
                   <i className="fa fa-header"> </i>
                 </span>
               </a>
-              <a className="button is-medium">
+              <a href="#" className="button is-medium">
                 <span className="icon">
                   <i className="fa fa-header fa-lg"> </i>
                 </span>
               </a>
-              <a className="button is-medium">
+              <a href="#" className="button is-medium">
                 <span className="icon is-medium">
                   <i className="fa fa-header fa-2x"> </i>
                 </span>
               </a>
             </p>
             <p className="field">
-              <a className="button is-large">
+              <a href="#" className="button is-large">
                 <span className="icon is-small">
                   <i className="fa fa-header"> </i>
                 </span>
               </a>
-              <a className="button is-large">
+              <a href="#" className="button is-large">
                 <span className="icon is-medium">
                   <i className="fa fa-header fa-lg"> </i>
                 </span>
               </a>
-              <a className="button is-large">
+              <a href="#" className="button is-large">
                 <span className="icon is-large">
                   <i className="fa fa-header fa-2x"> </i>
                 </span>
               </a>
             </p>
-          </div>
-        </div>
-      </section>
-      <section className="section" id="content">
-        <h1 className="title"> Content </h1>
+          </Column>
+        </Column.Group>
+      </Section>
+      <Section>
+        <Title>Content</Title>
         <hr />
-        <div className="content">
+        <Content>
           <h1> Hello World </h1>
           <p>
-            {' '}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan, metus ultrices eleifend gravida, nulla nunc varius
-            lectus, nec rutrum justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum mattis
-            neque.{' '}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus,
+            nec rutrum justo nibh eu lectus. Ut vulputate semper dui. Fusce erat
+            odio, sollicitudin vel erat vel, interdum mattis neque.
           </p>
           <h2> Second level </h2>
           <p>
-            {' '}
-            Curabitur accumsan turpis pharetra <strong> augue tincidunt </strong> blandit. Quisque condimentum maximus mi, sit amet commodo
-            arcu rutrum id. Proin pretium urna vel cursus venenatis. Suspendisse potenti. Etiam mattis sem rhoncus lacus dapibus facilisis.
-            Donec at dignissim dui. Ut et neque nisl.{' '}
+            Curabitur accumsan turpis pharetra
+            <strong> augue tincidunt </strong> blandit. Quisque condimentum
+            maximus mi, sit amet commodo arcu rutrum id. Proin pretium urna vel
+            cursus venenatis. Suspendisse potenti. Etiam mattis sem rhoncus
+            lacus dapibus facilisis. Donec at dignissim dui. Ut et neque nisl.
           </p>
           <ul>
-            <li> In fermentum leo eu lectus mollis, quis dictum mi aliquet. </li>
-            <li> Morbi eu nulla lobortis, lobortis est in, fringilla felis. </li>
-            <li> Aliquam nec felis in sapien venenatis viverra fermentum nec lectus. </li>
+            <li>In fermentum leo eu lectus mollis, quis dictum mi aliquet.</li>
+            <li>Morbi eu nulla lobortis, lobortis est in, fringilla felis.</li>
+            <li>
+              Aliquam nec felis in sapien venenatis viverra fermentum nec
+              lectus.
+            </li>
             <li> Ut non enim metus. </li>
           </ul>
           <h3> Third level </h3>
           <p>
-            {' '}
             Quisque ante lacus, malesuada ac auctor vitae, congue
-            <a href="#"> non ante </a>. Phasellus lacus ex, semper ac tortor nec, fringilla condimentum orci. Fusce eu rutrum tellus.{' '}
+            <a href="#"> non ante </a>. Phasellus lacus ex, semper ac tortor
+            nec, fringilla condimentum orci. Fusce eu rutrum tellus.
           </p>
           <ol>
             <li> Donec blandit a lorem id convallis. </li>
@@ -468,38 +564,40 @@ const DemoPage = () => (
             <li> Integer in volutpat libero. </li>
             <li> Donec a diam tellus. </li>
             <li> Aenean nec tortor orci. </li>
-            <li> Quisque aliquam cursus urna, non bibendum massa viverra eget. </li>
+            <li>
+              Quisque aliquam cursus urna, non bibendum massa viverra eget.
+            </li>
             <li> Vivamus maximus ultricies pulvinar. </li>
           </ol>
           <blockquote>
-            {' '}
-            Ut venenatis, nisl scelerisque sollicitudin fermentum, quam libero hendrerit ipsum, ut blandit est tellus sit amet turpis.{' '}
+            Ut venenatis, nisl scelerisque sollicitudin fermentum, quam libero
+            hendrerit ipsum, ut blandit est tellus sit amet turpis.
           </blockquote>
           <p>
-            {' '}
-            Quisque at semper enim, eu hendrerit odio. Etiam auctor nisl et <em> justo sodales </em> elementum. Maecenas ultrices lacus quis
-            neque consectetur, et lobortis nisi molestie.{' '}
+            Quisque at semper enim, eu hendrerit odio. Etiam auctor nisl et
+            <em> justo sodales </em> elementum. Maecenas ultrices lacus quis
+            neque consectetur, et lobortis nisi molestie.
           </p>
           <p>
-            {' '}
-            Sed sagittis enim ac tortor maximus rutrum. Nulla facilisi. Donec mattis vulputate risus in luctus. Maecenas vestibulum interdum
-            commodo.{' '}
+            Sed sagittis enim ac tortor maximus rutrum. Nulla facilisi. Donec
+            mattis vulputate risus in luctus. Maecenas vestibulum interdum
+            commodo.
           </p>
           <p>
-            {' '}
-            Suspendisse egestas sapien non felis placerat elementum. Morbi tortor nisl, suscipit sed mi sit amet, mollis malesuada nulla.
-            Nulla facilisi. Nullam ac erat ante.{' '}
+            Suspendisse egestas sapien non felis placerat elementum. Morbi
+            tortor nisl, suscipit sed mi sit amet, mollis malesuada nulla. Nulla
+            facilisi. Nullam ac erat ante.
           </p>
           <h4> Fourth level </h4>
           <p>
-            {' '}
-            Nulla efficitur eleifend nisi, sit amet bibendum sapien fringilla ac. Mauris euismod metus a tellus laoreet, at elementum ex
-            efficitur.{' '}
+            Nulla efficitur eleifend nisi, sit amet bibendum sapien fringilla
+            ac. Mauris euismod metus a tellus laoreet, at elementum ex
+            efficitur.
           </p>
           <p>
-            {' '}
-            Maecenas eleifend sollicitudin dui faucibus sollicitudin augue cursus non. Ut finibus eleifend arcu ut vehicula. Mauris eu est
-            maximus est porta condimentum in eu justo. Nulla id iaculis sapien.{' '}
+            Maecenas eleifend sollicitudin dui faucibus sollicitudin augue
+            cursus non. Ut finibus eleifend arcu ut vehicula. Mauris eu est
+            maximus est porta condimentum in eu justo. Nulla id iaculis sapien.
           </p>
           <table>
             <thead>
@@ -532,70 +630,77 @@ const DemoPage = () => (
             </tbody>
           </table>
           <p>
-            {' '}
-            Phasellus porttitor enim id metus volutpat ultricies. Ut nisi nunc, blandit sed dapibus at, vestibulum in felis. Etiam iaculis
-            lorem ac nibh bibendum rhoncus. Nam interdum efficitur ligula sit amet ullamcorper. Etiam tristique, leo vitae porta faucibus,
-            mi lacus laoreet metus, at cursus leo est vel tellus. Sed ac posuere est. Nunc ultricies nunc neque, vitae ultricies ex sodales
-            quis. Aliquam eu nibh in libero accumsan pulvinar. Nullam nec nisl placerat, pretium metus vel, euismod ipsum. Proin tempor
-            cursus nisl vel condimentum. Nam pharetra varius metus non pellentesque.{' '}
+            Phasellus porttitor enim id metus volutpat ultricies. Ut nisi nunc,
+            blandit sed dapibus at, vestibulum in felis. Etiam iaculis lorem ac
+            nibh bibendum rhoncus. Nam interdum efficitur ligula sit amet
+            ullamcorper. Etiam tristique, leo vitae porta faucibus, mi lacus
+            laoreet metus, at cursus leo est vel tellus. Sed ac posuere est.
+            Nunc ultricies nunc neque, vitae ultricies ex sodales quis. Aliquam
+            eu nibh in libero accumsan pulvinar. Nullam nec nisl placerat,
+            pretium metus vel, euismod ipsum. Proin tempor cursus nisl vel
+            condimentum. Nam pharetra varius metus non pellentesque.
           </p>
           <h5> Fifth level </h5>
           <p>
-            {' '}
-            Aliquam sagittis rhoncus vulputate. Cras non luctus sem, sed tincidunt ligula. Vestibulum at nunc elit. Praesent aliquet ligula
-            mi, in luctus elit volutpat porta. Phasellus molestie diam vel nisi sodales, a eleifend augue laoreet. Sed nec eleifend justo.
-            Nam et sollicitudin odio.{' '}
+            Aliquam sagittis rhoncus vulputate. Cras non luctus sem, sed
+            tincidunt ligula. Vestibulum at nunc elit. Praesent aliquet ligula
+            mi, in luctus elit volutpat porta. Phasellus molestie diam vel nisi
+            sodales, a eleifend augue laoreet. Sed nec eleifend justo. Nam et
+            sollicitudin odio.
           </p>
           <h6> Sixth level </h6>
           <p>
-            {' '}
-            Cras in nibh lacinia, venenatis nisi et, auctor urna. Donec pulvinar lacus sed diam dignissim, ut eleifend eros accumsan.
-            Phasellus non tortor eros. Ut sed rutrum lacus. Etiam purus nunc, scelerisque quis enim vitae, malesuada ultrices turpis. Nunc
-            vitae maximus purus, nec consectetur dui. Suspendisse euismod, elit vel rutrum commodo, ipsum tortor maximus dui, sed varius
-            sapien odio vitae est. Etiam at cursus metus.{' '}
+            Cras in nibh lacinia, venenatis nisi et, auctor urna. Donec pulvinar
+            lacus sed diam dignissim, ut eleifend eros accumsan. Phasellus non
+            tortor eros. Ut sed rutrum lacus. Etiam purus nunc, scelerisque quis
+            enim vitae, malesuada ultrices turpis. Nunc vitae maximus purus, nec
+            consectetur dui. Suspendisse euismod, elit vel rutrum commodo, ipsum
+            tortor maximus dui, sed varius sapien odio vitae est. Etiam at
+            cursus metus.
           </p>
-        </div>
-      </section>
+        </Content>
+      </Section>
 
-      <section className="section" id="delete">
-        <h1 className="title"> Delete </h1>
+      <Section>
+        <Title>Delete</Title>
         <hr />
         <div className="block">
-          <span className="tag is-success">
-            {' '}
+          <Tag color="success">
             Hello World
             <button className="delete is-small"> </button>
-          </span>
+          </Tag>
           <a className="delete is-small"> </a>
           <a className="delete"> </a>
           <a className="delete is-medium"> </a>
           <a className="delete is-large"> </a>
         </div>
         <div className="notification is-danger">
-          <button className="delete"> </button> Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor sit amet,
-          consectetur adipiscing elit{' '}
+          <button className="delete"> </button> Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit lorem ipsum dolor sit amet, consectetur
+          adipiscing elit
         </div>
         <article className="message is-info">
           <div className="message-header">
-            {' '}
             Info
             <button className="delete"> </button>
           </div>
           <div className="message-body">
-            {' '}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque risus mi, tempus quis placerat ut, porta nec nulla.
-            Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum felis venenatis efficitur. Aenean ac eleifend
-            lacus, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a
-            neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.{' '}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Pellentesque risus mi, tempus quis placerat ut, porta nec nulla.
+            Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus
+            diam, et dictum felis venenatis efficitur. Aenean ac eleifend lacus,
+            in mollis lectus. Donec sodales, arcu et sollicitudin porttitor,
+            tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui
+            urna, vehicula et sem eget, facilisis sodales sem.
           </div>
         </article>
-      </section>
+      </Section>
 
-      <section className="section" id="form">
-        <h1 className="title"> Form </h1>
+      <Section>
+        <Title>Form</Title>
         <hr />
-        <div className="columns">
-          <div className="column">
+        <Column.Group>
+          <Column>
             <div className="field">
               <label className="label">Name</label>
               <p className="control">
@@ -605,7 +710,12 @@ const DemoPage = () => (
             <div className="field">
               <label className="label">Username</label>
               <p className="control has-icons-left has-icons-right">
-                <input className="input is-success" type="text" placeholder="Text input" value="bulma" />
+                <input
+                  className="input is-success"
+                  type="text"
+                  placeholder="Text input"
+                  defaultValue="bulma"
+                />
                 <span className="icon is-small is-left">
                   <i className="fa fa-user" />
                 </span>
@@ -618,7 +728,12 @@ const DemoPage = () => (
             <div className="field">
               <label className="label">Email</label>
               <p className="control has-icons-left has-icons-right">
-                <input className="input is-danger" type="text" placeholder="Email input" value="hello@" />
+                <input
+                  className="input is-danger"
+                  type="text"
+                  placeholder="Email input"
+                  defaultValue="hello@"
+                />
                 <span className="icon is-small is-left">
                   <i className="fa fa-envelope" />
                 </span>
@@ -676,14 +791,21 @@ const DemoPage = () => (
             <hr />
             <div className="field">
               <p className="control">
-                <input className="input" disabled placeholder="Disabled input" type="text" />
+                <input
+                  className="input"
+                  disabled
+                  placeholder="Disabled input"
+                  type="text"
+                />
               </p>
             </div>
             <div className="field">
               <p className="control">
-                <textarea className="textarea" disabled placeholder="Disabled textarea">
-                  {' '}
-                </textarea>
+                <textarea
+                  className="textarea"
+                  disabled
+                  placeholder="Disabled textarea"
+                />
               </p>
             </div>
             <div className="field">
@@ -705,16 +827,12 @@ const DemoPage = () => (
             </div>
             <div className="field is-grouped">
               <p className="control">
-                <button className="button is-primary" disabled>
-                  {' '}
-                  Submit{' '}
-                </button>
+                <Button primary disabled>
+                  Submit
+                </Button>
               </p>
               <p className="control">
-                <button className="button" disabled>
-                  {' '}
-                  Cancel{' '}
-                </button>
+                <Button disabled>Cancel</Button>
               </p>
             </div>
             <br />
@@ -735,7 +853,12 @@ const DemoPage = () => (
                 </div>
                 <div className="field">
                   <p className="control is-expanded has-icons-left has-icons-right">
-                    <input className="input is-success" type="email" placeholder="Email" value="alex@smith.com" />
+                    <input
+                      className="input is-success"
+                      type="email"
+                      placeholder="Email"
+                      defaultValue="alex@smith.com"
+                    />
                     <span className="icon is-small is-left">
                       <i className="fa fa-envelope" />
                     </span>
@@ -789,7 +912,11 @@ const DemoPage = () => (
               <div className="field-body">
                 <div className="field">
                   <div className="control">
-                    <input className="input is-danger" type="text" placeholder="e.g. Partnership opportunity" />
+                    <input
+                      className="input is-danger"
+                      type="text"
+                      placeholder="e.g. Partnership opportunity"
+                    />
                   </div>
                   <p className="help is-danger">This field is required</p>
                 </div>
@@ -802,7 +929,10 @@ const DemoPage = () => (
               <div className="field-body">
                 <div className="field">
                   <div className="control">
-                    <textarea className="textarea" placeholder="Explain how we can help you" />
+                    <textarea
+                      className="textarea"
+                      placeholder="Explain how we can help you"
+                    />
                   </div>
                 </div>
               </div>
@@ -843,7 +973,9 @@ const DemoPage = () => (
                     </span>
                     <span className="file-label">Choose a file…</span>
                   </span>
-                  <span className="file-name">Screen Shot 2017-07-29 at 15.54.25.png</span>
+                  <span className="file-name">
+                    Screen Shot 2017-07-29 at 15.54.25.png
+                  </span>
                 </label>
               </div>
             </div>
@@ -871,7 +1003,9 @@ const DemoPage = () => (
                     </span>
                     <span className="file-label">Info file…</span>
                   </span>
-                  <span className="file-name">Screen Shot 2017-07-29 at 15.54.25.png</span>
+                  <span className="file-name">
+                    Screen Shot 2017-07-29 at 15.54.25.png
+                  </span>
                 </label>
               </div>
             </div>
@@ -900,18 +1034,24 @@ const DemoPage = () => (
                     </span>
                     <span className="file-label">Danger file…</span>
                   </span>
-                  <span className="file-name">Screen Shot 2017-07-29 at 15.54.25.png</span>
+                  <span className="file-name">
+                    Screen Shot 2017-07-29 at 15.54.25.png
+                  </span>
                 </label>
               </div>
             </div>
-          </div>
-          <div className="column">
+          </Column>
+          <Column>
             <br />
             <h3 className="subtitle"> Styles </h3>
             <hr />
             <div className="field">
               <p className="control">
-                <input className="input is-rounded" type="text" placeholder="Rounded input" />
+                <input
+                  className="input is-rounded"
+                  type="text"
+                  placeholder="Rounded input"
+                />
               </p>
             </div>
             <br />
@@ -919,27 +1059,47 @@ const DemoPage = () => (
             <hr />
             <div className="field">
               <p className="control">
-                <input className="input is-primary" type="text" placeholder="Primary input" />
+                <input
+                  className="input is-primary"
+                  type="text"
+                  placeholder="Primary input"
+                />
               </p>
             </div>
             <div className="field">
               <p className="control">
-                <input className="input is-info" type="text" placeholder="Info input" />
+                <input
+                  className="input is-info"
+                  type="text"
+                  placeholder="Info input"
+                />
               </p>
             </div>
             <div className="field">
               <p className="control">
-                <input className="input is-success" type="text" placeholder="Success input" />
+                <input
+                  className="input is-success"
+                  type="text"
+                  placeholder="Success input"
+                />
               </p>
             </div>
             <div className="field">
               <p className="control">
-                <input className="input is-warning" type="text" placeholder="Warning input" />
+                <input
+                  className="input is-warning"
+                  type="text"
+                  placeholder="Warning input"
+                />
               </p>
             </div>
             <div className="field">
               <p className="control">
-                <input className="input is-danger" type="text" placeholder="Danger input" />
+                <input
+                  className="input is-danger"
+                  type="text"
+                  placeholder="Danger input"
+                />
               </p>
             </div>
             <br />
@@ -947,22 +1107,38 @@ const DemoPage = () => (
             <hr />
             <div className="field">
               <p className="control">
-                <input className="input is-small" type="text" placeholder="Small input" />
+                <input
+                  className="input is-small"
+                  type="text"
+                  placeholder="Small input"
+                />
               </p>
             </div>
             <div className="field">
               <p className="control">
-                <input className="input" type="text" placeholder="Normal input" />
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="Normal input"
+                />
               </p>
             </div>
             <div className="field">
               <p className="control">
-                <input className="input is-medium" type="text" placeholder="Medium input" />
+                <input
+                  className="input is-medium"
+                  type="text"
+                  placeholder="Medium input"
+                />
               </p>
             </div>
             <div className="field">
               <p className="control">
-                <input className="input is-large" type="text" placeholder="Large input" />
+                <input
+                  className="input is-large"
+                  type="text"
+                  placeholder="Large input"
+                />
               </p>
             </div>
             <div className="field">
@@ -1008,7 +1184,11 @@ const DemoPage = () => (
             <div className="field">
               <label className="label is-small">Small input</label>
               <p className="control has-icons-left has-icons-right">
-                <input className="input is-small" type="email" placeholder="Email" />
+                <input
+                  className="input is-small"
+                  type="email"
+                  placeholder="Email"
+                />
                 <span className="icon is-small is-left">
                   <i className="fa fa-envelope" />
                 </span>
@@ -1043,7 +1223,11 @@ const DemoPage = () => (
             <div className="field">
               <label className="label is-medium">Medium input</label>
               <p className="control has-icons-left has-icons-right">
-                <input className="input is-medium" type="email" placeholder="Email" />
+                <input
+                  className="input is-medium"
+                  type="email"
+                  placeholder="Email"
+                />
                 <span className="icon is-small is-left">
                   <i className="fa fa-envelope" />
                 </span>
@@ -1054,7 +1238,11 @@ const DemoPage = () => (
             </div>
             <div className="field">
               <p className="control has-icons-left has-icons-right">
-                <input className="input is-medium" type="email" placeholder="Email" />
+                <input
+                  className="input is-medium"
+                  type="email"
+                  placeholder="Email"
+                />
                 <span className="icon is-left">
                   <i className="fa fa-envelope" />
                 </span>
@@ -1065,7 +1253,11 @@ const DemoPage = () => (
             </div>
             <div className="field">
               <p className="control has-icons-left has-icons-right">
-                <input className="input is-medium" type="email" placeholder="Email" />
+                <input
+                  className="input is-medium"
+                  type="email"
+                  placeholder="Email"
+                />
                 <span className="icon is-medium is-left">
                   <i className="fa fa-envelope" />
                 </span>
@@ -1077,7 +1269,11 @@ const DemoPage = () => (
             <div className="field">
               <label className="label is-large">Large input</label>
               <p className="control has-icons-left has-icons-right">
-                <input className="input is-large" type="email" placeholder="Email" />
+                <input
+                  className="input is-large"
+                  type="email"
+                  placeholder="Email"
+                />
                 <span className="icon is-small is-left">
                   <i className="fa fa-envelope" />
                 </span>
@@ -1088,7 +1284,11 @@ const DemoPage = () => (
             </div>
             <div className="field">
               <p className="control has-icons-left has-icons-right">
-                <input className="input is-large" type="email" placeholder="Email" />
+                <input
+                  className="input is-large"
+                  type="email"
+                  placeholder="Email"
+                />
                 <span className="icon is-left">
                   <i className="fa fa-envelope" />
                 </span>
@@ -1099,7 +1299,11 @@ const DemoPage = () => (
             </div>
             <div className="field">
               <p className="control has-icons-left has-icons-right">
-                <input className="input is-large" type="email" placeholder="Email" />
+                <input
+                  className="input is-large"
+                  type="email"
+                  placeholder="Email"
+                />
                 <span className="icon is-medium is-left">
                   <i className="fa fa-envelope" />
                 </span>
@@ -1110,7 +1314,11 @@ const DemoPage = () => (
             </div>
             <div className="field">
               <p className="control has-icons-left has-icons-right">
-                <input className="input is-large" type="email" placeholder="Email" />
+                <input
+                  className="input is-large"
+                  type="email"
+                  placeholder="Email"
+                />
                 <span className="icon is-large is-left">
                   <i className="fa fa-envelope" />
                 </span>
@@ -1132,7 +1340,11 @@ const DemoPage = () => (
             </div>
             <div className="field">
               <p className="control has-icons-left">
-                <input className="input" type="password" placeholder="Password" />
+                <input
+                  className="input"
+                  type="password"
+                  placeholder="Password"
+                />
                 <span className="icon is-small is-left">
                   <i className="fa fa-lock" />
                 </span>
@@ -1148,7 +1360,11 @@ const DemoPage = () => (
             <hr />
             <div className="field has-addons">
               <p className="control">
-                <input className="input" type="text" placeholder="Find a repository" />
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="Find a repository"
+                />
               </p>
               <p className="control">
                 <a className="button is-info">Search</a>
@@ -1156,7 +1372,11 @@ const DemoPage = () => (
             </div>
             <div className="field has-addons">
               <p className="control">
-                <input className="input is-large" type="text" placeholder="Find a repository" />
+                <input
+                  className="input is-large"
+                  type="text"
+                  placeholder="Find a repository"
+                />
               </p>
               <p className="control">
                 <a className="button is-info is-large">Search</a>
@@ -1173,7 +1393,11 @@ const DemoPage = () => (
                 </span>
               </p>
               <p className="control">
-                <input className="input" type="text" placeholder="Amount of money" />
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="Amount of money"
+                />
               </p>
               <p className="control">
                 <a className="button">Transfer</a>
@@ -1190,7 +1414,11 @@ const DemoPage = () => (
                 </span>
               </p>
               <p className="control is-expanded">
-                <input className="input" type="text" placeholder="Amount of money" />
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="Amount of money"
+                />
               </p>
               <p className="control">
                 <a className="button">Transfer</a>
@@ -1200,18 +1428,18 @@ const DemoPage = () => (
               <p className="control is-expanded">
                 <span className="select is-fullwidth">
                   <select name="country">
-                    <option value="Argentina">Argentina</option>
-                    <option value="Bolivia">Bolivia</option>
-                    <option value="Brazil">Brazil</option>
-                    <option value="Chile">Chile</option>
-                    <option value="Colombia">Colombia</option>
-                    <option value="Ecuador">Ecuador</option>
-                    <option value="Guyana">Guyana</option>
-                    <option value="Paraguay">Paraguay</option>
-                    <option value="Peru">Peru</option>
-                    <option value="Suriname">Suriname</option>
-                    <option value="Uruguay">Uruguay</option>
-                    <option value="Venezuela">Venezuela</option>
+                    <option defaultValue="Argentina">Argentina</option>
+                    <option defaultValue="Bolivia">Bolivia</option>
+                    <option defaultValue="Brazil">Brazil</option>
+                    <option defaultValue="Chile">Chile</option>
+                    <option defaultValue="Colombia">Colombia</option>
+                    <option defaultValue="Ecuador">Ecuador</option>
+                    <option defaultValue="Guyana">Guyana</option>
+                    <option defaultValue="Paraguay">Paraguay</option>
+                    <option defaultValue="Peru">Peru</option>
+                    <option defaultValue="Suriname">Suriname</option>
+                    <option defaultValue="Uruguay">Uruguay</option>
+                    <option defaultValue="Venezuela">Venezuela</option>
                   </select>
                 </span>
               </p>
@@ -1223,159 +1451,154 @@ const DemoPage = () => (
             </div>
             <div className="field is-grouped">
               <p className="control is-expanded">
-                <input className="input" type="text" placeholder="Find a repository" />
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="Find a repository"
+                />
               </p>
               <p className="control">
                 <a className="button is-info">Search</a>
               </p>
             </div>
-          </div>
-        </div>
-      </section>
+          </Column>
+        </Column.Group>
+      </Section>
 
-      <section className="section" id="icon">
-        <h1 className="title"> Icons </h1>
+      <Section>
+        <Title>Icons</Title>
         <hr />
         <span className="icon is-small">
-          {' '}
-          <i className="fa fa-home"> </i>{' '}
+          <i className="fa fa-home"> </i>
         </span>
         <span className="icon">
-          {' '}
-          <i className="fa fa-home"> </i>{' '}
+          <i className="fa fa-home"> </i>
         </span>
         <span className="icon is-medium">
-          {' '}
-          <i className="fa fa-home"> </i>{' '}
+          <i className="fa fa-home"> </i>
         </span>
         <span className="icon is-large">
-          {' '}
-          <i className="fa fa-home"> </i>{' '}
+          <i className="fa fa-home"> </i>
         </span>
-      </section>
+      </Section>
 
-      <section className="section" id="images">
+      <Section>
         <h1 className="title"> Images </h1>
         <hr />
         <figure className="image is-128x128">
-          {' '}
           <img src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg" />
         </figure>
-      </section>
+      </Section>
 
-      <section className="section" id="notifications">
+      <Section>
         <h1 className="title"> Notifications </h1>
         <hr />
         <div className="columns is-multiline">
           <div className="column is-half">
             <div className="notification ">
               <button className="delete"> </button> Lorem ipsum dolor sit amet,
-              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing elit{' '}
+              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit
+              amet, consectetur adipiscing elit
             </div>
           </div>
 
           <div className="column is-half">
             <div className="notification is-primary">
               <button className="delete"> </button> Lorem ipsum dolor sit amet,
-              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing elit{' '}
+              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit
+              amet, consectetur adipiscing elit
             </div>
           </div>
 
           <div className="column is-half">
             <div className="notification is-link">
               <button className="delete"> </button> Lorem ipsum dolor sit amet,
-              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing elit{' '}
+              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit
+              amet, consectetur adipiscing elit
             </div>
           </div>
 
           <div className="column is-half">
             <div className="notification is-info">
               <button className="delete"> </button> Lorem ipsum dolor sit amet,
-              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing elit{' '}
+              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit
+              amet, consectetur adipiscing elit
             </div>
           </div>
 
           <div className="column is-half">
             <div className="notification is-success">
               <button className="delete"> </button> Lorem ipsum dolor sit amet,
-              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing elit{' '}
+              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit
+              amet, consectetur adipiscing elit
             </div>
           </div>
 
           <div className="column is-half">
             <div className="notification is-warning">
               <button className="delete"> </button> Lorem ipsum dolor sit amet,
-              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing elit{' '}
+              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit
+              amet, consectetur adipiscing elit
             </div>
           </div>
 
           <div className="column is-half">
             <div className="notification is-danger">
               <button className="delete"> </button> Lorem ipsum dolor sit amet,
-              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit amet, consectetur adipiscing elit{' '}
+              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit
+              amet, consectetur adipiscing elit
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="section" id="progress">
+      <Section>
         <h1 className="title"> Progress bars </h1>
         <hr />
 
-        <progress className="progress " max="100" value="15">
-          {' '}
-          15%{' '}
+        <progress className="progress " max="100" defaultValue="15">
+          15%
         </progress>
 
-        <progress className="progress is-primary" max="100" value="15">
-          {' '}
-          15%{' '}
+        <progress className="progress is-primary" max="100" defaultValue="15">
+          15%
         </progress>
 
-        <progress className="progress is-link" max="100" value="15">
-          {' '}
-          15%{' '}
+        <progress className="progress is-link" max="100" defaultValue="15">
+          15%
         </progress>
 
-        <progress className="progress is-info" max="100" value="15">
-          {' '}
-          15%{' '}
+        <progress className="progress is-info" max="100" defaultValue="15">
+          15%
         </progress>
 
-        <progress className="progress is-success" max="100" value="15">
-          {' '}
-          15%{' '}
+        <progress className="progress is-success" max="100" defaultValue="15">
+          15%
         </progress>
 
-        <progress className="progress is-warning" max="100" value="15">
-          {' '}
-          15%{' '}
+        <progress className="progress is-warning" max="100" defaultValue="15">
+          15%
         </progress>
 
-        <progress className="progress is-danger" max="100" value="15">
-          {' '}
-          15%{' '}
+        <progress className="progress is-danger" max="100" defaultValue="15">
+          15%
         </progress>
 
-        <progress className="progress is-small" max="100" value="15">
-          {' '}
-          15%{' '}
+        <progress className="progress is-small" max="100" defaultValue="15">
+          15%
         </progress>
-        <progress className="progress" max="100" value="30">
-          {' '}
-          30%{' '}
+        <progress className="progress" max="100" defaultValue="30">
+          30%
         </progress>
-        <progress className="progress is-medium" max="100" value="45">
-          {' '}
-          45%{' '}
+        <progress className="progress is-medium" max="100" defaultValue="45">
+          45%
         </progress>
-        <progress className="progress is-large" max="100" value="60">
-          {' '}
-          60%{' '}
+        <progress className="progress is-large" max="100" defaultValue="60">
+          60%
         </progress>
-      </section>
+      </Section>
 
-      <section className="section" id="table">
+      <Section>
         <h1 className="title"> Table </h1>
         <hr />
         <table className="table">
@@ -1449,11 +1672,13 @@ const DemoPage = () => (
             <tr>
               <th> 1 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">
-                  {' '}
-                  Leicester City{' '}
-                </a>{' '}
-                <strong> (C) </strong>{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Leicester_City_F.C."
+                  title="Leicester City F.C."
+                >
+                  Leicester City
+                </a>
+                <strong> (C) </strong>
               </td>
               <td> 38 </td>
               <td> 23 </td>
@@ -1464,23 +1689,23 @@ const DemoPage = () => (
               <td> +32 </td>
               <td> 81 </td>
               <td>
-                {' '}
                 Qualification for the
                 <a
                   href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
                   title="2016–17 UEFA Champions League"
                 >
-                  {' '}
-                  Champions League group stage{' '}
+                  Champions League group stage
                 </a>
               </td>
             </tr>
             <tr>
               <th> 2 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Arsenal_F.C." title="Arsenal F.C.">
-                  {' '}
-                  Arsenal{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Arsenal_F.C."
+                  title="Arsenal F.C."
+                >
+                  Arsenal
                 </a>
               </td>
               <td> 38 </td>
@@ -1492,23 +1717,23 @@ const DemoPage = () => (
               <td> +29 </td>
               <td> 71 </td>
               <td>
-                {' '}
                 Qualification for the
                 <a
                   href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
                   title="2016–17 UEFA Champions League"
                 >
-                  {' '}
-                  Champions League group stage{' '}
+                  Champions League group stage
                 </a>
               </td>
             </tr>
             <tr>
               <th> 3 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Tottenham_Hotspur_F.C." title="Tottenham Hotspur F.C.">
-                  {' '}
-                  Tottenham Hotspur{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Tottenham_Hotspur_F.C."
+                  title="Tottenham Hotspur F.C."
+                >
+                  Tottenham Hotspur
                 </a>
               </td>
               <td> 38 </td>
@@ -1520,23 +1745,23 @@ const DemoPage = () => (
               <td> +34 </td>
               <td> 70 </td>
               <td>
-                {' '}
                 Qualification for the
                 <a
                   href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
                   title="2016–17 UEFA Champions League"
                 >
-                  {' '}
-                  Champions League group stage{' '}
+                  Champions League group stage
                 </a>
               </td>
             </tr>
             <tr>
               <th> 4 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Manchester_City_F.C." title="Manchester City F.C.">
-                  {' '}
-                  Manchester City{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Manchester_City_F.C."
+                  title="Manchester City F.C."
+                >
+                  Manchester City
                 </a>
               </td>
               <td> 38 </td>
@@ -1548,23 +1773,23 @@ const DemoPage = () => (
               <td> +30 </td>
               <td> 66 </td>
               <td>
-                {' '}
                 Qualification for the
                 <a
                   href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Play-off_round"
                   title="2016–17 UEFA Champions League"
                 >
-                  {' '}
-                  Champions League play-off round{' '}
+                  Champions League play-off round
                 </a>
               </td>
             </tr>
             <tr className="is-selected">
               <th> 5 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Manchester_United_F.C." title="Manchester United F.C.">
-                  {' '}
-                  Manchester United{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Manchester_United_F.C."
+                  title="Manchester United F.C."
+                >
+                  Manchester United
                 </a>
               </td>
               <td> 38 </td>
@@ -1576,20 +1801,23 @@ const DemoPage = () => (
               <td> +14 </td>
               <td> 66 </td>
               <td>
-                {' '}
                 Qualification for the
-                <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage" title="2016–17 UEFA Europa League">
-                  {' '}
-                  Europa League group stage{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage"
+                  title="2016–17 UEFA Europa League"
+                >
+                  Europa League group stage
                 </a>
               </td>
             </tr>
             <tr>
               <th> 6 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Southampton_F.C." title="Southampton F.C.">
-                  {' '}
-                  Southampton{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Southampton_F.C."
+                  title="Southampton F.C."
+                >
+                  Southampton
                 </a>
               </td>
               <td> 38 </td>
@@ -1601,20 +1829,23 @@ const DemoPage = () => (
               <td> +18 </td>
               <td> 63 </td>
               <td>
-                {' '}
                 Qualification for the
-                <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage" title="2016–17 UEFA Europa League">
-                  {' '}
-                  Europa League group stage{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage"
+                  title="2016–17 UEFA Europa League"
+                >
+                  Europa League group stage
                 </a>
               </td>
             </tr>
             <tr>
               <th> 7 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/West_Ham_United_F.C." title="West Ham United F.C.">
-                  {' '}
-                  West Ham United{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/West_Ham_United_F.C."
+                  title="West Ham United F.C."
+                >
+                  West Ham United
                 </a>
               </td>
               <td> 38 </td>
@@ -1626,23 +1857,23 @@ const DemoPage = () => (
               <td> +14 </td>
               <td> 62 </td>
               <td>
-                {' '}
                 Qualification for the
                 <a
                   href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Third_qualifying_round"
                   title="2016–17 UEFA Europa League"
                 >
-                  {' '}
-                  Europa League third qualifying round{' '}
+                  Europa League third qualifying round
                 </a>
               </td>
             </tr>
             <tr>
               <th> 8 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Liverpool_F.C." title="Liverpool F.C.">
-                  {' '}
-                  Liverpool{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Liverpool_F.C."
+                  title="Liverpool F.C."
+                >
+                  Liverpool
                 </a>
               </td>
               <td> 38 </td>
@@ -1658,9 +1889,11 @@ const DemoPage = () => (
             <tr>
               <th> 9 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Stoke_City_F.C." title="Stoke City F.C.">
-                  {' '}
-                  Stoke City{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Stoke_City_F.C."
+                  title="Stoke City F.C."
+                >
+                  Stoke City
                 </a>
               </td>
               <td> 38 </td>
@@ -1676,9 +1909,11 @@ const DemoPage = () => (
             <tr>
               <th> 10 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Chelsea_F.C." title="Chelsea F.C.">
-                  {' '}
-                  Chelsea{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Chelsea_F.C."
+                  title="Chelsea F.C."
+                >
+                  Chelsea
                 </a>
               </td>
               <td> 38 </td>
@@ -1694,9 +1929,11 @@ const DemoPage = () => (
             <tr>
               <th> 11 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Everton_F.C." title="Everton F.C.">
-                  {' '}
-                  Everton{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Everton_F.C."
+                  title="Everton F.C."
+                >
+                  Everton
                 </a>
               </td>
               <td> 38 </td>
@@ -1712,9 +1949,11 @@ const DemoPage = () => (
             <tr>
               <th> 12 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Swansea_City_A.F.C." title="Swansea City A.F.C.">
-                  {' '}
-                  Swansea City{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Swansea_City_A.F.C."
+                  title="Swansea City A.F.C."
+                >
+                  Swansea City
                 </a>
               </td>
               <td> 38 </td>
@@ -1730,9 +1969,11 @@ const DemoPage = () => (
             <tr>
               <th> 13 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Watford_F.C." title="Watford F.C.">
-                  {' '}
-                  Watford{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Watford_F.C."
+                  title="Watford F.C."
+                >
+                  Watford
                 </a>
               </td>
               <td> 38 </td>
@@ -1748,9 +1989,11 @@ const DemoPage = () => (
             <tr>
               <th> 14 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/West_Bromwich_Albion_F.C." title="West Bromwich Albion F.C.">
-                  {' '}
-                  West Bromwich Albion{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/West_Bromwich_Albion_F.C."
+                  title="West Bromwich Albion F.C."
+                >
+                  West Bromwich Albion
                 </a>
               </td>
               <td> 38 </td>
@@ -1766,9 +2009,11 @@ const DemoPage = () => (
             <tr>
               <th> 15 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Crystal_Palace_F.C." title="Crystal Palace F.C.">
-                  {' '}
-                  Crystal Palace{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Crystal_Palace_F.C."
+                  title="Crystal Palace F.C."
+                >
+                  Crystal Palace
                 </a>
               </td>
               <td> 38 </td>
@@ -1784,9 +2029,11 @@ const DemoPage = () => (
             <tr>
               <th> 16 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/A.F.C._Bournemouth" title="A.F.C. Bournemouth">
-                  {' '}
-                  AFC Bournemouth{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/A.F.C._Bournemouth"
+                  title="A.F.C. Bournemouth"
+                >
+                  AFC Bournemouth
                 </a>
               </td>
               <td> 38 </td>
@@ -1802,9 +2049,11 @@ const DemoPage = () => (
             <tr>
               <th> 17 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Sunderland_A.F.C." title="Sunderland A.F.C.">
-                  {' '}
-                  Sunderland{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Sunderland_A.F.C."
+                  title="Sunderland A.F.C."
+                >
+                  Sunderland
                 </a>
               </td>
               <td> 38 </td>
@@ -1820,11 +2069,13 @@ const DemoPage = () => (
             <tr>
               <th> 18 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Newcastle_United_F.C." title="Newcastle United F.C.">
-                  {' '}
-                  Newcastle United{' '}
-                </a>{' '}
-                <strong> (R) </strong>{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Newcastle_United_F.C."
+                  title="Newcastle United F.C."
+                >
+                  Newcastle United
+                </a>
+                <strong> (R) </strong>
               </td>
               <td> 38 </td>
               <td> 9 </td>
@@ -1835,25 +2086,25 @@ const DemoPage = () => (
               <td> −21 </td>
               <td> 37 </td>
               <td>
-                {' '}
                 Relegation to the
                 <a
                   href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship"
                   title="2016–17 Football League Championship"
                 >
-                  {' '}
-                  Football League Championship{' '}
+                  Football League Championship
                 </a>
               </td>
             </tr>
             <tr>
               <th> 19 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Norwich_City_F.C." title="Norwich City F.C.">
-                  {' '}
-                  Norwich City{' '}
-                </a>{' '}
-                <strong> (R) </strong>{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Norwich_City_F.C."
+                  title="Norwich City F.C."
+                >
+                  Norwich City
+                </a>
+                <strong> (R) </strong>
               </td>
               <td> 38 </td>
               <td> 9 </td>
@@ -1864,25 +2115,25 @@ const DemoPage = () => (
               <td> −28 </td>
               <td> 34 </td>
               <td>
-                {' '}
                 Relegation to the
                 <a
                   href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship"
                   title="2016–17 Football League Championship"
                 >
-                  {' '}
-                  Football League Championship{' '}
+                  Football League Championship
                 </a>
               </td>
             </tr>
             <tr>
               <th> 20 </th>
               <td>
-                <a href="https://en.wikipedia.org/wiki/Aston_Villa_F.C." title="Aston Villa F.C.">
-                  {' '}
-                  Aston Villa{' '}
-                </a>{' '}
-                <strong> (R) </strong>{' '}
+                <a
+                  href="https://en.wikipedia.org/wiki/Aston_Villa_F.C."
+                  title="Aston Villa F.C."
+                >
+                  Aston Villa
+                </a>
+                <strong> (R) </strong>
               </td>
               <td> 38 </td>
               <td> 3 </td>
@@ -1893,14 +2144,12 @@ const DemoPage = () => (
               <td> −49 </td>
               <td> 17 </td>
               <td>
-                {' '}
                 Relegation to the
                 <a
                   href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship"
                   title="2016–17 Football League Championship"
                 >
-                  {' '}
-                  Football League Championship{' '}
+                  Football League Championship
                 </a>
               </td>
             </tr>
@@ -2014,9 +2263,9 @@ const DemoPage = () => (
             </tr>
           </tbody>
         </table>
-      </section>
+      </Section>
 
-      <section className="section" id="tag">
+      <Section>
         <h1 className="title"> Tag </h1>
         <hr />
         <div className="tags">
@@ -2043,17 +2292,14 @@ const DemoPage = () => (
           <span className="tag is-primary is-medium"> Medium </span>
           <span className="tag is-info is-large"> Large </span>
           <span className="tag is-success">
-            {' '}
             Bar
             <button className="delete is-small"> </button>
           </span>
           <span className="tag is-warning is-medium">
-            {' '}
             Hello
             <button className="delete is-small"> </button>
           </span>
           <span className="tag is-danger is-large">
-            {' '}
             World
             <button className="delete"> </button>
           </span>
@@ -2130,8 +2376,8 @@ const DemoPage = () => (
             </div>
           </div>
         </div>
-      </section>
-      <section className="section" id="breadcrumb">
+      </Section>
+      <Section>
         <h1 className="title">Breadcrumb</h1>
         <hr />
         <nav className="breadcrumb">
@@ -2150,21 +2396,27 @@ const DemoPage = () => (
             </li>
           </ul>
         </nav>
-      </section>
+      </Section>
 
-      <section className="section" id="hero">
+      <Section>
         <h1 className="title">Hero</h1>
         <hr />
 
-        <section className="hero ">
+        <Section>
           <div className="hero-head">
             <nav className="navbar">
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo" />
+                    <img
+                      src="https://bulma.io/images/bulma-type-white.png"
+                      alt="Logo"
+                    />
                   </a>
-                  <span className="navbar-burger burger" data-target="navbarMenuHero1">
+                  <span
+                    className="navbar-burger burger"
+                    data-target="navbarMenuHero1"
+                  >
                     <span />
                     <span />
                     <span />
@@ -2238,18 +2490,24 @@ const DemoPage = () => (
               </div>
             </nav>
           </div>
-        </section>
+        </Section>
         <br />
 
-        <section className="hero is-primary">
+        <Section>
           <div className="hero-head">
             <nav className="navbar">
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo" />
+                    <img
+                      src="https://bulma.io/images/bulma-type-white.png"
+                      alt="Logo"
+                    />
                   </a>
-                  <span className="navbar-burger burger" data-target="navbarMenuHero2">
+                  <span
+                    className="navbar-burger burger"
+                    data-target="navbarMenuHero2"
+                  >
                     <span />
                     <span />
                     <span />
@@ -2323,18 +2581,24 @@ const DemoPage = () => (
               </div>
             </nav>
           </div>
-        </section>
+        </Section>
         <br />
 
-        <section className="hero is-link">
+        <Section className="hero is-link">
           <div className="hero-head">
             <nav className="navbar">
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo" />
+                    <img
+                      src="https://bulma.io/images/bulma-type-white.png"
+                      alt="Logo"
+                    />
                   </a>
-                  <span className="navbar-burger burger" data-target="navbarMenuHero3">
+                  <span
+                    className="navbar-burger burger"
+                    data-target="navbarMenuHero3"
+                  >
                     <span />
                     <span />
                     <span />
@@ -2408,18 +2672,24 @@ const DemoPage = () => (
               </div>
             </nav>
           </div>
-        </section>
+        </Section>
         <br />
 
-        <section className="hero is-info">
+        <Section className="hero is-info">
           <div className="hero-head">
             <nav className="navbar">
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo" />
+                    <img
+                      src="https://bulma.io/images/bulma-type-white.png"
+                      alt="Logo"
+                    />
                   </a>
-                  <span className="navbar-burger burger" data-target="navbarMenuHero4">
+                  <span
+                    className="navbar-burger burger"
+                    data-target="navbarMenuHero4"
+                  >
                     <span />
                     <span />
                     <span />
@@ -2493,18 +2763,24 @@ const DemoPage = () => (
               </div>
             </nav>
           </div>
-        </section>
+        </Section>
         <br />
 
-        <section className="hero is-success">
+        <Section className="hero is-success">
           <div className="hero-head">
             <nav className="navbar">
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo" />
+                    <img
+                      src="https://bulma.io/images/bulma-type-white.png"
+                      alt="Logo"
+                    />
                   </a>
-                  <span className="navbar-burger burger" data-target="navbarMenuHero5">
+                  <span
+                    className="navbar-burger burger"
+                    data-target="navbarMenuHero5"
+                  >
                     <span />
                     <span />
                     <span />
@@ -2578,18 +2854,24 @@ const DemoPage = () => (
               </div>
             </nav>
           </div>
-        </section>
+        </Section>
         <br />
 
-        <section className="hero is-warning">
+        <Section className="hero is-warning">
           <div className="hero-head">
             <nav className="navbar">
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo" />
+                    <img
+                      src="https://bulma.io/images/bulma-type-white.png"
+                      alt="Logo"
+                    />
                   </a>
-                  <span className="navbar-burger burger" data-target="navbarMenuHero6">
+                  <span
+                    className="navbar-burger burger"
+                    data-target="navbarMenuHero6"
+                  >
                     <span />
                     <span />
                     <span />
@@ -2663,18 +2945,24 @@ const DemoPage = () => (
               </div>
             </nav>
           </div>
-        </section>
+        </Section>
         <br />
 
-        <section className="hero is-danger">
+        <Section className="hero is-danger">
           <div className="hero-head">
             <nav className="navbar">
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo" />
+                    <img
+                      src="https://bulma.io/images/bulma-type-white.png"
+                      alt="Logo"
+                    />
                   </a>
-                  <span className="navbar-burger burger" data-target="navbarMenuHero7">
+                  <span
+                    className="navbar-burger burger"
+                    data-target="navbarMenuHero7"
+                  >
                     <span />
                     <span />
                     <span />
@@ -2748,18 +3036,24 @@ const DemoPage = () => (
               </div>
             </nav>
           </div>
-        </section>
+        </Section>
         <br />
 
-        <section className="hero is-white">
+        <Section className="hero is-white">
           <div className="hero-head">
             <nav className="navbar">
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo" />
+                    <img
+                      src="https://bulma.io/images/bulma-type-white.png"
+                      alt="Logo"
+                    />
                   </a>
-                  <span className="navbar-burger burger" data-target="navbarMenuHero8">
+                  <span
+                    className="navbar-burger burger"
+                    data-target="navbarMenuHero8"
+                  >
                     <span />
                     <span />
                     <span />
@@ -2833,18 +3127,24 @@ const DemoPage = () => (
               </div>
             </nav>
           </div>
-        </section>
+        </Section>
         <br />
 
-        <section className="hero is-black">
+        <Section className="hero is-black">
           <div className="hero-head">
             <nav className="navbar">
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo" />
+                    <img
+                      src="https://bulma.io/images/bulma-type-white.png"
+                      alt="Logo"
+                    />
                   </a>
-                  <span className="navbar-burger burger" data-target="navbarMenuHero9">
+                  <span
+                    className="navbar-burger burger"
+                    data-target="navbarMenuHero9"
+                  >
                     <span />
                     <span />
                     <span />
@@ -2918,18 +3218,24 @@ const DemoPage = () => (
               </div>
             </nav>
           </div>
-        </section>
+        </Section>
         <br />
 
-        <section className="hero is-light">
+        <Section className="hero is-light">
           <div className="hero-head">
             <nav className="navbar">
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo" />
+                    <img
+                      src="https://bulma.io/images/bulma-type-white.png"
+                      alt="Logo"
+                    />
                   </a>
-                  <span className="navbar-burger burger" data-target="navbarMenuHero10">
+                  <span
+                    className="navbar-burger burger"
+                    data-target="navbarMenuHero10"
+                  >
                     <span />
                     <span />
                     <span />
@@ -3003,18 +3309,24 @@ const DemoPage = () => (
               </div>
             </nav>
           </div>
-        </section>
+        </Section>
         <br />
 
-        <section className="hero is-dark">
+        <Section className="hero is-dark">
           <div className="hero-head">
             <nav className="navbar">
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img src="https://bulma.io/images/bulma-type-white.png" alt="Logo" />
+                    <img
+                      src="https://bulma.io/images/bulma-type-white.png"
+                      alt="Logo"
+                    />
                   </a>
-                  <span className="navbar-burger burger" data-target="navbarMenuHero11">
+                  <span
+                    className="navbar-burger burger"
+                    data-target="navbarMenuHero11"
+                  >
                     <span />
                     <span />
                     <span />
@@ -3088,28 +3400,32 @@ const DemoPage = () => (
               </div>
             </nav>
           </div>
-        </section>
+        </Section>
         <br />
-      </section>
+      </Section>
 
-      <section className="section" id="card">
+      <Section>
         <h1 className="title">Cards</h1>
         <hr />
-        <div className="columns">
-          <div className="column">
+        <Column.Group>
+          <Column>
             <div className="card">
               <div className="card-image">
                 <figure className="image is-4by3">
-                  {' '}
-                  <img src="https://source.unsplash.com/random/800x600" alt="Image" />{' '}
+                  <img
+                    src="https://source.unsplash.com/random/800x600"
+                    alt="Image"
+                  />
                 </figure>
               </div>
               <div className="card-content">
                 <div className="media">
                   <div className="media-left">
                     <figure className="image">
-                      {' '}
-                      <img src="https://source.unsplash.com/random/96x96" alt="Image" />{' '}
+                      <img
+                        src="https://source.unsplash.com/random/96x96"
+                        alt="Image"
+                      />
                     </figure>
                   </div>
                   <div className="media-content">
@@ -3118,33 +3434,32 @@ const DemoPage = () => (
                   </div>
                 </div>
                 <div className="content">
-                  {' '}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Phasellus nec iaculis mauris.
                   <a>@bulmaio</a>.<a>#css</a>
                   <a>#responsive</a>
-                  <br /> <small>11:09 PM - 1 Jan 2016</small>{' '}
+                  <br /> <small>11:09 PM - 1 Jan 2016</small>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="column">
+          </Column>
+          <Column>
             <div className="card">
               <header className="card-header">
                 <p className="card-header-title"> Component </p>
                 <a className="card-header-icon">
                   <span className="icon">
-                    {' '}
-                    <i className="fa fa-angle-down" />{' '}
+                    <i className="fa fa-angle-down" />
                   </span>
                 </a>
               </header>
               <div className="card-content">
                 <div className="content">
-                  {' '}
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Phasellus nec iaculis mauris.
                   <a>@bulmaio</a>.<a>#css</a>
                   <a>#responsive</a>
-                  <br /> <small>11:09 PM - 1 Jan 2016</small>{' '}
+                  <br /> <small>11:09 PM - 1 Jan 2016</small>
                 </div>
               </div>
               <footer className="card-footer">
@@ -3153,18 +3468,22 @@ const DemoPage = () => (
                 <a className="card-footer-item">Delete</a>
               </footer>
             </div>
-          </div>
-        </div>
-      </section>
+          </Column>
+        </Column.Group>
+      </Section>
 
-      <section className="section" id="dropdown">
+      <Section>
         <h1 className="title">Dropdown</h1>
         <hr />
-        <div className="columns">
-          <div className="column">
+        <Column.Group>
+          <Column>
             <div className="dropdown is-active">
               <div className="dropdown-trigger">
-                <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                <button
+                  className="button"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-menu"
+                >
                   <span>Dropdown button</span>
                   <span className="icon is-small">
                     <i className="fa fa-angle-down" aria-hidden="true" />
@@ -3190,11 +3509,15 @@ const DemoPage = () => (
                 </div>
               </div>
             </div>
-          </div>
-          <div className="column">
+          </Column>
+          <Column>
             <div className="dropdown is-active">
               <div className="dropdown-trigger">
-                <button className="button is-info" aria-haspopup="true" aria-controls="dropdown-menu2">
+                <button
+                  className="button is-info"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-menu2"
+                >
                   <span>Content</span>
                   <span className="icon is-small">
                     <i className="fa fa-angle-down" aria-hidden="true" />
@@ -3205,7 +3528,8 @@ const DemoPage = () => (
                 <div className="dropdown-content">
                   <div className="dropdown-item">
                     <p>
-                      You can insert <strong>any type of content</strong> within the dropdown menu.
+                      You can insert <strong>any type of content</strong> within
+                      the dropdown menu.
                     </p>
                   </div>
                   <hr className="dropdown-divider" />
@@ -3221,25 +3545,28 @@ const DemoPage = () => (
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </Column>
+        </Column.Group>
+      </Section>
 
-      <section className="section" id="level">
+      <Section>
         <h1 className="title">Level</h1>
         <hr />
         <nav className="level">
           <div className="level-left">
             <div className="level-item">
               <p className="subtitle is-5">
-                {' '}
-                <strong>123</strong> posts{' '}
+                <strong>123</strong> posts
               </p>
             </div>
             <div className="level-item">
               <div className="field has-addons">
                 <p className="control">
-                  <input className="input" type="text" placeholder="Find a post" />
+                  <input
+                    className="input"
+                    type="text"
+                    placeholder="Find a post"
+                  />
                 </p>
                 <p className="control">
                   <button className="button">Search</button>
@@ -3301,8 +3628,7 @@ const DemoPage = () => (
             <a className="link is-info">Menu</a>
           </p>
           <p className="level-item has-text-centered">
-            {' '}
-            <img src="http://bulma.io/images/bulma-type.png" alt="" />{' '}
+            <img src="http://bulma.io/images/bulma-type.png" alt="" />
           </p>
           <p className="level-item has-text-centered">
             <a className="link is-info">Reservations</a>
@@ -3339,23 +3665,29 @@ const DemoPage = () => (
           </div>
         </nav>
         <hr />
-      </section>
+      </Section>
 
-      <section className="section" id="media">
+      <Section>
         <h1 className="title">Media Object</h1>
         <hr />
         <article className="media">
           <figure className="media-left">
             <p className="image is-64x64">
-              <img src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg" />
+              <img
+                alt=""
+                src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg"
+              />
             </p>
           </figure>
           <div className="media-content">
             <div className="content">
               <p>
-                <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
-                <br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum
-                ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+                <strong>John Smith</strong> <small>@johnsmith</small>
+                <small>31m</small>
+                <br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Proin ornare magna eros, eu pellentesque tortor vestibulum ut.
+                Maecenas non massa sem. Etiam finibus odio quis feugiat
+                facilisis.
               </p>
             </div>
             <nav className="level">
@@ -3386,7 +3718,10 @@ const DemoPage = () => (
         <article className="media">
           <figure className="media-left">
             <p className="image is-64x64">
-              <img src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg" />
+              <img
+                alt=""
+                src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg"
+              />
             </p>
           </figure>
           <div className="media-content">
@@ -3416,15 +3751,20 @@ const DemoPage = () => (
         <article className="media">
           <figure className="media-left">
             <p className="image is-64x64">
-              <img src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg" />
+              <img
+                alt=""
+                src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg"
+              />
             </p>
           </figure>
           <div className="media-content">
             <div className="content">
               <p>
                 <strong>Barbara Middleton</strong>
-                <br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non.
-                Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.
+                <br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Duis porta eros lacus, nec ultricies elit blandit non.
+                Suspendisse pellentesque mauris sit amet dolor blandit rutrum.
+                Nunc in tempus turpis.
                 <br />
                 <small>
                   <a>Like</a> · <a>Reply</a> · 3 hrs
@@ -3434,15 +3774,20 @@ const DemoPage = () => (
             <article className="media">
               <figure className="media-left">
                 <p className="image is-48x48">
-                  <img src="http://bulma.io/images/placeholders/96x96.png" />
+                  <img
+                    alt=""
+                    src="http://bulma.io/images/placeholders/96x96.png"
+                  />
                 </p>
               </figure>
               <div className="media-content">
                 <div className="content">
                   <p>
                     <strong>Sean Brown</strong>
-                    <br /> Donec sollicitudin urna eget eros malesuada sagittis. Pellentesque habitant morbi tristique senectus et netus et
-                    malesuada fames ac turpis egestas. Aliquam blandit nisl a nulla sagittis, a lobortis leo feugiat.
+                    <br /> Donec sollicitudin urna eget eros malesuada sagittis.
+                    Pellentesque habitant morbi tristique senectus et netus et
+                    malesuada fames ac turpis egestas. Aliquam blandit nisl a
+                    nulla sagittis, a lobortis leo feugiat.
                     <br />
                     <small>
                       <a>Like</a> · <a>Reply</a> · 2 hrs
@@ -3450,10 +3795,12 @@ const DemoPage = () => (
                   </p>
                 </div>
                 <article className="media">
-                  Vivamus quis semper metus, non tincidunt dolor. Vivamus in mi eu lorem cursus ullamcorper sit amet nec massa.
+                  Vivamus quis semper metus, non tincidunt dolor. Vivamus in mi
+                  eu lorem cursus ullamcorper sit amet nec massa.
                 </article>
                 <article className="media">
-                  Morbi vitae diam et purus tincidunt porttitor vel vitae augue. Praesent malesuada metus sed pharetra euismod. Cras tellus
+                  Morbi vitae diam et purus tincidunt porttitor vel vitae augue.
+                  Praesent malesuada metus sed pharetra euismod. Cras tellus
                   odio, tincidunt iaculis diam non, porta aliquet tortor.
                 </article>
               </div>
@@ -3461,16 +3808,21 @@ const DemoPage = () => (
             <article className="media">
               <figure className="media-left">
                 <p className="image is-48x48">
-                  <img src="http://bulma.io/images/placeholders/96x96.png" />
+                  <img
+                    src="http://bulma.io/images/placeholders/96x96.png"
+                    alt=""
+                  />
                 </p>
               </figure>
               <div className="media-content">
                 <div className="content">
                   <p>
                     <strong>Kayli Eunice </strong>
-                    <br /> Sed convallis scelerisque mauris, non pulvinar nunc mattis vel. Maecenas varius felis sit amet magna vestibulum
-                    euismod malesuada cursus libero. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                    Phasellus lacinia non nisl id feugiat.
+                    <br /> Sed convallis scelerisque mauris, non pulvinar nunc
+                    mattis vel. Maecenas varius felis sit amet magna vestibulum
+                    euismod malesuada cursus libero. Vestibulum ante ipsum
+                    primis in faucibus orci luctus et ultrices posuere cubilia
+                    Curae; Phasellus lacinia non nisl id feugiat.
                     <br />
                     <small>
                       <a>Like</a> · <a>Reply</a> · 2 hrs
@@ -3484,7 +3836,10 @@ const DemoPage = () => (
         <article className="media">
           <figure className="media-left">
             <p className="image is-64x64">
-              <img src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg" />
+              <img
+                alt=""
+                src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg"
+              />
             </p>
           </figure>
           <div className="media-content">
@@ -3500,9 +3855,9 @@ const DemoPage = () => (
             </div>
           </div>
         </article>
-      </section>
+      </Section>
 
-      <section className="section" id="menu">
+      <Section>
         <h1 className="title">Menu</h1>
         <hr />
         <div className="column is-3">
@@ -3559,10 +3914,10 @@ const DemoPage = () => (
             </ul>
           </aside>
         </div>
-      </section>
+      </Section>
 
-      <section className="section" id="message">
-        <h1 className="title">Message</h1>
+      <Section>
+        <Title>Message</Title>
         <hr />
         <div className="columns is-multiline">
           <div className="column is-half">
@@ -3572,9 +3927,12 @@ const DemoPage = () => (
                 <button className="delete" />
               </div>
               <div className="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum
-                <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
+                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
+                Nullam gravida purus diam, et dictum
+                <a>felis venenatis</a> efficitur. Aenean ac
+                <em>eleifend lacus</em>.
               </div>
             </article>
           </div>
@@ -3586,9 +3944,12 @@ const DemoPage = () => (
                 <button className="delete" />
               </div>
               <div className="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum
-                <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
+                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
+                Nullam gravida purus diam, et dictum
+                <a>felis venenatis</a> efficitur. Aenean ac
+                <em>eleifend lacus</em>.
               </div>
             </article>
           </div>
@@ -3600,9 +3961,12 @@ const DemoPage = () => (
                 <button className="delete" />
               </div>
               <div className="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum
-                <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
+                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
+                Nullam gravida purus diam, et dictum
+                <a>felis venenatis</a> efficitur. Aenean ac
+                <em>eleifend lacus</em>.
               </div>
             </article>
           </div>
@@ -3614,9 +3978,12 @@ const DemoPage = () => (
                 <button className="delete" />
               </div>
               <div className="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum
-                <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
+                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
+                Nullam gravida purus diam, et dictum
+                <a>felis venenatis</a> efficitur. Aenean ac
+                <em>eleifend lacus</em>.
               </div>
             </article>
           </div>
@@ -3628,9 +3995,12 @@ const DemoPage = () => (
                 <button className="delete" />
               </div>
               <div className="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum
-                <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
+                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
+                Nullam gravida purus diam, et dictum
+                <a>felis venenatis</a> efficitur. Aenean ac
+                <em>eleifend lacus</em>.
               </div>
             </article>
           </div>
@@ -3642,9 +4012,12 @@ const DemoPage = () => (
                 <button className="delete" />
               </div>
               <div className="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum
-                <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
+                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
+                Nullam gravida purus diam, et dictum
+                <a>felis venenatis</a> efficitur. Aenean ac
+                <em>eleifend lacus</em>.
               </div>
             </article>
           </div>
@@ -3656,9 +4029,12 @@ const DemoPage = () => (
                 <button className="delete" />
               </div>
               <div className="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum
-                <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
+                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
+                Nullam gravida purus diam, et dictum
+                <a>felis venenatis</a> efficitur. Aenean ac
+                <em>eleifend lacus</em>.
               </div>
             </article>
           </div>
@@ -3670,9 +4046,12 @@ const DemoPage = () => (
                 <button className="delete" />
               </div>
               <div className="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum
-                <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
+                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
+                Nullam gravida purus diam, et dictum
+                <a>felis venenatis</a> efficitur. Aenean ac
+                <em>eleifend lacus</em>.
               </div>
             </article>
           </div>
@@ -3684,9 +4063,12 @@ const DemoPage = () => (
                 <button className="delete" />
               </div>
               <div className="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum
-                <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
+                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
+                Nullam gravida purus diam, et dictum
+                <a>felis venenatis</a> efficitur. Aenean ac
+                <em>eleifend lacus</em>.
               </div>
             </article>
           </div>
@@ -3698,9 +4080,12 @@ const DemoPage = () => (
                 <button className="delete" />
               </div>
               <div className="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum
-                <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
+                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
+                Nullam gravida purus diam, et dictum
+                <a>felis venenatis</a> efficitur. Aenean ac
+                <em>eleifend lacus</em>.
               </div>
             </article>
           </div>
@@ -3712,17 +4097,20 @@ const DemoPage = () => (
                 <button className="delete" />
               </div>
               <div className="message-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
-                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum
-                <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <strong>Pellentesque risus mi</strong>, tempus quis placerat ut,
+                porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.
+                Nullam gravida purus diam, et dictum
+                <a>felis venenatis</a> efficitur. Aenean ac
+                <em>eleifend lacus</em>.
               </div>
             </article>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="section" id="modal">
-        <h1 className="title">Modal</h1>
+      <Section>
+        <Title>Modal</Title>
         <hr />
         <a className="button is-primary is-large" data-target="#myModal">
           Launch example modal
@@ -3734,21 +4122,24 @@ const DemoPage = () => (
               <p className="modal-card-title">Modal title</p>
               <button className="delete" />
             </header>
-            <section className="modal-card-body">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </section>
+            <Section className="modal-card-body">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </Section>
             <footer className="modal-card-foot">
               <a className="button is-primary">Save changes</a>
               <a className="button">Cancel</a>
             </footer>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="section" id="navbar">
+      <Section>
         <h1 className="title">Navbar</h1>
         <hr />
 
@@ -3762,12 +4153,22 @@ const DemoPage = () => (
                 height="28"
               />
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://github.com/jgthms/bulma"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-github" />
               </span>
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://twitter.com/jgthms"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-twitter" />
               </span>
@@ -3823,7 +4224,10 @@ const DemoPage = () => (
                   Blog
                 </a>
                 <div id="blogDropdown" className="navbar-dropdown ">
-                  <a className="navbar-item" href="/2017/03/10/new-field-element/">
+                  <a
+                    className="navbar-item"
+                    href="/2017/03/10/new-field-element/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">10 Mar 2017</small>
@@ -3831,7 +4235,10 @@ const DemoPage = () => (
                       <p>New field element (for better controls)</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">11 Apr 2016</small>
@@ -3839,7 +4246,10 @@ const DemoPage = () => (
                       <p>Metro UI CSS grid with Bulma tiles</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">09 Feb 2016</small>
@@ -3861,7 +4271,10 @@ const DemoPage = () => (
                         </div>
                         <div className="level-right">
                           <div className="level-item">
-                            <a className="button is-rss is-small" href="#atom.xml">
+                            <a
+                              className="button is-rss is-small"
+                              href="#atom.xml"
+                            >
                               <span className="icon is-small">
                                 <i className="fa fa-rss" />
                               </span>
@@ -3894,10 +4307,20 @@ const DemoPage = () => (
               </div>
             </div>
             <div className="navbar-end">
-              <a className="navbar-item" href="https://github.com/jgthms/bulma" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://github.com/jgthms/bulma"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Github
               </a>
-              <a className="navbar-item" href="https://twitter.com/jgthms" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://twitter.com/jgthms"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Twitter
               </a>
               <div className="navbar-item">
@@ -3908,7 +4331,10 @@ const DemoPage = () => (
                     </a>
                   </p>
                   <p className="control">
-                    <a className="button is-primary" href="https://github.com/jgthms/bulma/archive/0.4.3.zip">
+                    <a
+                      className="button is-primary"
+                      href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
+                    >
                       <span className="icon">
                         <i className="fa fa-download" />
                       </span>
@@ -3932,12 +4358,22 @@ const DemoPage = () => (
                 height="28"
               />
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
-              <span className="icon" >
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://github.com/jgthms/bulma"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <span className="icon">
                 <i className="fa fa-github" />
               </span>
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://twitter.com/jgthms"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-twitter" />
               </span>
@@ -3992,8 +4428,11 @@ const DemoPage = () => (
                 <a className="navbar-link " href="#blog/">
                   Blog
                 </a>
-                <div id="blogDropdown" className="navbar-dropdown " >
-                  <a className="navbar-item" href="/2017/03/10/new-field-element/">
+                <div id="blogDropdown" className="navbar-dropdown ">
+                  <a
+                    className="navbar-item"
+                    href="/2017/03/10/new-field-element/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">10 Mar 2017</small>
@@ -4001,7 +4440,10 @@ const DemoPage = () => (
                       <p>New field element (for better controls)</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">11 Apr 2016</small>
@@ -4009,7 +4451,10 @@ const DemoPage = () => (
                       <p>Metro UI CSS grid with Bulma tiles</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">09 Feb 2016</small>
@@ -4031,7 +4476,10 @@ const DemoPage = () => (
                         </div>
                         <div className="level-right">
                           <div className="level-item">
-                            <a className="button is-rss is-small" href="#atom.xml">
+                            <a
+                              className="button is-rss is-small"
+                              href="#atom.xml"
+                            >
                               <span className="icon is-small">
                                 <i className="fa fa-rss" />
                               </span>
@@ -4064,10 +4512,20 @@ const DemoPage = () => (
               </div>
             </div>
             <div className="navbar-end">
-              <a className="navbar-item" href="https://github.com/jgthms/bulma" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://github.com/jgthms/bulma"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Github
               </a>
-              <a className="navbar-item" href="https://twitter.com/jgthms" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://twitter.com/jgthms"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Twitter
               </a>
               <div className="navbar-item">
@@ -4078,7 +4536,10 @@ const DemoPage = () => (
                     </a>
                   </p>
                   <p className="control">
-                    <a className="button is-primary" href="https://github.com/jgthms/bulma/archive/0.4.3.zip">
+                    <a
+                      className="button is-primary"
+                      href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
+                    >
                       <span className="icon">
                         <i className="fa fa-download" />
                       </span>
@@ -4102,12 +4563,22 @@ const DemoPage = () => (
                 height="28"
               />
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
-              <span className="icon" >
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://github.com/jgthms/bulma"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <span className="icon">
                 <i className="fa fa-github" />
               </span>
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://twitter.com/jgthms"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-twitter" />
               </span>
@@ -4162,8 +4633,11 @@ const DemoPage = () => (
                 <a className="navbar-link " href="#blog/">
                   Blog
                 </a>
-                <div id="blogDropdown" className="navbar-dropdown " >
-                  <a className="navbar-item" href="/2017/03/10/new-field-element/">
+                <div id="blogDropdown" className="navbar-dropdown ">
+                  <a
+                    className="navbar-item"
+                    href="/2017/03/10/new-field-element/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">10 Mar 2017</small>
@@ -4171,7 +4645,10 @@ const DemoPage = () => (
                       <p>New field element (for better controls)</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">11 Apr 2016</small>
@@ -4179,7 +4656,10 @@ const DemoPage = () => (
                       <p>Metro UI CSS grid with Bulma tiles</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">09 Feb 2016</small>
@@ -4201,7 +4681,10 @@ const DemoPage = () => (
                         </div>
                         <div className="level-right">
                           <div className="level-item">
-                            <a className="button is-rss is-small" href="#atom.xml">
+                            <a
+                              className="button is-rss is-small"
+                              href="#atom.xml"
+                            >
                               <span className="icon is-small">
                                 <i className="fa fa-rss" />
                               </span>
@@ -4234,10 +4717,20 @@ const DemoPage = () => (
               </div>
             </div>
             <div className="navbar-end">
-              <a className="navbar-item" href="https://github.com/jgthms/bulma" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://github.com/jgthms/bulma"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Github
               </a>
-              <a className="navbar-item" href="https://twitter.com/jgthms" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://twitter.com/jgthms"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Twitter
               </a>
               <div className="navbar-item">
@@ -4248,7 +4741,10 @@ const DemoPage = () => (
                     </a>
                   </p>
                   <p className="control">
-                    <a className="button is-primary" href="https://github.com/jgthms/bulma/archive/0.4.3.zip">
+                    <a
+                      className="button is-primary"
+                      href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
+                    >
                       <span className="icon">
                         <i className="fa fa-download" />
                       </span>
@@ -4272,13 +4768,23 @@ const DemoPage = () => (
                 height="28"
               />
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
-              <span className="icon" >
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://github.com/jgthms/bulma"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <span className="icon">
                 <i className="fa fa-github" />
               </span>
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
-              <span className="icon" >
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://twitter.com/jgthms"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <span className="icon">
                 <i className="fa fa-twitter" />
               </span>
             </a>
@@ -4333,7 +4839,10 @@ const DemoPage = () => (
                   Blog
                 </a>
                 <div id="blogDropdown" className="navbar-dropdown ">
-                  <a className="navbar-item" href="/2017/03/10/new-field-element/">
+                  <a
+                    className="navbar-item"
+                    href="/2017/03/10/new-field-element/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">10 Mar 2017</small>
@@ -4341,7 +4850,10 @@ const DemoPage = () => (
                       <p>New field element (for better controls)</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">11 Apr 2016</small>
@@ -4349,7 +4861,10 @@ const DemoPage = () => (
                       <p>Metro UI CSS grid with Bulma tiles</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">09 Feb 2016</small>
@@ -4371,7 +4886,10 @@ const DemoPage = () => (
                         </div>
                         <div className="level-right">
                           <div className="level-item">
-                            <a className="button is-rss is-small" href="#atom.xml">
+                            <a
+                              className="button is-rss is-small"
+                              href="#atom.xml"
+                            >
                               <span className="icon is-small">
                                 <i className="fa fa-rss" />
                               </span>
@@ -4404,10 +4922,20 @@ const DemoPage = () => (
               </div>
             </div>
             <div className="navbar-end">
-              <a className="navbar-item" href="https://github.com/jgthms/bulma" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://github.com/jgthms/bulma"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Github
               </a>
-              <a className="navbar-item" href="https://twitter.com/jgthms" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://twitter.com/jgthms"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Twitter
               </a>
               <div className="navbar-item">
@@ -4418,7 +4946,10 @@ const DemoPage = () => (
                     </a>
                   </p>
                   <p className="control">
-                    <a className="button is-primary" href="https://github.com/jgthms/bulma/archive/0.4.3.zip">
+                    <a
+                      className="button is-primary"
+                      href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
+                    >
                       <span className="icon">
                         <i className="fa fa-download" />
                       </span>
@@ -4442,12 +4973,22 @@ const DemoPage = () => (
                 height="28"
               />
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
-              <span className="icon" >
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://github.com/jgthms/bulma"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <span className="icon">
                 <i className="fa fa-github" />
               </span>
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://twitter.com/jgthms"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-twitter" />
               </span>
@@ -4503,7 +5044,10 @@ const DemoPage = () => (
                   Blog
                 </a>
                 <div id="blogDropdown" className="navbar-dropdown ">
-                  <a className="navbar-item" href="/2017/03/10/new-field-element/">
+                  <a
+                    className="navbar-item"
+                    href="/2017/03/10/new-field-element/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">10 Mar 2017</small>
@@ -4511,7 +5055,10 @@ const DemoPage = () => (
                       <p>New field element (for better controls)</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">11 Apr 2016</small>
@@ -4519,7 +5066,10 @@ const DemoPage = () => (
                       <p>Metro UI CSS grid with Bulma tiles</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">09 Feb 2016</small>
@@ -4541,7 +5091,10 @@ const DemoPage = () => (
                         </div>
                         <div className="level-right">
                           <div className="level-item">
-                            <a className="button is-rss is-small" href="#atom.xml">
+                            <a
+                              className="button is-rss is-small"
+                              href="#atom.xml"
+                            >
                               <span className="icon is-small">
                                 <i className="fa fa-rss" />
                               </span>
@@ -4574,10 +5127,20 @@ const DemoPage = () => (
               </div>
             </div>
             <div className="navbar-end">
-              <a className="navbar-item" href="https://github.com/jgthms/bulma" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://github.com/jgthms/bulma"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Github
               </a>
-              <a className="navbar-item" href="https://twitter.com/jgthms" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://twitter.com/jgthms"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Twitter
               </a>
               <div className="navbar-item">
@@ -4588,7 +5151,10 @@ const DemoPage = () => (
                     </a>
                   </p>
                   <p className="control">
-                    <a className="button is-primary" href="https://github.com/jgthms/bulma/archive/0.4.3.zip">
+                    <a
+                      className="button is-primary"
+                      href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
+                    >
                       <span className="icon">
                         <i className="fa fa-download" />
                       </span>
@@ -4612,12 +5178,22 @@ const DemoPage = () => (
                 height="28"
               />
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://github.com/jgthms/bulma"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-github" />
               </span>
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://twitter.com/jgthms"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-twitter" />
               </span>
@@ -4673,7 +5249,10 @@ const DemoPage = () => (
                   Blog
                 </a>
                 <div id="blogDropdown" className="navbar-dropdown ">
-                  <a className="navbar-item" href="/2017/03/10/new-field-element/">
+                  <a
+                    className="navbar-item"
+                    href="/2017/03/10/new-field-element/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">10 Mar 2017</small>
@@ -4681,7 +5260,10 @@ const DemoPage = () => (
                       <p>New field element (for better controls)</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">11 Apr 2016</small>
@@ -4689,7 +5271,10 @@ const DemoPage = () => (
                       <p>Metro UI CSS grid with Bulma tiles</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">09 Feb 2016</small>
@@ -4711,7 +5296,10 @@ const DemoPage = () => (
                         </div>
                         <div className="level-right">
                           <div className="level-item">
-                            <a className="button is-rss is-small" href="#atom.xml">
+                            <a
+                              className="button is-rss is-small"
+                              href="#atom.xml"
+                            >
                               <span className="icon is-small">
                                 <i className="fa fa-rss" />
                               </span>
@@ -4744,10 +5332,20 @@ const DemoPage = () => (
               </div>
             </div>
             <div className="navbar-end">
-              <a className="navbar-item" href="https://github.com/jgthms/bulma" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://github.com/jgthms/bulma"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Github
               </a>
-              <a className="navbar-item" href="https://twitter.com/jgthms" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://twitter.com/jgthms"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Twitter
               </a>
               <div className="navbar-item">
@@ -4758,7 +5356,10 @@ const DemoPage = () => (
                     </a>
                   </p>
                   <p className="control">
-                    <a className="button is-primary" href="https://github.com/jgthms/bulma/archive/0.4.3.zip">
+                    <a
+                      className="button is-primary"
+                      href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
+                    >
                       <span className="icon">
                         <i className="fa fa-download" />
                       </span>
@@ -4782,12 +5383,22 @@ const DemoPage = () => (
                 height="28"
               />
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://github.com/jgthms/bulma"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-github" />
               </span>
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://twitter.com/jgthms"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-twitter" />
               </span>
@@ -4843,7 +5454,10 @@ const DemoPage = () => (
                   Blog
                 </a>
                 <div id="blogDropdown" className="navbar-dropdown ">
-                  <a className="navbar-item" href="/2017/03/10/new-field-element/">
+                  <a
+                    className="navbar-item"
+                    href="/2017/03/10/new-field-element/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">10 Mar 2017</small>
@@ -4851,7 +5465,10 @@ const DemoPage = () => (
                       <p>New field element (for better controls)</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">11 Apr 2016</small>
@@ -4859,7 +5476,10 @@ const DemoPage = () => (
                       <p>Metro UI CSS grid with Bulma tiles</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">09 Feb 2016</small>
@@ -4881,7 +5501,10 @@ const DemoPage = () => (
                         </div>
                         <div className="level-right">
                           <div className="level-item">
-                            <a className="button is-rss is-small" href="#atom.xml">
+                            <a
+                              className="button is-rss is-small"
+                              href="#atom.xml"
+                            >
                               <span className="icon is-small">
                                 <i className="fa fa-rss" />
                               </span>
@@ -4914,10 +5537,20 @@ const DemoPage = () => (
               </div>
             </div>
             <div className="navbar-end">
-              <a className="navbar-item" href="https://github.com/jgthms/bulma" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://github.com/jgthms/bulma"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Github
               </a>
-              <a className="navbar-item" href="https://twitter.com/jgthms" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://twitter.com/jgthms"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Twitter
               </a>
               <div className="navbar-item">
@@ -4928,7 +5561,10 @@ const DemoPage = () => (
                     </a>
                   </p>
                   <p className="control">
-                    <a className="button is-primary" href="https://github.com/jgthms/bulma/archive/0.4.3.zip">
+                    <a
+                      className="button is-primary"
+                      href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
+                    >
                       <span className="icon">
                         <i className="fa fa-download" />
                       </span>
@@ -4952,12 +5588,22 @@ const DemoPage = () => (
                 height="28"
               />
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://github.com/jgthms/bulma"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-github" />
               </span>
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://twitter.com/jgthms"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-twitter" />
               </span>
@@ -5013,7 +5659,10 @@ const DemoPage = () => (
                   Blog
                 </a>
                 <div id="blogDropdown" className="navbar-dropdown ">
-                  <a className="navbar-item" href="/2017/03/10/new-field-element/">
+                  <a
+                    className="navbar-item"
+                    href="/2017/03/10/new-field-element/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">10 Mar 2017</small>
@@ -5021,7 +5670,10 @@ const DemoPage = () => (
                       <p>New field element (for better controls)</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">11 Apr 2016</small>
@@ -5029,7 +5681,10 @@ const DemoPage = () => (
                       <p>Metro UI CSS grid with Bulma tiles</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">09 Feb 2016</small>
@@ -5051,7 +5706,10 @@ const DemoPage = () => (
                         </div>
                         <div className="level-right">
                           <div className="level-item">
-                            <a className="button is-rss is-small" href="#atom.xml">
+                            <a
+                              className="button is-rss is-small"
+                              href="#atom.xml"
+                            >
                               <span className="icon is-small">
                                 <i className="fa fa-rss" />
                               </span>
@@ -5084,10 +5742,20 @@ const DemoPage = () => (
               </div>
             </div>
             <div className="navbar-end">
-              <a className="navbar-item" href="https://github.com/jgthms/bulma" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://github.com/jgthms/bulma"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Github
               </a>
-              <a className="navbar-item" href="https://twitter.com/jgthms" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://twitter.com/jgthms"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Twitter
               </a>
               <div className="navbar-item">
@@ -5098,7 +5766,10 @@ const DemoPage = () => (
                     </a>
                   </p>
                   <p className="control">
-                    <a className="button is-primary" href="https://github.com/jgthms/bulma/archive/0.4.3.zip">
+                    <a
+                      className="button is-primary"
+                      href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
+                    >
                       <span className="icon">
                         <i className="fa fa-download" />
                       </span>
@@ -5122,12 +5793,22 @@ const DemoPage = () => (
                 height="28"
               />
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://github.com/jgthms/bulma"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-github" />
               </span>
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://twitter.com/jgthms"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-twitter" />
               </span>
@@ -5183,7 +5864,10 @@ const DemoPage = () => (
                   Blog
                 </a>
                 <div id="blogDropdown" className="navbar-dropdown ">
-                  <a className="navbar-item" href="/2017/03/10/new-field-element/">
+                  <a
+                    className="navbar-item"
+                    href="/2017/03/10/new-field-element/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">10 Mar 2017</small>
@@ -5191,7 +5875,10 @@ const DemoPage = () => (
                       <p>New field element (for better controls)</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">11 Apr 2016</small>
@@ -5199,7 +5886,10 @@ const DemoPage = () => (
                       <p>Metro UI CSS grid with Bulma tiles</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">09 Feb 2016</small>
@@ -5221,7 +5911,10 @@ const DemoPage = () => (
                         </div>
                         <div className="level-right">
                           <div className="level-item">
-                            <a className="button is-rss is-small" href="#atom.xml">
+                            <a
+                              className="button is-rss is-small"
+                              href="#atom.xml"
+                            >
                               <span className="icon is-small">
                                 <i className="fa fa-rss" />
                               </span>
@@ -5254,10 +5947,20 @@ const DemoPage = () => (
               </div>
             </div>
             <div className="navbar-end">
-              <a className="navbar-item" href="https://github.com/jgthms/bulma" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://github.com/jgthms/bulma"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Github
               </a>
-              <a className="navbar-item" href="https://twitter.com/jgthms" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://twitter.com/jgthms"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Twitter
               </a>
               <div className="navbar-item">
@@ -5268,7 +5971,10 @@ const DemoPage = () => (
                     </a>
                   </p>
                   <p className="control">
-                    <a className="button is-primary" href="https://github.com/jgthms/bulma/archive/0.4.3.zip">
+                    <a
+                      className="button is-primary"
+                      href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
+                    >
                       <span className="icon">
                         <i className="fa fa-download" />
                       </span>
@@ -5292,17 +5998,30 @@ const DemoPage = () => (
                 height="28"
               />
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://github.com/jgthms/bulma"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-github" />
               </span>
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://twitter.com/jgthms"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-twitter" />
               </span>
             </a>
-            <div className="navbar-burger burger" data-target="navMenuExample10">
+            <div
+              className="navbar-burger burger"
+              data-target="navMenuExample10"
+            >
               <span />
               <span />
               <span />
@@ -5353,7 +6072,10 @@ const DemoPage = () => (
                   Blog
                 </a>
                 <div id="blogDropdown" className="navbar-dropdown ">
-                  <a className="navbar-item" href="/2017/03/10/new-field-element/">
+                  <a
+                    className="navbar-item"
+                    href="/2017/03/10/new-field-element/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">10 Mar 2017</small>
@@ -5361,7 +6083,10 @@ const DemoPage = () => (
                       <p>New field element (for better controls)</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">11 Apr 2016</small>
@@ -5369,7 +6094,10 @@ const DemoPage = () => (
                       <p>Metro UI CSS grid with Bulma tiles</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">09 Feb 2016</small>
@@ -5391,7 +6119,10 @@ const DemoPage = () => (
                         </div>
                         <div className="level-right">
                           <div className="level-item">
-                            <a className="button is-rss is-small" href="#atom.xml">
+                            <a
+                              className="button is-rss is-small"
+                              href="#atom.xml"
+                            >
                               <span className="icon is-small">
                                 <i className="fa fa-rss" />
                               </span>
@@ -5424,10 +6155,20 @@ const DemoPage = () => (
               </div>
             </div>
             <div className="navbar-end">
-              <a className="navbar-item" href="https://github.com/jgthms/bulma" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://github.com/jgthms/bulma"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Github
               </a>
-              <a className="navbar-item" href="https://twitter.com/jgthms" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://twitter.com/jgthms"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Twitter
               </a>
               <div className="navbar-item">
@@ -5438,7 +6179,10 @@ const DemoPage = () => (
                     </a>
                   </p>
                   <p className="control">
-                    <a className="button is-primary" href="https://github.com/jgthms/bulma/archive/0.4.3.zip">
+                    <a
+                      className="button is-primary"
+                      href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
+                    >
                       <span className="icon">
                         <i className="fa fa-download" />
                       </span>
@@ -5462,17 +6206,30 @@ const DemoPage = () => (
                 height="28"
               />
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://github.com/jgthms/bulma"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-github" />
               </span>
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://twitter.com/jgthms"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-twitter" />
               </span>
             </a>
-            <div className="navbar-burger burger" data-target="navMenuExample11">
+            <div
+              className="navbar-burger burger"
+              data-target="navMenuExample11"
+            >
               <span />
               <span />
               <span />
@@ -5523,7 +6280,10 @@ const DemoPage = () => (
                   Blog
                 </a>
                 <div id="blogDropdown" className="navbar-dropdown ">
-                  <a className="navbar-item" href="/2017/03/10/new-field-element/">
+                  <a
+                    className="navbar-item"
+                    href="/2017/03/10/new-field-element/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">10 Mar 2017</small>
@@ -5531,7 +6291,10 @@ const DemoPage = () => (
                       <p>New field element (for better controls)</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/04/11/metro-ui-css-grid-with-bulma-tiles/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">11 Apr 2016</small>
@@ -5539,7 +6302,10 @@ const DemoPage = () => (
                       <p>Metro UI CSS grid with Bulma tiles</p>
                     </div>
                   </a>
-                  <a className="navbar-item" href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/">
+                  <a
+                    className="navbar-item"
+                    href="/2016/02/09/blog-launched-new-responsive-columns-new-helpers/"
+                  >
                     <div className="navbar-content">
                       <p>
                         <small className="has-text-info">09 Feb 2016</small>
@@ -5561,7 +6327,10 @@ const DemoPage = () => (
                         </div>
                         <div className="level-right">
                           <div className="level-item">
-                            <a className="button is-rss is-small" href="#atom.xml">
+                            <a
+                              className="button is-rss is-small"
+                              href="#atom.xml"
+                            >
                               <span className="icon is-small">
                                 <i className="fa fa-rss" />
                               </span>
@@ -5594,10 +6363,20 @@ const DemoPage = () => (
               </div>
             </div>
             <div className="navbar-end">
-              <a className="navbar-item" href="https://github.com/jgthms/bulma" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://github.com/jgthms/bulma"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Github
               </a>
-              <a className="navbar-item" href="https://twitter.com/jgthms" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://twitter.com/jgthms"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Twitter
               </a>
               <div className="navbar-item">
@@ -5608,7 +6387,10 @@ const DemoPage = () => (
                     </a>
                   </p>
                   <p className="control">
-                    <a className="button is-primary" href="https://github.com/jgthms/bulma/archive/0.4.3.zip">
+                    <a
+                      className="button is-primary"
+                      href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
+                    >
                       <span className="icon">
                         <i className="fa fa-download" />
                       </span>
@@ -5633,12 +6415,22 @@ const DemoPage = () => (
                 height="28"
               />
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://github.com/jgthms/bulma"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-github" />
               </span>
             </a>
-            <a className="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
+            <a
+              className="navbar-item is-hidden-desktop"
+              href="https://twitter.com/jgthms"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <span className="icon">
                 <i className="fa fa-twitter" />
               </span>
@@ -5676,7 +6468,12 @@ const DemoPage = () => (
               </div>
             </div>
             <div className="navbar-end">
-              <a className="navbar-item" href="https://github.com/jgthms/bulma" target="_blank">
+              <a
+                className="navbar-item"
+                href="https://github.com/jgthms/bulma"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Github
               </a>
               <div className="navbar-item">
@@ -5687,7 +6484,10 @@ const DemoPage = () => (
                     </a>
                   </p>
                   <p className="control">
-                    <a className="button is-primary" href="https://github.com/jgthms/bulma/archive/0.4.3.zip">
+                    <a
+                      className="button is-primary"
+                      href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
+                    >
                       <span className="icon">
                         <i className="fa fa-download" />
                       </span>
@@ -5699,9 +6499,9 @@ const DemoPage = () => (
             </div>
           </div>
         </nav>
-      </section>
+      </Section>
 
-      <section className="section" id="pagination">
+      <Section>
         <h1 className="title">Pagination</h1>
         <hr />
         <nav className="pagination">
@@ -5732,7 +6532,11 @@ const DemoPage = () => (
           </ul>
         </nav>
         <br />
-        <nav className="pagination is-rounded" role="navigation" aria-label="pagination">
+        <nav
+          className="pagination is-rounded"
+          role="navigation"
+          aria-label="pagination"
+        >
           <a className="pagination-previous">Previous</a>
           <a className="pagination-next">Next page</a>
           <ul className="pagination-list">
@@ -5750,7 +6554,11 @@ const DemoPage = () => (
               </a>
             </li>
             <li>
-              <a className="pagination-link is-current" aria-label="Page 46" aria-current="page">
+              <a
+                className="pagination-link is-current"
+                aria-label="Page 46"
+                aria-current="page"
+              >
                 46
               </a>
             </li>
@@ -5769,9 +6577,9 @@ const DemoPage = () => (
             </li>
           </ul>
         </nav>
-      </section>
+      </Section>
 
-      <section className="section" id="panel">
+      <Section>
         <h1 className="title">Panel</h1>
         <hr />
         <div className="column is-4">
@@ -5779,7 +6587,11 @@ const DemoPage = () => (
             <p className="panel-heading"> Repositories </p>
             <div className="panel-block">
               <p className="control has-icons-left">
-                <input className="input is-small" type="text" placeholder="Search" />
+                <input
+                  className="input is-small"
+                  type="text"
+                  placeholder="Search"
+                />
                 <span className="icon is-small is-left">
                   <i className="fa fa-search" />
                 </span>
@@ -5794,58 +6606,54 @@ const DemoPage = () => (
             </p>
             <a className="panel-block is-active">
               <span className="panel-icon">
-                {' '}
-                <i className="fa fa-book" />{' '}
-              </span>{' '}
-              bulma{' '}
+                <i className="fa fa-book" />
+              </span>
+              bulma
             </a>
             <a className="panel-block">
               <span className="panel-icon">
-                {' '}
-                <i className="fa fa-book" />{' '}
-              </span>{' '}
-              marksheet{' '}
+                <i className="fa fa-book" />
+              </span>
+              marksheet
             </a>
             <a className="panel-block">
               <span className="panel-icon">
-                {' '}
-                <i className="fa fa-book" />{' '}
-              </span>{' '}
-              minireset.css{' '}
+                <i className="fa fa-book" />
+              </span>
+              minireset.css
             </a>
             <a className="panel-block">
               <span className="panel-icon">
-                {' '}
-                <i className="fa fa-book" />{' '}
-              </span>{' '}
-              jgthms.github.io{' '}
+                <i className="fa fa-book" />
+              </span>
+              jgthms.github.io
             </a>
             <a className="panel-block">
               <span className="panel-icon">
-                {' '}
-                <i className="fa fa-code-fork" />{' '}
-              </span>{' '}
-              daniellowtw/infBoard{' '}
+                <i className="fa fa-code-fork" />
+              </span>
+              daniellowtw/infBoard
             </a>
             <a className="panel-block">
               <span className="panel-icon">
-                {' '}
-                <i className="fa fa-code-fork" />{' '}
-              </span>{' '}
-              mojs{' '}
+                <i className="fa fa-code-fork" />
+              </span>
+              mojs
             </a>
             <label className="panel-block">
-              <input type="checkbox" /> Remember me{' '}
+              <input type="checkbox" /> Remember me
             </label>
             <div className="panel-block">
-              <button className="button is-primary is-outlined is-fullwidth"> Reset all filters </button>
+              <Button color="primary" outlined fullwidth>
+                Reset all filters
+              </Button>
             </div>
           </nav>
         </div>
-      </section>
+      </Section>
 
-      <section className="section" id="tabs">
-        <h1 className="title">Tabs</h1>
+      <Section>
+        <Title>Tabs</Title>
         <hr />
         <div className="tabs">
           <ul>
@@ -6165,9 +6973,9 @@ const DemoPage = () => (
             </li>
           </ul>
         </div>
-      </section>
-    </div>
-  </div>
+      </Section>
+    </Column>
+  </Column.Group>
 );
 
 export default DemoPage;

@@ -8,9 +8,9 @@ import LandingPage from './pages/LandingPage';
 import { store } from './store';
 import { Navigation } from './components/Navigation';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { FooterRoutes, NavRoutes } from './Routes';
+import { MetaRoutes, GameRoutes, AccountRoutes } from './Routes';
 
-const AllRoutes = [...FooterRoutes, ...NavRoutes];
+const AllRoutes = [...MetaRoutes, ...GameRoutes, ...AccountRoutes];
 
 const ResourcesHelper = () => (
   <StoreContext.Provider value={store}>

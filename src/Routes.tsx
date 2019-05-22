@@ -32,7 +32,7 @@ const LoadingFactory = (
   Loadable({
     loader: () => component,
     loading: LoadInterceptor,
-    timeout: 10000,
+    timeout: 3000,
     delay: 300,
   });
 
@@ -45,7 +45,16 @@ export interface IRoutes {
   requiresAuth: boolean;
 }
 
-export const FooterRoutes: IRoutes[] = [
+export const AccountRoutes: IRoutes[] = [
+  {
+    path: '/settings',
+    component: LoadingFactory(import('./pages/SettingsPage')),
+    requiresAuth: true,
+    title: 'settingsLink',
+  },
+];
+
+export const MetaRoutes: IRoutes[] = [
   {
     path: '/donate',
     component: LoadingFactory(import('./pages/DonatePage')),
@@ -66,18 +75,12 @@ export const FooterRoutes: IRoutes[] = [
   },
 ];
 
-export const NavRoutes: IRoutes[] = [
+export const GameRoutes: IRoutes[] = [
   {
     path: '/mines',
     component: LoadingFactory(import('./pages/MinesPage')),
     requiresAuth: false,
     title: 'minesLink',
-  },
-  {
-    path: '/settings',
-    component: LoadingFactory(import('./pages/SettingsPage')),
-    requiresAuth: true,
-    title: 'settingsLink',
   },
   {
     path: '/demo',
