@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, ChangeEvent, memo } from 'react';
+import React, { useReducer, FormEvent, ChangeEvent, memo } from 'react';
 import i18next from 'i18next';
 import { Icon, Control, Label, Input, Button, Field } from 'rbx';
 import { DebounceInput } from 'react-debounce-input';
@@ -32,17 +32,22 @@ const checkForErrors = (
   newPassword: string,
   repeatedNewPassword: string,
 ) => {
+  const newPwLength = newPassword.length;
+  const repeatedNewPwLength = repeatedNewPassword.length;
+
   if (
-    newPassword.length > 0 &&
-    repeatedNewPassword.length > 0 &&
+    newPwLength > 0 &&
+    repeatedNewPwLength > 0 &&
     newPassword !== repeatedNewPassword
   ) {
     return 'repeatedPasswordMismatch';
   }
 
   if (
-    newPassword === currentPassword ||
-    repeatedNewPassword === currentPassword
+    newPwLength > 0 &&
+    currentPassword.length > 0 &&
+    repeatedNewPwLength > 0 &&
+    (newPassword === currentPassword || repeatedNewPassword === currentPassword)
   ) {
     return 'newPasswordIdenticalToOld';
   }
@@ -50,54 +55,94 @@ const checkForErrors = (
   return '';
 };
 
+const initialState = {
+  currentPassword: '',
+  newPassword: '',
+  repeatedNewPassword: '',
+  isVerifying: false,
+  error: '',
+};
+
+type InitialStateType = typeof initialState;
+
+type ReducerAction =
+  | { type: 'setError'; value: string }
+  | { type: 'currentPassword'; value: string }
+  | { type: 'newPassword'; value: string }
+  | { type: 'repeatedNewPassword'; value: string }
+  | { type: 'isVerifying'; value: boolean };
+
+const reducer = (
+  state: InitialStateType,
+  action: ReducerAction,
+): InitialStateType => {
+  switch (action.type) {
+    case 'setError':
+      return { ...state, error: action.value };
+    case 'isVerifying':
+      return { ...state, isVerifying: action.value };
+    case 'currentPassword':
+      return { ...state, currentPassword: action.value };
+    case 'newPassword':
+      return { ...state, newPassword: action.value };
+    case 'repeatedNewPassword':
+      return { ...state, repeatedNewPassword: action.value };
+    default:
+      return state;
+  }
+};
+
 export const PasswordChange = memo(({ t }: PasswordChangeProps) => {
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [repeatedNewPassword, setRepeatedNewPassword] = useState('');
-  const [isVerifying, setIsVerifying] = useState(false);
-  const [error, setError] = useState('');
+  const [
+    { currentPassword, newPassword, repeatedNewPassword, isVerifying, error },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setIsVerifying(true);
+    dispatch({ type: 'isVerifying', value: true });
 
     setTimeout(() => {
-      setIsVerifying(false);
-      setError('Password incorrect');
+      dispatch({ type: 'isVerifying', value: false });
+      dispatch({ type: 'setError', value: 'Password incorrect' });
     }, 3500);
   };
 
-  const handleError = (error: string) => {
-    if (error.length > 0) {
-      setError(t(error));
+  const handleError = (newError: string) => {
+    if (newError.length > 0) {
+      dispatch({ type: 'setError', value: t(newError) as string });
       return;
     }
 
-    setError('');
+    if (newError === error) {
+      return;
+    }
+
+    dispatch({ type: 'setError', value: '' });
   };
 
   const handleCurrentPasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const password = e.target.value;
-    setCurrentPassword(password);
+    const value = e.target.value;
+    dispatch({ type: 'currentPassword', value });
 
-    handleError(checkForErrors(password, newPassword, repeatedNewPassword));
+    handleError(checkForErrors(value, newPassword, repeatedNewPassword));
   };
 
   const handleNewPassworddChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const password = e.target.value;
-    setNewPassword(password);
+    const value = e.target.value;
+    dispatch({ type: 'newPassword', value });
 
-    handleError(checkForErrors(currentPassword, password, repeatedNewPassword));
+    handleError(checkForErrors(currentPassword, value, repeatedNewPassword));
   };
 
   const handleRepeatedNewPasswordChange = (
     e: ChangeEvent<HTMLInputElement>,
   ) => {
-    const password = e.target.value;
-    setRepeatedNewPassword(password);
+    const value = e.target.value;
+    dispatch({ type: 'repeatedNewPassword', value });
 
-    handleError(checkForErrors(currentPassword, newPassword, password));
+    handleError(checkForErrors(currentPassword, newPassword, value));
   };
 
   const tCurrentPassword = t('currentPassword');
@@ -178,10 +223,15 @@ export const PasswordChange = memo(({ t }: PasswordChangeProps) => {
       <Button
         type="submit"
         disabled={isDisabled}
-        className={isVerifying ? 'is-loading is-primary' : 'is-primary'}
+        className={['is-primary', isVerifying ? 'is-loading' : '']
+          .filter(className => className.length > 0)
+          .join(' ')}
       >
         {t('changePassword')}
       </Button>
     </form>
   );
 });
+
+// @ts-ignore
+PasswordChange.whyDidYouRender = true;
