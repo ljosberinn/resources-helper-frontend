@@ -1,160 +1,52 @@
 import React from 'react';
-import { Column, Button, Section, Title, Content, Tag } from 'rbx';
+import {
+  Column,
+  Button,
+  Section,
+  Box,
+  Title,
+  Media,
+  Icon,
+  Content,
+  Control,
+  Level,
+  Image,
+  Tag,
+} from 'rbx';
+
+import { Notifications } from './Notifications';
+import { ProgressBars } from './ProgressBars';
+import { Icons } from './Icons';
+import { Images } from './Images';
+import { Tables } from './Tables';
+import { Typography } from './Typography';
+import { Buttons } from './Buttons';
+import { Menus } from './Menus';
+import { Forms } from './Forms';
 
 const DemoPage = () => (
   <Column.Group>
     <Column size={2}>
-      <aside className="menu section">
-        <p className="menu-label"> Elements </p>
-        <ul className="menu-list">
-          <li>
-            <a href="#typography"> Typography </a>
-          </li>
-          <li>
-            <a href="#box"> Box </a>
-          </li>
-          <li>
-            <a href="#button"> Button </a>
-          </li>
-          <li>
-            <a href="#content"> Content </a>
-          </li>
-          <li>
-            <a href="#delete"> Delete </a>
-          </li>
-          <li>
-            <a href="#form"> Form </a>
-          </li>
-          <li>
-            <a href="#icon"> Icon </a>
-          </li>
-          <li>
-            <a href="#images"> Images </a>
-          </li>
-          <li>
-            <a href="#notifications"> Notifications </a>
-          </li>
-          <li>
-            <a href="#progress"> Progress bars </a>
-          </li>
-          <li>
-            <a href="#table"> Table </a>
-          </li>
-          <li>
-            <a href="#tag"> Tag </a>
-          </li>
-        </ul>
-        <p className="menu-label"> Components </p>
-        <ul className="menu-list">
-          <li>
-            <a href="#breadcrumb"> Breadcrumb </a>
-          </li>
-          <li>
-            <a href="#dropdown"> Dropdown </a>
-          </li>
-          <li>
-            <a href="#card"> Card </a>
-          </li>
-          <li>
-            <a href="#hero"> Hero </a>
-          </li>
-          <li>
-            <a href="#level"> Level </a>
-          </li>
-          <li>
-            <a href="#media"> Media object </a>
-          </li>
-          <li>
-            <a href="#menu"> Menu </a>
-          </li>
-          <li>
-            <a href="#message"> Message </a>
-          </li>
-          <li>
-            <a href="#modal"> Modal </a>
-          </li>
-          <li>
-            <a href="#navbar"> Navbar </a>
-          </li>
-          <li>
-            <a href="#pagination"> Pagination </a>
-          </li>
-          <li>
-            <a href="#panel"> Panel </a>
-          </li>
-          <li>
-            <a href="#tabs"> Tabs </a>
-          </li>
-        </ul>
-      </aside>
+      <Menus />
     </Column>
-    <Column size={9}>
-      <Section>
-        <Title>Typography</Title>
-        <hr />
-        <Column.Group>
-          <Column>
-            <Title size={1}>Title 1</Title>
-            <Title size={2}>Title 2</Title>
-            <Title size={3}>Title 3</Title>
-            <Title size={4}>Title 4</Title>
-            <Title size={5}>Title 5</Title>
-            <Title size={6}>Title 6</Title>
-          </Column>
-          <Column>
-            <Title subtitle size={1}>
-              Subtitle 1
-            </Title>
-            <Title subtitle size={2}>
-              Subtitle 2
-            </Title>
-            <Title subtitle size={3}>
-              Subtitle 3
-            </Title>
-            <Title subtitle size={4}>
-              Subtitle 4
-            </Title>
-            <Title subtitle size={5}>
-              Subtitle 5
-            </Title>
-            <Title subtitle size={6}>
-              Subtitle 6
-            </Title>
-          </Column>
-          <Column>
-            <Title>Title</Title>
-            <Title subtitle> Subtitle </Title>
-            <Title size={1}>Title 1</Title>
-            <Title size={3} subtitle>
-              Subtitle 3
-            </Title>
-            <Title size={2}>Title 2</Title>
-            <Title size={4} subtitle>
-              Subtitle 4
-            </Title>
-            <Title size={3}>Title 3</Title>
-            <Title size={5} subtitle>
-              Subtitle 5
-            </Title>
-          </Column>
-        </Column.Group>
-      </Section>
+    <Column>
+      <Typography />
 
       <Section>
-        <h1 className="title"> Box </h1>
+        <Title>Box</Title>
         <hr />
-        <div className="box">
-          <article className="media">
-            <div className="media-left">
+        <Box>
+          <Media>
+            <Media.Item as="figure" align="left">
               <figure className="image is-64x64">
-                <img
+                <Image
                   alt=""
                   src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg"
                 />
               </figure>
-            </div>
-            <div className="media-content">
-              <div className="content">
+            </Media.Item>
+            <Media.Item align="content">
+              <Control>
                 <p>
                   <strong> John Smith </strong> <small> @johnsmith </small>
                   <small> 31m </small>
@@ -162,373 +54,40 @@ const DemoPage = () => (
                   elit. Aenean efficitur sit amet massa fringilla egestas.
                   Nullam condimentum luctus turpis.
                 </p>
-              </div>
-              <nav className="level">
-                <div className="level-left">
-                  <a className="level-item">
-                    <span className="icon is-small">
-                      <i className="fa fa-reply"> </i>
-                    </span>
-                  </a>
-                  <a className="level-item">
-                    <span className="icon is-small">
-                      <i className="fa fa-retweet"> </i>
-                    </span>
-                  </a>
-                  <a className="level-item">
-                    <span className="icon is-small">
-                      <i className="fa fa-heart"> </i>
-                    </span>
-                  </a>
-                </div>
-              </nav>
-            </div>
-          </article>
-        </div>
+              </Control>
+              <Level>
+                <Level.Item align="left">
+                  <Level.Item>
+                    <Icon size="small">
+                      <i className="fa fa-reply" />
+                    </Icon>
+                  </Level.Item>
+                  <Level.Item>
+                    <Icon size="small">
+                      <i className="fa fa-retweet" />
+                    </Icon>
+                  </Level.Item>
+
+                  <Level.Item>
+                    <Icon size="small">
+                      <i className="fa fa-heart" />
+                    </Icon>
+                  </Level.Item>
+                </Level.Item>
+              </Level>
+            </Media.Item>
+          </Media>
+        </Box>
       </Section>
 
-      <Section>
-        <Title>Button</Title>
-        <hr />
-        <Column.Group>
-          <Column>
-            <Button.Group>
-              <Button>Button</Button>
-              <Button color="white">White</Button>
-              <Button color="light">light</Button>
-              <Button color="dark">dark</Button>
-              <Button color="black">black</Button>
-              <Button color="link">link</Button>
-              <Button text>text</Button>
-            </Button.Group>
-            <Button.Group>
-              <Button color="primary">primary</Button>
-              <Button color="info">info</Button>
-              <Button color="success">success</Button>
-              <Button color="warning">warning</Button>
-              <Button color="danger">danger</Button>
-            </Button.Group>
-            <Button.Group>
-              <Button state="focused">focused</Button>
-              <Button color="primary" state="focused">
-                primary
-              </Button>
-              <Button color="info" state="focused">
-                info
-              </Button>
-              <Button color="success" state="focused">
-                success
-              </Button>
-              <Button color="warning" state="focused">
-                warning
-              </Button>
-              <Button color="danger" state="focused">
-                danger
-              </Button>
-            </Button.Group>
-            <Button.Group>
-              <Button state="hovered">hovered</Button>
-              <Button color="primary" state="hovered">
-                primary
-              </Button>
-              <Button color="info" state="hovered">
-                info
-              </Button>
-              <Button color="success" state="hovered">
-                success
-              </Button>
-              <Button color="warning" state="hovered">
-                warning
-              </Button>
-              <Button color="danger" state="hovered">
-                danger
-              </Button>
-            </Button.Group>
-            <Button.Group>
-              <Button state="active">active</Button>
-              <Button color="primary" state="active">
-                primary
-              </Button>
-              <Button color="info" state="active">
-                info
-              </Button>
-              <Button color="success" state="active">
-                success
-              </Button>
-              <Button color="warning" state="active">
-                warning
-              </Button>
-              <Button color="danger" state="active">
-                danger
-              </Button>
-            </Button.Group>
-            <Button.Group>
-              <Button state="loading">loading</Button>
-              <Button color="primary" state="loading">
-                primary
-              </Button>
-              <Button color="info" state="loading">
-                info
-              </Button>
-              <Button color="success" state="loading">
-                success
-              </Button>
-              <Button color="warning" state="loading">
-                warning
-              </Button>
-              <Button color="danger" state="loading">
-                danger
-              </Button>
-            </Button.Group>
-            <p className="field">
-              <a href="#" className="button">
-                <span className="icon is-small">
-                  <i className="fa fa-bold"> </i>
-                </span>
-              </a>
-              <a href="#" className="button">
-                <span className="icon is-small">
-                  <i className="fa fa-italic"> </i>
-                </span>
-              </a>
-              <a href="#" className="button">
-                <span className="icon is-small">
-                  <i className="fa fa-underline"> </i>
-                </span>
-              </a>
-              <a href="#" className="button">
-                <span className="icon">
-                  <i className="fa fa-github"> </i>
-                </span>
-                <span> GitHub </span>
-              </a>
-              <a href="#" className="button is-primary">
-                <span className="icon">
-                  <i className="fa fa-twitter"> </i>
-                </span>
-                <span> Twitter </span>
-              </a>
-              <a href="#" className="button is-success">
-                <span className="icon is-small">
-                  <i className="fa fa-check"> </i>
-                </span>
-                <span> Save </span>
-              </a>
-              <a href="#" className="button is-danger is-outlined">
-                <span> Delete </span>
-                <span className="icon is-small">
-                  <i className="fa fa-times"> </i>
-                </span>
-              </a>
-            </p>
-            <div className="field has-addons">
-              <p className="control">
-                <a href="#" className="button">
-                  <span className="icon is-small">
-                    <i className="fa fa-bold" />
-                  </span>
-                  <span>Bold</span>
-                </a>
-              </p>
-              <p className="control">
-                <a href="#" className="button">
-                  <span className="icon is-small">
-                    <i className="fa fa-italic" />
-                  </span>
-                  <span>Italic</span>
-                </a>
-              </p>
-              <p className="control">
-                <a href="#" className="button">
-                  <span className="icon is-small">
-                    <i className="fa fa-underline" />
-                  </span>
-                  <span>Underline</span>
-                </a>
-              </p>
-            </div>
+      <Buttons />
 
-            <div className="field has-addons">
-              <p className="control">
-                <a href="#" className="button">
-                  <span className="icon is-small">
-                    <i className="fa fa-align-left" />
-                  </span>
-                  <span>Left</span>
-                </a>
-              </p>
-              <p className="control">
-                <a href="#" className="button">
-                  <span className="icon is-small">
-                    <i className="fa fa-align-center" />
-                  </span>
-                  <span>Center</span>
-                </a>
-              </p>
-              <p className="control">
-                <a href="#" className="button">
-                  <span className="icon is-small">
-                    <i className="fa fa-align-right" />
-                  </span>
-                  <span>Right</span>
-                </a>
-              </p>
-            </div>
-            <Button.Group>
-              <Button rounded>rounded</Button>
-              <Button color="primary" rounded>
-                rounded
-              </Button>
-              <Button color="link" rounded>
-                rounded
-              </Button>
-              <Button color="info" rounded>
-                rounded
-              </Button>
-              <Button color="success" rounded>
-                rounded
-              </Button>
-              <Button color="danger" rounded>
-                rounded
-              </Button>
-            </Button.Group>
-          </Column>
-          <Column>
-            <Button.Group>
-              <Button size="small">small</Button>
-              <Button>normal</Button>
-              <Button size="medium">medium</Button>
-              <Button size="large">large</Button>
-            </Button.Group>
-            <Button.Group>
-              <Button color="primary" outlined>
-                outlined
-              </Button>
-              <Button color="info" outlined>
-                outlined
-              </Button>
-              <Button color="success" outlined>
-                outlined
-              </Button>
-              <Button color="danger" outlined>
-                outlined
-              </Button>
-            </Button.Group>
-            <div className="buttons notification is-primary">
-              <Button color="primary" inverted outlined>
-                inverted outlined
-              </Button>
-              <Button color="info" inverted outlined>
-                inverted outlined
-              </Button>
-              <Button color="success" inverted outlined>
-                inverted outlined
-              </Button>
-              <Button color="danger" inverted outlined>
-                inverted outlined
-              </Button>
-            </div>
-            <div className="buttons notification is-primary">
-              <Button color="primary" inverted>
-                inverted
-              </Button>
-              <Button color="info" inverted>
-                inverted
-              </Button>
-              <Button color="success" inverted>
-                inverted
-              </Button>
-              <Button color="danger" inverted>
-                inverted
-              </Button>
-            </div>
-            <Button.Group>
-              <a href="#" className="button is-small">
-                <span className="icon is-small">
-                  <i className="fa fa-github"> </i>
-                </span>
-                <span> GitHub </span>
-              </a>
-              <a href="#" className="button">
-                <span className="icon">
-                  <i className="fa fa-github"> </i>
-                </span>
-                <span> GitHub </span>
-              </a>
-              <a href="#" className="button is-medium">
-                <span className="icon">
-                  <i className="fa fa-github"> </i>
-                </span>
-                <span> GitHub </span>
-              </a>
-              <a href="#" className="button is-large">
-                <span className="icon is-medium">
-                  <i className="fa fa-github"> </i>
-                </span>
-                <span> GitHub </span>
-              </a>
-            </Button.Group>
-            <p className="field">
-              <a href="#" className="button is-small">
-                <span className="icon is-small">
-                  <i className="fa fa-header"> </i>
-                </span>
-              </a>
-            </p>
-            <p className="field">
-              <a href="#" className="button">
-                <span className="icon is-small">
-                  <i className="fa fa-header"> </i>
-                </span>
-              </a>
-              <a href="#" className="button">
-                <span className="icon">
-                  <i className="fa fa-header fa-lg"> </i>
-                </span>
-              </a>
-            </p>
-            <p className="field">
-              <a href="#" className="button is-medium">
-                <span className="icon is-small">
-                  <i className="fa fa-header"> </i>
-                </span>
-              </a>
-              <a href="#" className="button is-medium">
-                <span className="icon">
-                  <i className="fa fa-header fa-lg"> </i>
-                </span>
-              </a>
-              <a href="#" className="button is-medium">
-                <span className="icon is-medium">
-                  <i className="fa fa-header fa-2x"> </i>
-                </span>
-              </a>
-            </p>
-            <p className="field">
-              <a href="#" className="button is-large">
-                <span className="icon is-small">
-                  <i className="fa fa-header"> </i>
-                </span>
-              </a>
-              <a href="#" className="button is-large">
-                <span className="icon is-medium">
-                  <i className="fa fa-header fa-lg"> </i>
-                </span>
-              </a>
-              <a href="#" className="button is-large">
-                <span className="icon is-large">
-                  <i className="fa fa-header fa-2x"> </i>
-                </span>
-              </a>
-            </p>
-          </Column>
-        </Column.Group>
-      </Section>
       <Section>
         <Title>Content</Title>
         <hr />
         <Content>
-          <h1> Hello World </h1>
+          <Title>Hello World</Title>
+
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
             accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus,
@@ -696,1577 +255,21 @@ const DemoPage = () => (
         </article>
       </Section>
 
-      <Section>
-        <Title>Form</Title>
-        <hr />
-        <Column.Group>
-          <Column>
-            <div className="field">
-              <label className="label">Name</label>
-              <p className="control">
-                <input className="input" type="text" placeholder="Text input" />
-              </p>
-            </div>
-            <div className="field">
-              <label className="label">Username</label>
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-success"
-                  type="text"
-                  placeholder="Text input"
-                  defaultValue="bulma"
-                />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-user" />
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fa fa-check" />
-                </span>
-              </p>
-              <p className="help is-success">This username is available</p>
-            </div>
-            <div className="field">
-              <label className="label">Email</label>
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-danger"
-                  type="text"
-                  placeholder="Email input"
-                  defaultValue="hello@"
-                />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-envelope" />
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fa fa-warning" />
-                </span>
-              </p>
-              <p className="help is-danger">This email is invalid</p>
-            </div>
-            <div className="field">
-              <label className="label">Subject</label>
-              <p className="control">
-                <span className="select">
-                  <select>
-                    <option>Select dropdown</option>
-                    <option>With options</option>
-                  </select>
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <label className="label">Message</label>
-              <p className="control">
-                <textarea className="textarea" placeholder="Textarea" />
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <label className="checkbox">
-                  <input type="checkbox" /> I agree to the
-                  <a href="#">terms and conditions</a>
-                </label>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <label className="radio">
-                  <input type="radio" name="question" /> Yes
-                </label>
-                <label className="radio">
-                  <input type="radio" name="question" /> No
-                </label>
-              </p>
-            </div>
-            <div className="field is-grouped">
-              <p className="control">
-                <button className="button is-primary">Submit</button>
-              </p>
-              <p className="control">
-                <button className="button is-link">Cancel</button>
-              </p>
-            </div>
-            <br />
-            <h4 className="subtitle"> Disabled </h4>
-            <hr />
-            <div className="field">
-              <p className="control">
-                <input
-                  className="input"
-                  disabled
-                  placeholder="Disabled input"
-                  type="text"
-                />
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <textarea
-                  className="textarea"
-                  disabled
-                  placeholder="Disabled textarea"
-                />
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <label className="checkbox is-disabled">
-                  <input disabled type="checkbox" /> Remember me
-                </label>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <label className="radio is-disabled">
-                  <input disabled name="question" type="radio" /> Yes
-                </label>
-                <label className="radio is-disabled">
-                  <input disabled name="question" type="radio" /> No
-                </label>
-              </p>
-            </div>
-            <div className="field is-grouped">
-              <p className="control">
-                <Button primary disabled>
-                  Submit
-                </Button>
-              </p>
-              <p className="control">
-                <Button disabled>Cancel</Button>
-              </p>
-            </div>
-            <br />
-            <h3 className="title"> Horizontal Form </h3>
-            <hr />
-            <div className="field is-horizontal">
-              <div className="field-label is-normal">
-                <label className="label">From</label>
-              </div>
-              <div className="field-body">
-                <div className="field is-grouped">
-                  <p className="control is-expanded has-icons-left">
-                    <input className="input" type="text" placeholder="Name" />
-                    <span className="icon is-small is-left">
-                      <i className="fa fa-user" />
-                    </span>
-                  </p>
-                </div>
-                <div className="field">
-                  <p className="control is-expanded has-icons-left has-icons-right">
-                    <input
-                      className="input is-success"
-                      type="email"
-                      placeholder="Email"
-                      defaultValue="alex@smith.com"
-                    />
-                    <span className="icon is-small is-left">
-                      <i className="fa fa-envelope" />
-                    </span>
-                    <span className="icon is-small is-right">
-                      <i className="fa fa-check" />
-                    </span>
-                  </p>
-                  <p className="help is-success">This email is correct</p>
-                </div>
-              </div>
-            </div>
-            <div className="field is-horizontal">
-              <div className="field-label is-normal">
-                <label className="label">Department</label>
-              </div>
-              <div className="field-body">
-                <div className="field is-narrow">
-                  <div className="control">
-                    <div className="select is-fullwidth">
-                      <select>
-                        <option>Business development</option>
-                        <option>Marketing</option>
-                        <option>Sales</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="field is-horizontal">
-              <div className="field-label">
-                <label className="label">Already a member?</label>
-              </div>
-              <div className="field-body">
-                <div className="field is-narrow">
-                  <div className="control">
-                    <label className="radio">
-                      <input type="radio" name="member" /> Yes
-                    </label>
-                    <label className="radio">
-                      <input type="radio" name="member" /> No
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="field is-horizontal">
-              <div className="field-label is-normal">
-                <label className="label">Subject</label>
-              </div>
-              <div className="field-body">
-                <div className="field">
-                  <div className="control">
-                    <input
-                      className="input is-danger"
-                      type="text"
-                      placeholder="e.g. Partnership opportunity"
-                    />
-                  </div>
-                  <p className="help is-danger">This field is required</p>
-                </div>
-              </div>
-            </div>
-            <div className="field is-horizontal">
-              <div className="field-label is-normal">
-                <label className="label">Question</label>
-              </div>
-              <div className="field-body">
-                <div className="field">
-                  <div className="control">
-                    <textarea
-                      className="textarea"
-                      placeholder="Explain how we can help you"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="field is-horizontal">
-              <div className="field-label" />
-              <div className="field-body">
-                <div className="field">
-                  <div className="control">
-                    <button className="button is-primary">Send message</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <br />
-            <h3 className="title">File</h3>
-            <hr />
-            <div className="field">
-              <div className="file">
-                <label className="file-label">
-                  <input className="file-input" type="file" name="resume" />
-                  <span className="file-cta">
-                    <span className="file-icon">
-                      <i className="fa fa-upload" />
-                    </span>
-                    <span className="file-label">Choose a file…</span>
-                  </span>
-                </label>
-              </div>
-            </div>
-            <div className="field">
-              <div className="file has-name">
-                <label className="file-label">
-                  <input className="file-input" type="file" name="resume" />
-                  <span className="file-cta">
-                    <span className="file-icon">
-                      <i className="fa fa-upload" />
-                    </span>
-                    <span className="file-label">Choose a file…</span>
-                  </span>
-                  <span className="file-name">
-                    Screen Shot 2017-07-29 at 15.54.25.png
-                  </span>
-                </label>
-              </div>
-            </div>
-            <div className="field">
-              <div className="file is-primary">
-                <label className="file-label">
-                  <input className="file-input" type="file" name="resume" />
-                  <span className="file-cta">
-                    <span className="file-icon">
-                      <i className="fa fa-upload" />
-                    </span>
-                    <span className="file-label">Primary file…</span>
-                  </span>
-                </label>
-              </div>
-            </div>
+      <Forms />
 
-            <div className="field">
-              <div className="file is-info has-name">
-                <label className="file-label">
-                  <input className="file-input" type="file" name="resume" />
-                  <span className="file-cta">
-                    <span className="file-icon">
-                      <i className="fa fa-upload" />
-                    </span>
-                    <span className="file-label">Info file…</span>
-                  </span>
-                  <span className="file-name">
-                    Screen Shot 2017-07-29 at 15.54.25.png
-                  </span>
-                </label>
-              </div>
-            </div>
+      <Icons />
 
-            <div className="field">
-              <div className="file is-warning is-boxed">
-                <label className="file-label">
-                  <input className="file-input" type="file" name="resume" />
-                  <span className="file-cta">
-                    <span className="file-icon">
-                      <i className="fa fa-cloud-upload" />
-                    </span>
-                    <span className="file-label">Warning file…</span>
-                  </span>
-                </label>
-              </div>
-            </div>
+      <Images />
 
-            <div className="field">
-              <div className="file is-danger has-name is-boxed">
-                <label className="file-label">
-                  <input className="file-input" type="file" name="resume" />
-                  <span className="file-cta">
-                    <span className="file-icon">
-                      <i className="fa fa-cloud-upload" />
-                    </span>
-                    <span className="file-label">Danger file…</span>
-                  </span>
-                  <span className="file-name">
-                    Screen Shot 2017-07-29 at 15.54.25.png
-                  </span>
-                </label>
-              </div>
-            </div>
-          </Column>
-          <Column>
-            <br />
-            <h3 className="subtitle"> Styles </h3>
-            <hr />
-            <div className="field">
-              <p className="control">
-                <input
-                  className="input is-rounded"
-                  type="text"
-                  placeholder="Rounded input"
-                />
-              </p>
-            </div>
-            <br />
-            <h3 className="subtitle"> Colors </h3>
-            <hr />
-            <div className="field">
-              <p className="control">
-                <input
-                  className="input is-primary"
-                  type="text"
-                  placeholder="Primary input"
-                />
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <input
-                  className="input is-info"
-                  type="text"
-                  placeholder="Info input"
-                />
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <input
-                  className="input is-success"
-                  type="text"
-                  placeholder="Success input"
-                />
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <input
-                  className="input is-warning"
-                  type="text"
-                  placeholder="Warning input"
-                />
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <input
-                  className="input is-danger"
-                  type="text"
-                  placeholder="Danger input"
-                />
-              </p>
-            </div>
-            <br />
-            <h3 className="subtitle"> Sizes </h3>
-            <hr />
-            <div className="field">
-              <p className="control">
-                <input
-                  className="input is-small"
-                  type="text"
-                  placeholder="Small input"
-                />
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="Normal input"
-                />
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <input
-                  className="input is-medium"
-                  type="text"
-                  placeholder="Medium input"
-                />
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <input
-                  className="input is-large"
-                  type="text"
-                  placeholder="Large input"
-                />
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <span className="select is-small">
-                  <select>
-                    <option>Select dropdown</option>
-                    <option>With options</option>
-                  </select>
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <span className="select">
-                  <select>
-                    <option>Select dropdown</option>
-                    <option>With options</option>
-                  </select>
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <span className="select is-medium">
-                  <select>
-                    <option>Select dropdown</option>
-                    <option>With options</option>
-                  </select>
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <span className="select is-large">
-                  <select>
-                    <option>Select dropdown</option>
-                    <option>With options</option>
-                  </select>
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <label className="label is-small">Small input</label>
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-small"
-                  type="email"
-                  placeholder="Email"
-                />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-envelope" />
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fa fa-check" />
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <label className="label">Normal input</label>
-              <p className="control has-icons-left has-icons-right">
-                <input className="input" type="email" placeholder="Email" />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-envelope" />
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fa fa-check" />
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control has-icons-left has-icons-right">
-                <input className="input" type="email" placeholder="Email" />
-                <span className="icon is-left">
-                  <i className="fa fa-envelope" />
-                </span>
-                <span className="icon is-right">
-                  <i className="fa fa-check" />
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <label className="label is-medium">Medium input</label>
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-medium"
-                  type="email"
-                  placeholder="Email"
-                />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-envelope" />
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fa fa-check" />
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-medium"
-                  type="email"
-                  placeholder="Email"
-                />
-                <span className="icon is-left">
-                  <i className="fa fa-envelope" />
-                </span>
-                <span className="icon is-right">
-                  <i className="fa fa-check" />
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-medium"
-                  type="email"
-                  placeholder="Email"
-                />
-                <span className="icon is-medium is-left">
-                  <i className="fa fa-envelope" />
-                </span>
-                <span className="icon is-medium is-right">
-                  <i className="fa fa-check" />
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <label className="label is-large">Large input</label>
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-large"
-                  type="email"
-                  placeholder="Email"
-                />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-envelope" />
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fa fa-check" />
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-large"
-                  type="email"
-                  placeholder="Email"
-                />
-                <span className="icon is-left">
-                  <i className="fa fa-envelope" />
-                </span>
-                <span className="icon is-right">
-                  <i className="fa fa-check" />
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-large"
-                  type="email"
-                  placeholder="Email"
-                />
-                <span className="icon is-medium is-left">
-                  <i className="fa fa-envelope" />
-                </span>
-                <span className="icon is-medium is-right">
-                  <i className="fa fa-check" />
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-large"
-                  type="email"
-                  placeholder="Email"
-                />
-                <span className="icon is-large is-left">
-                  <i className="fa fa-envelope" />
-                </span>
-                <span className="icon is-large is-right">
-                  <i className="fa fa-check" />
-                </span>
-              </p>
-            </div>
-            <br />
-            <h4 className="subtitle"> With Font Awesome icons </h4>
-            <hr />
-            <div className="field">
-              <p className="control has-icons-left">
-                <input className="input" type="email" placeholder="Email" />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-envelope" />
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control has-icons-left">
-                <input
-                  className="input"
-                  type="password"
-                  placeholder="Password"
-                />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-lock" />
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control">
-                <button className="button is-success">Login</button>
-              </p>
-            </div>
-            <br />
-            <h3 className="title"> Form addons </h3>
-            <hr />
-            <div className="field has-addons">
-              <p className="control">
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="Find a repository"
-                />
-              </p>
-              <p className="control">
-                <a className="button is-info">Search</a>
-              </p>
-            </div>
-            <div className="field has-addons">
-              <p className="control">
-                <input
-                  className="input is-large"
-                  type="text"
-                  placeholder="Find a repository"
-                />
-              </p>
-              <p className="control">
-                <a className="button is-info is-large">Search</a>
-              </p>
-            </div>
-            <div className="field has-addons">
-              <p className="control">
-                <span className="select">
-                  <select>
-                    <option>$</option>
-                    <option>£</option>
-                    <option>€</option>
-                  </select>
-                </span>
-              </p>
-              <p className="control">
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="Amount of money"
-                />
-              </p>
-              <p className="control">
-                <a className="button">Transfer</a>
-              </p>
-            </div>
-            <div className="field has-addons">
-              <p className="control">
-                <span className="select">
-                  <select>
-                    <option>$</option>
-                    <option>£</option>
-                    <option>€</option>
-                  </select>
-                </span>
-              </p>
-              <p className="control is-expanded">
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="Amount of money"
-                />
-              </p>
-              <p className="control">
-                <a className="button">Transfer</a>
-              </p>
-            </div>
-            <div className="field has-addons">
-              <p className="control is-expanded">
-                <span className="select is-fullwidth">
-                  <select name="country">
-                    <option defaultValue="Argentina">Argentina</option>
-                    <option defaultValue="Bolivia">Bolivia</option>
-                    <option defaultValue="Brazil">Brazil</option>
-                    <option defaultValue="Chile">Chile</option>
-                    <option defaultValue="Colombia">Colombia</option>
-                    <option defaultValue="Ecuador">Ecuador</option>
-                    <option defaultValue="Guyana">Guyana</option>
-                    <option defaultValue="Paraguay">Paraguay</option>
-                    <option defaultValue="Peru">Peru</option>
-                    <option defaultValue="Suriname">Suriname</option>
-                    <option defaultValue="Uruguay">Uruguay</option>
-                    <option defaultValue="Venezuela">Venezuela</option>
-                  </select>
-                </span>
-              </p>
-              <p className="control">
-                <button type="submit" className="button is-primary">
-                  Choose
-                </button>
-              </p>
-            </div>
-            <div className="field is-grouped">
-              <p className="control is-expanded">
-                <input
-                  className="input"
-                  type="text"
-                  placeholder="Find a repository"
-                />
-              </p>
-              <p className="control">
-                <a className="button is-info">Search</a>
-              </p>
-            </div>
-          </Column>
-        </Column.Group>
-      </Section>
+      <Notifications />
+
+      <ProgressBars />
+
+      <Tables />
 
       <Section>
-        <Title>Icons</Title>
-        <hr />
-        <span className="icon is-small">
-          <i className="fa fa-home"> </i>
-        </span>
-        <span className="icon">
-          <i className="fa fa-home"> </i>
-        </span>
-        <span className="icon is-medium">
-          <i className="fa fa-home"> </i>
-        </span>
-        <span className="icon is-large">
-          <i className="fa fa-home"> </i>
-        </span>
-      </Section>
+        <Title>Tag</Title>
 
-      <Section>
-        <h1 className="title"> Images </h1>
-        <hr />
-        <figure className="image is-128x128">
-          <img src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg" />
-        </figure>
-      </Section>
-
-      <Section>
-        <h1 className="title"> Notifications </h1>
-        <hr />
-        <div className="columns is-multiline">
-          <div className="column is-half">
-            <div className="notification ">
-              <button className="delete"> </button> Lorem ipsum dolor sit amet,
-              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit
-              amet, consectetur adipiscing elit
-            </div>
-          </div>
-
-          <div className="column is-half">
-            <div className="notification is-primary">
-              <button className="delete"> </button> Lorem ipsum dolor sit amet,
-              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit
-              amet, consectetur adipiscing elit
-            </div>
-          </div>
-
-          <div className="column is-half">
-            <div className="notification is-link">
-              <button className="delete"> </button> Lorem ipsum dolor sit amet,
-              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit
-              amet, consectetur adipiscing elit
-            </div>
-          </div>
-
-          <div className="column is-half">
-            <div className="notification is-info">
-              <button className="delete"> </button> Lorem ipsum dolor sit amet,
-              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit
-              amet, consectetur adipiscing elit
-            </div>
-          </div>
-
-          <div className="column is-half">
-            <div className="notification is-success">
-              <button className="delete"> </button> Lorem ipsum dolor sit amet,
-              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit
-              amet, consectetur adipiscing elit
-            </div>
-          </div>
-
-          <div className="column is-half">
-            <div className="notification is-warning">
-              <button className="delete"> </button> Lorem ipsum dolor sit amet,
-              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit
-              amet, consectetur adipiscing elit
-            </div>
-          </div>
-
-          <div className="column is-half">
-            <div className="notification is-danger">
-              <button className="delete"> </button> Lorem ipsum dolor sit amet,
-              <a href="#">consectetur</a> adipiscing elit lorem ipsum dolor sit
-              amet, consectetur adipiscing elit
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      <Section>
-        <h1 className="title"> Progress bars </h1>
-        <hr />
-
-        <progress className="progress " max="100" defaultValue="15">
-          15%
-        </progress>
-
-        <progress className="progress is-primary" max="100" defaultValue="15">
-          15%
-        </progress>
-
-        <progress className="progress is-link" max="100" defaultValue="15">
-          15%
-        </progress>
-
-        <progress className="progress is-info" max="100" defaultValue="15">
-          15%
-        </progress>
-
-        <progress className="progress is-success" max="100" defaultValue="15">
-          15%
-        </progress>
-
-        <progress className="progress is-warning" max="100" defaultValue="15">
-          15%
-        </progress>
-
-        <progress className="progress is-danger" max="100" defaultValue="15">
-          15%
-        </progress>
-
-        <progress className="progress is-small" max="100" defaultValue="15">
-          15%
-        </progress>
-        <progress className="progress" max="100" defaultValue="30">
-          30%
-        </progress>
-        <progress className="progress is-medium" max="100" defaultValue="45">
-          45%
-        </progress>
-        <progress className="progress is-large" max="100" defaultValue="60">
-          60%
-        </progress>
-      </Section>
-
-      <Section>
-        <h1 className="title"> Table </h1>
-        <hr />
-        <table className="table">
-          <thead>
-            <tr>
-              <th>
-                <abbr title="Position"> Pos </abbr>
-              </th>
-              <th> Team </th>
-              <th>
-                <abbr title="Played"> Pld </abbr>
-              </th>
-              <th>
-                <abbr title="Won"> W </abbr>
-              </th>
-              <th>
-                <abbr title="Drawn"> D </abbr>
-              </th>
-              <th>
-                <abbr title="Lost"> L </abbr>
-              </th>
-              <th>
-                <abbr title="Goals for"> GF </abbr>
-              </th>
-              <th>
-                <abbr title="Goals against"> GA </abbr>
-              </th>
-              <th>
-                <abbr title="Goal difference"> GD </abbr>
-              </th>
-              <th>
-                <abbr title="Points"> Pts </abbr>
-              </th>
-              <th> Qualification or relegation </th>
-            </tr>
-          </thead>
-          <tfoot>
-            <tr>
-              <th>
-                <abbr title="Position"> Pos </abbr>
-              </th>
-              <th> Team </th>
-              <th>
-                <abbr title="Played"> Pld </abbr>
-              </th>
-              <th>
-                <abbr title="Won"> W </abbr>
-              </th>
-              <th>
-                <abbr title="Drawn"> D </abbr>
-              </th>
-              <th>
-                <abbr title="Lost"> L </abbr>
-              </th>
-              <th>
-                <abbr title="Goals for"> GF </abbr>
-              </th>
-              <th>
-                <abbr title="Goals against"> GA </abbr>
-              </th>
-              <th>
-                <abbr title="Goal difference"> GD </abbr>
-              </th>
-              <th>
-                <abbr title="Points"> Pts </abbr>
-              </th>
-              <th> Qualification or relegation </th>
-            </tr>
-          </tfoot>
-          <tbody>
-            <tr>
-              <th> 1 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Leicester_City_F.C."
-                  title="Leicester City F.C."
-                >
-                  Leicester City
-                </a>
-                <strong> (C) </strong>
-              </td>
-              <td> 38 </td>
-              <td> 23 </td>
-              <td> 12 </td>
-              <td> 3 </td>
-              <td> 68 </td>
-              <td> 36 </td>
-              <td> +32 </td>
-              <td> 81 </td>
-              <td>
-                Qualification for the
-                <a
-                  href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
-                  title="2016–17 UEFA Champions League"
-                >
-                  Champions League group stage
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <th> 2 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Arsenal_F.C."
-                  title="Arsenal F.C."
-                >
-                  Arsenal
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 20 </td>
-              <td> 11 </td>
-              <td> 7 </td>
-              <td> 65 </td>
-              <td> 36 </td>
-              <td> +29 </td>
-              <td> 71 </td>
-              <td>
-                Qualification for the
-                <a
-                  href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
-                  title="2016–17 UEFA Champions League"
-                >
-                  Champions League group stage
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <th> 3 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Tottenham_Hotspur_F.C."
-                  title="Tottenham Hotspur F.C."
-                >
-                  Tottenham Hotspur
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 19 </td>
-              <td> 13 </td>
-              <td> 6 </td>
-              <td> 69 </td>
-              <td> 35 </td>
-              <td> +34 </td>
-              <td> 70 </td>
-              <td>
-                Qualification for the
-                <a
-                  href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
-                  title="2016–17 UEFA Champions League"
-                >
-                  Champions League group stage
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <th> 4 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Manchester_City_F.C."
-                  title="Manchester City F.C."
-                >
-                  Manchester City
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 19 </td>
-              <td> 9 </td>
-              <td> 10 </td>
-              <td> 71 </td>
-              <td> 41 </td>
-              <td> +30 </td>
-              <td> 66 </td>
-              <td>
-                Qualification for the
-                <a
-                  href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Play-off_round"
-                  title="2016–17 UEFA Champions League"
-                >
-                  Champions League play-off round
-                </a>
-              </td>
-            </tr>
-            <tr className="is-selected">
-              <th> 5 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Manchester_United_F.C."
-                  title="Manchester United F.C."
-                >
-                  Manchester United
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 19 </td>
-              <td> 9 </td>
-              <td> 10 </td>
-              <td> 49 </td>
-              <td> 35 </td>
-              <td> +14 </td>
-              <td> 66 </td>
-              <td>
-                Qualification for the
-                <a
-                  href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage"
-                  title="2016–17 UEFA Europa League"
-                >
-                  Europa League group stage
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <th> 6 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Southampton_F.C."
-                  title="Southampton F.C."
-                >
-                  Southampton
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 18 </td>
-              <td> 9 </td>
-              <td> 11 </td>
-              <td> 59 </td>
-              <td> 41 </td>
-              <td> +18 </td>
-              <td> 63 </td>
-              <td>
-                Qualification for the
-                <a
-                  href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage"
-                  title="2016–17 UEFA Europa League"
-                >
-                  Europa League group stage
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <th> 7 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/West_Ham_United_F.C."
-                  title="West Ham United F.C."
-                >
-                  West Ham United
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 16 </td>
-              <td> 14 </td>
-              <td> 8 </td>
-              <td> 65 </td>
-              <td> 51 </td>
-              <td> +14 </td>
-              <td> 62 </td>
-              <td>
-                Qualification for the
-                <a
-                  href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Third_qualifying_round"
-                  title="2016–17 UEFA Europa League"
-                >
-                  Europa League third qualifying round
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <th> 8 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Liverpool_F.C."
-                  title="Liverpool F.C."
-                >
-                  Liverpool
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 16 </td>
-              <td> 12 </td>
-              <td> 10 </td>
-              <td> 63 </td>
-              <td> 50 </td>
-              <td> +13 </td>
-              <td> 60 </td>
-              <td> </td>
-            </tr>
-            <tr>
-              <th> 9 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Stoke_City_F.C."
-                  title="Stoke City F.C."
-                >
-                  Stoke City
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 14 </td>
-              <td> 9 </td>
-              <td> 15 </td>
-              <td> 41 </td>
-              <td> 55 </td>
-              <td> −14 </td>
-              <td> 51 </td>
-              <td> </td>
-            </tr>
-            <tr>
-              <th> 10 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Chelsea_F.C."
-                  title="Chelsea F.C."
-                >
-                  Chelsea
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 12 </td>
-              <td> 14 </td>
-              <td> 12 </td>
-              <td> 59 </td>
-              <td> 53 </td>
-              <td> +6 </td>
-              <td> 50 </td>
-              <td> </td>
-            </tr>
-            <tr>
-              <th> 11 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Everton_F.C."
-                  title="Everton F.C."
-                >
-                  Everton
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 11 </td>
-              <td> 14 </td>
-              <td> 13 </td>
-              <td> 59 </td>
-              <td> 55 </td>
-              <td> +4 </td>
-              <td> 47 </td>
-              <td> </td>
-            </tr>
-            <tr>
-              <th> 12 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Swansea_City_A.F.C."
-                  title="Swansea City A.F.C."
-                >
-                  Swansea City
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 12 </td>
-              <td> 11 </td>
-              <td> 15 </td>
-              <td> 42 </td>
-              <td> 52 </td>
-              <td> −10 </td>
-              <td> 47 </td>
-              <td> </td>
-            </tr>
-            <tr>
-              <th> 13 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Watford_F.C."
-                  title="Watford F.C."
-                >
-                  Watford
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 12 </td>
-              <td> 9 </td>
-              <td> 17 </td>
-              <td> 40 </td>
-              <td> 50 </td>
-              <td> −10 </td>
-              <td> 45 </td>
-              <td> </td>
-            </tr>
-            <tr>
-              <th> 14 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/West_Bromwich_Albion_F.C."
-                  title="West Bromwich Albion F.C."
-                >
-                  West Bromwich Albion
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 10 </td>
-              <td> 13 </td>
-              <td> 15 </td>
-              <td> 34 </td>
-              <td> 48 </td>
-              <td> −14 </td>
-              <td> 43 </td>
-              <td> </td>
-            </tr>
-            <tr>
-              <th> 15 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Crystal_Palace_F.C."
-                  title="Crystal Palace F.C."
-                >
-                  Crystal Palace
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 11 </td>
-              <td> 9 </td>
-              <td> 18 </td>
-              <td> 39 </td>
-              <td> 51 </td>
-              <td> −12 </td>
-              <td> 42 </td>
-              <td> </td>
-            </tr>
-            <tr>
-              <th> 16 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/A.F.C._Bournemouth"
-                  title="A.F.C. Bournemouth"
-                >
-                  AFC Bournemouth
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 11 </td>
-              <td> 9 </td>
-              <td> 18 </td>
-              <td> 45 </td>
-              <td> 67 </td>
-              <td> −22 </td>
-              <td> 42 </td>
-              <td> </td>
-            </tr>
-            <tr>
-              <th> 17 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Sunderland_A.F.C."
-                  title="Sunderland A.F.C."
-                >
-                  Sunderland
-                </a>
-              </td>
-              <td> 38 </td>
-              <td> 9 </td>
-              <td> 12 </td>
-              <td> 17 </td>
-              <td> 48 </td>
-              <td> 62 </td>
-              <td> −14 </td>
-              <td> 39 </td>
-              <td> </td>
-            </tr>
-            <tr>
-              <th> 18 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Newcastle_United_F.C."
-                  title="Newcastle United F.C."
-                >
-                  Newcastle United
-                </a>
-                <strong> (R) </strong>
-              </td>
-              <td> 38 </td>
-              <td> 9 </td>
-              <td> 10 </td>
-              <td> 19 </td>
-              <td> 44 </td>
-              <td> 65 </td>
-              <td> −21 </td>
-              <td> 37 </td>
-              <td>
-                Relegation to the
-                <a
-                  href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship"
-                  title="2016–17 Football League Championship"
-                >
-                  Football League Championship
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <th> 19 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Norwich_City_F.C."
-                  title="Norwich City F.C."
-                >
-                  Norwich City
-                </a>
-                <strong> (R) </strong>
-              </td>
-              <td> 38 </td>
-              <td> 9 </td>
-              <td> 7 </td>
-              <td> 22 </td>
-              <td> 39 </td>
-              <td> 67 </td>
-              <td> −28 </td>
-              <td> 34 </td>
-              <td>
-                Relegation to the
-                <a
-                  href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship"
-                  title="2016–17 Football League Championship"
-                >
-                  Football League Championship
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <th> 20 </th>
-              <td>
-                <a
-                  href="https://en.wikipedia.org/wiki/Aston_Villa_F.C."
-                  title="Aston Villa F.C."
-                >
-                  Aston Villa
-                </a>
-                <strong> (R) </strong>
-              </td>
-              <td> 38 </td>
-              <td> 3 </td>
-              <td> 8 </td>
-              <td> 27 </td>
-              <td> 27 </td>
-              <td> 76 </td>
-              <td> −49 </td>
-              <td> 17 </td>
-              <td>
-                Relegation to the
-                <a
-                  href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship"
-                  title="2016–17 Football League Championship"
-                >
-                  Football League Championship
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <br />
-        <table className="table is-striped">
-          <thead>
-            <tr>
-              <th> One </th>
-              <th> Two </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td> Three </td>
-              <td> Four </td>
-            </tr>
-            <tr>
-              <td> Five </td>
-              <td> Six </td>
-            </tr>
-            <tr>
-              <td> Seven </td>
-              <td> Eight </td>
-            </tr>
-            <tr>
-              <td> Nine </td>
-              <td> Ten </td>
-            </tr>
-            <tr>
-              <td> Eleven </td>
-              <td> Twelve </td>
-            </tr>
-          </tbody>
-        </table>
-        <br />
-        <table className="table is-bordered">
-          <thead>
-            <tr>
-              <th> One </th>
-              <th> Two </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td> Three </td>
-              <td> Four </td>
-            </tr>
-          </tbody>
-        </table>
-        <br />
-        <table className="table is-narrow">
-          <thead>
-            <tr>
-              <th> One </th>
-              <th> Two </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td> Three </td>
-              <td> Four </td>
-            </tr>
-            <tr>
-              <td> Five </td>
-              <td> Six </td>
-            </tr>
-            <tr>
-              <td> Seven </td>
-              <td> Eight </td>
-            </tr>
-            <tr>
-              <td> Nine </td>
-              <td> Ten </td>
-            </tr>
-            <tr>
-              <td> Eleven </td>
-              <td> Twelve </td>
-            </tr>
-          </tbody>
-        </table>
-        <br />
-        <table className="table is-bordered is-striped is-narrow">
-          <thead>
-            <tr>
-              <th> One </th>
-              <th> Two </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td> Three </td>
-              <td> Four </td>
-            </tr>
-            <tr>
-              <td> Five </td>
-              <td> Six </td>
-            </tr>
-            <tr>
-              <td> Seven </td>
-              <td> Eight </td>
-            </tr>
-            <tr>
-              <td> Nine </td>
-              <td> Ten </td>
-            </tr>
-            <tr>
-              <td> Eleven </td>
-              <td> Twelve </td>
-            </tr>
-          </tbody>
-        </table>
-      </Section>
-
-      <Section>
-        <h1 className="title"> Tag </h1>
         <hr />
         <div className="tags">
           <span className="tag is-primary"> Primary </span>
@@ -2378,7 +381,7 @@ const DemoPage = () => (
         </div>
       </Section>
       <Section>
-        <h1 className="title">Breadcrumb</h1>
+        <Title>Breadcrumb</Title>
         <hr />
         <nav className="breadcrumb">
           <ul>
@@ -2399,7 +402,7 @@ const DemoPage = () => (
       </Section>
 
       <Section>
-        <h1 className="title">Hero</h1>
+        <Title>Hero</Title>
         <hr />
 
         <Section>
@@ -2408,7 +411,7 @@ const DemoPage = () => (
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img
+                    <Image
                       src="https://bulma.io/images/bulma-type-white.png"
                       alt="Logo"
                     />
@@ -2460,8 +463,8 @@ const DemoPage = () => (
           </div>
           <div className="hero-body">
             <div className="container has-text-centered">
-              <h1 className="title">Title</h1>
-              <h2 className="subtitle">Subtitle</h2>
+              <Title>Title</Title>
+              <Title subtitle>Subtitle</Title>
             </div>
           </div>
           <div className="hero-foot">
@@ -2499,7 +502,7 @@ const DemoPage = () => (
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img
+                    <Image
                       src="https://bulma.io/images/bulma-type-white.png"
                       alt="Logo"
                     />
@@ -2551,8 +554,8 @@ const DemoPage = () => (
           </div>
           <div className="hero-body">
             <div className="container has-text-centered">
-              <h1 className="title">Title</h1>
-              <h2 className="subtitle">Subtitle</h2>
+              <Title>Title</Title>
+              <Title subtitle>Subtitle</Title>
             </div>
           </div>
           <div className="hero-foot">
@@ -2590,7 +593,7 @@ const DemoPage = () => (
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img
+                    <Image
                       src="https://bulma.io/images/bulma-type-white.png"
                       alt="Logo"
                     />
@@ -2642,8 +645,8 @@ const DemoPage = () => (
           </div>
           <div className="hero-body">
             <div className="container has-text-centered">
-              <h1 className="title">Title</h1>
-              <h2 className="subtitle">Subtitle</h2>
+              <Title>Title</Title>
+              <Title subtitle>Subtitle</Title>
             </div>
           </div>
           <div className="hero-foot">
@@ -2681,7 +684,7 @@ const DemoPage = () => (
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img
+                    <Image
                       src="https://bulma.io/images/bulma-type-white.png"
                       alt="Logo"
                     />
@@ -2733,8 +736,8 @@ const DemoPage = () => (
           </div>
           <div className="hero-body">
             <div className="container has-text-centered">
-              <h1 className="title">Title</h1>
-              <h2 className="subtitle">Subtitle</h2>
+              <Title>Title</Title>
+              <Title subtitle>Subtitle</Title>
             </div>
           </div>
           <div className="hero-foot">
@@ -2772,7 +775,7 @@ const DemoPage = () => (
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img
+                    <Image
                       src="https://bulma.io/images/bulma-type-white.png"
                       alt="Logo"
                     />
@@ -2824,8 +827,8 @@ const DemoPage = () => (
           </div>
           <div className="hero-body">
             <div className="container has-text-centered">
-              <h1 className="title">Title</h1>
-              <h2 className="subtitle">Subtitle</h2>
+              <Title>Title</Title>
+              <Title subtitle>Subtitle</Title>
             </div>
           </div>
           <div className="hero-foot">
@@ -2863,7 +866,7 @@ const DemoPage = () => (
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img
+                    <Image
                       src="https://bulma.io/images/bulma-type-white.png"
                       alt="Logo"
                     />
@@ -2915,8 +918,8 @@ const DemoPage = () => (
           </div>
           <div className="hero-body">
             <div className="container has-text-centered">
-              <h1 className="title">Title</h1>
-              <h2 className="subtitle">Subtitle</h2>
+              <Title>Title</Title>
+              <Title subtitle>Subtitle</Title>
             </div>
           </div>
           <div className="hero-foot">
@@ -2954,7 +957,7 @@ const DemoPage = () => (
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img
+                    <Image
                       src="https://bulma.io/images/bulma-type-white.png"
                       alt="Logo"
                     />
@@ -3006,8 +1009,8 @@ const DemoPage = () => (
           </div>
           <div className="hero-body">
             <div className="container has-text-centered">
-              <h1 className="title">Title</h1>
-              <h2 className="subtitle">Subtitle</h2>
+              <Title>Title</Title>
+              <Title subtitle>Subtitle</Title>
             </div>
           </div>
           <div className="hero-foot">
@@ -3045,7 +1048,7 @@ const DemoPage = () => (
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img
+                    <Image
                       src="https://bulma.io/images/bulma-type-white.png"
                       alt="Logo"
                     />
@@ -3097,8 +1100,8 @@ const DemoPage = () => (
           </div>
           <div className="hero-body">
             <div className="container has-text-centered">
-              <h1 className="title">Title</h1>
-              <h2 className="subtitle">Subtitle</h2>
+              <Title>Title</Title>
+              <Title subtitle>Subtitle</Title>
             </div>
           </div>
           <div className="hero-foot">
@@ -3136,7 +1139,7 @@ const DemoPage = () => (
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img
+                    <Image
                       src="https://bulma.io/images/bulma-type-white.png"
                       alt="Logo"
                     />
@@ -3188,8 +1191,8 @@ const DemoPage = () => (
           </div>
           <div className="hero-body">
             <div className="container has-text-centered">
-              <h1 className="title">Title</h1>
-              <h2 className="subtitle">Subtitle</h2>
+              <Title>Title</Title>
+              <Title subtitle>Subtitle</Title>
             </div>
           </div>
           <div className="hero-foot">
@@ -3227,7 +1230,7 @@ const DemoPage = () => (
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img
+                    <Image
                       src="https://bulma.io/images/bulma-type-white.png"
                       alt="Logo"
                     />
@@ -3279,8 +1282,8 @@ const DemoPage = () => (
           </div>
           <div className="hero-body">
             <div className="container has-text-centered">
-              <h1 className="title">Title</h1>
-              <h2 className="subtitle">Subtitle</h2>
+              <Title>Title</Title>
+              <Title subtitle>Subtitle</Title>
             </div>
           </div>
           <div className="hero-foot">
@@ -3318,7 +1321,7 @@ const DemoPage = () => (
               <div className="container">
                 <div className="navbar-brand">
                   <a className="navbar-item">
-                    <img
+                    <Image
                       src="https://bulma.io/images/bulma-type-white.png"
                       alt="Logo"
                     />
@@ -3370,8 +1373,8 @@ const DemoPage = () => (
           </div>
           <div className="hero-body">
             <div className="container has-text-centered">
-              <h1 className="title">Title</h1>
-              <h2 className="subtitle">Subtitle</h2>
+              <Title>Title</Title>
+              <Title subtitle>Subtitle</Title>
             </div>
           </div>
           <div className="hero-foot">
@@ -3405,14 +1408,14 @@ const DemoPage = () => (
       </Section>
 
       <Section>
-        <h1 className="title">Cards</h1>
+        <Title>Cards</Title>
         <hr />
         <Column.Group>
           <Column>
             <div className="card">
               <div className="card-image">
                 <figure className="image is-4by3">
-                  <img
+                  <Image
                     src="https://source.unsplash.com/random/800x600"
                     alt="Image"
                   />
@@ -3422,7 +1425,7 @@ const DemoPage = () => (
                 <div className="media">
                   <div className="media-left">
                     <figure className="image">
-                      <img
+                      <Image
                         src="https://source.unsplash.com/random/96x96"
                         alt="Image"
                       />
@@ -3473,7 +1476,7 @@ const DemoPage = () => (
       </Section>
 
       <Section>
-        <h1 className="title">Dropdown</h1>
+        <Title>Dropdown</Title>
         <hr />
         <Column.Group>
           <Column>
@@ -3550,7 +1553,8 @@ const DemoPage = () => (
       </Section>
 
       <Section>
-        <h1 className="title">Level</h1>
+        <Title>Level</Title>
+
         <hr />
         <nav className="level">
           <div className="level-left">
@@ -3561,16 +1565,16 @@ const DemoPage = () => (
             </div>
             <div className="level-item">
               <div className="field has-addons">
-                <p className="control">
+                <Control>
                   <input
                     className="input"
                     type="text"
                     placeholder="Find a post"
                   />
-                </p>
-                <p className="control">
+                </Control>
+                <Control>
                   <button className="button">Search</button>
-                </p>
+                </Control>
               </div>
             </div>
           </div>
@@ -3628,7 +1632,7 @@ const DemoPage = () => (
             <a className="link is-info">Menu</a>
           </p>
           <p className="level-item has-text-centered">
-            <img src="http://bulma.io/images/bulma-type.png" alt="" />
+            <Image src="http://bulma.io/images/bulma-type.png" alt="" />
           </p>
           <p className="level-item has-text-centered">
             <a className="link is-info">Reservations</a>
@@ -3668,12 +1672,13 @@ const DemoPage = () => (
       </Section>
 
       <Section>
-        <h1 className="title">Media Object</h1>
+        <Title>Media Object</Title>
+
         <hr />
         <article className="media">
           <figure className="media-left">
             <p className="image is-64x64">
-              <img
+              <Image
                 alt=""
                 src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg"
               />
@@ -3718,7 +1723,7 @@ const DemoPage = () => (
         <article className="media">
           <figure className="media-left">
             <p className="image is-64x64">
-              <img
+              <Image
                 alt=""
                 src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg"
               />
@@ -3726,9 +1731,9 @@ const DemoPage = () => (
           </figure>
           <div className="media-content">
             <div className="field">
-              <p className="control">
+              <Control>
                 <textarea className="textarea" placeholder="Add a comment..." />
-              </p>
+              </Control>
             </div>
             <nav className="level">
               <div className="level-left">
@@ -3751,7 +1756,7 @@ const DemoPage = () => (
         <article className="media">
           <figure className="media-left">
             <p className="image is-64x64">
-              <img
+              <Image
                 alt=""
                 src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg"
               />
@@ -3774,7 +1779,7 @@ const DemoPage = () => (
             <article className="media">
               <figure className="media-left">
                 <p className="image is-48x48">
-                  <img
+                  <Image
                     alt=""
                     src="http://bulma.io/images/placeholders/96x96.png"
                   />
@@ -3808,7 +1813,7 @@ const DemoPage = () => (
             <article className="media">
               <figure className="media-left">
                 <p className="image is-48x48">
-                  <img
+                  <Image
                     src="http://bulma.io/images/placeholders/96x96.png"
                     alt=""
                   />
@@ -3836,7 +1841,7 @@ const DemoPage = () => (
         <article className="media">
           <figure className="media-left">
             <p className="image is-64x64">
-              <img
+              <Image
                 alt=""
                 src="https://s3.amazonaws.com/uifaces/faces/twitter/zeldman/128.jpg"
               />
@@ -3844,21 +1849,22 @@ const DemoPage = () => (
           </figure>
           <div className="media-content">
             <div className="field">
-              <p className="control">
+              <Control>
                 <textarea className="textarea" placeholder="Add a comment..." />
-              </p>
+              </Control>
             </div>
             <div className="field">
-              <p className="control">
+              <Control>
                 <button className="button">Post comment</button>
-              </p>
+              </Control>
             </div>
           </div>
         </article>
       </Section>
 
       <Section>
-        <h1 className="title">Menu</h1>
+        <Title>Menu</Title>
+
         <hr />
         <div className="column is-3">
           <aside className="menu">
@@ -4140,13 +2146,14 @@ const DemoPage = () => (
       </Section>
 
       <Section>
-        <h1 className="title">Navbar</h1>
+        <Title>Navbar</Title>
+
         <hr />
 
         <nav className="navbar ">
           <div className="navbar-brand">
             <a className="navbar-item" href="http://bulma.io">
-              <img
+              <Image
                 src="http://bulma.io/images/bulma-logo.png"
                 alt="Bulma: a modern CSS framework based on Flexbox"
                 width="112"
@@ -4325,12 +2332,12 @@ const DemoPage = () => (
               </a>
               <div className="navbar-item">
                 <div className="field is-grouped">
-                  <p className="control">
-                    <a id="twitter" className="button">
+                  <Control>
+                    <Button>
                       <span>Tweet</span>
-                    </a>
-                  </p>
-                  <p className="control">
+                    </Button>
+                  </Control>
+                  <Control>
                     <a
                       className="button is-primary"
                       href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
@@ -4340,7 +2347,7 @@ const DemoPage = () => (
                       </span>
                       <span>Download</span>
                     </a>
-                  </p>
+                  </Control>
                 </div>
               </div>
             </div>
@@ -4351,7 +2358,7 @@ const DemoPage = () => (
         <nav className="navbar is-primary">
           <div className="navbar-brand">
             <a className="navbar-item" href="http://bulma.io">
-              <img
+              <Image
                 src="http://bulma.io/images/bulma-logo.png"
                 alt="Bulma: a modern CSS framework based on Flexbox"
                 width="112"
@@ -4530,12 +2537,12 @@ const DemoPage = () => (
               </a>
               <div className="navbar-item">
                 <div className="field is-grouped">
-                  <p className="control">
-                    <a id="twitter" className="button">
+                  <Control>
+                    <Button>
                       <span>Tweet</span>
-                    </a>
-                  </p>
-                  <p className="control">
+                    </Button>
+                  </Control>
+                  <Control>
                     <a
                       className="button is-primary"
                       href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
@@ -4545,7 +2552,7 @@ const DemoPage = () => (
                       </span>
                       <span>Download</span>
                     </a>
-                  </p>
+                  </Control>
                 </div>
               </div>
             </div>
@@ -4556,7 +2563,7 @@ const DemoPage = () => (
         <nav className="navbar is-link">
           <div className="navbar-brand">
             <a className="navbar-item" href="http://bulma.io">
-              <img
+              <Image
                 src="http://bulma.io/images/bulma-logo.png"
                 alt="Bulma: a modern CSS framework based on Flexbox"
                 width="112"
@@ -4735,12 +2742,12 @@ const DemoPage = () => (
               </a>
               <div className="navbar-item">
                 <div className="field is-grouped">
-                  <p className="control">
-                    <a id="twitter" className="button">
+                  <Control>
+                    <Button>
                       <span>Tweet</span>
-                    </a>
-                  </p>
-                  <p className="control">
+                    </Button>
+                  </Control>
+                  <Control>
                     <a
                       className="button is-primary"
                       href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
@@ -4750,7 +2757,7 @@ const DemoPage = () => (
                       </span>
                       <span>Download</span>
                     </a>
-                  </p>
+                  </Control>
                 </div>
               </div>
             </div>
@@ -4761,7 +2768,7 @@ const DemoPage = () => (
         <nav className="navbar is-info">
           <div className="navbar-brand">
             <a className="navbar-item" href="http://bulma.io">
-              <img
+              <Image
                 src="http://bulma.io/images/bulma-logo.png"
                 alt="Bulma: a modern CSS framework based on Flexbox"
                 width="112"
@@ -4940,12 +2947,12 @@ const DemoPage = () => (
               </a>
               <div className="navbar-item">
                 <div className="field is-grouped">
-                  <p className="control">
-                    <a id="twitter" className="button">
+                  <Control>
+                    <Button>
                       <span>Tweet</span>
-                    </a>
-                  </p>
-                  <p className="control">
+                    </Button>
+                  </Control>
+                  <Control>
                     <a
                       className="button is-primary"
                       href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
@@ -4955,7 +2962,7 @@ const DemoPage = () => (
                       </span>
                       <span>Download</span>
                     </a>
-                  </p>
+                  </Control>
                 </div>
               </div>
             </div>
@@ -4966,7 +2973,7 @@ const DemoPage = () => (
         <nav className="navbar is-success">
           <div className="navbar-brand">
             <a className="navbar-item" href="http://bulma.io">
-              <img
+              <Image
                 src="http://bulma.io/images/bulma-logo.png"
                 alt="Bulma: a modern CSS framework based on Flexbox"
                 width="112"
@@ -5145,12 +3152,12 @@ const DemoPage = () => (
               </a>
               <div className="navbar-item">
                 <div className="field is-grouped">
-                  <p className="control">
-                    <a id="twitter" className="button">
+                  <Control>
+                    <Button>
                       <span>Tweet</span>
-                    </a>
-                  </p>
-                  <p className="control">
+                    </Button>
+                  </Control>
+                  <Control>
                     <a
                       className="button is-primary"
                       href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
@@ -5160,7 +3167,7 @@ const DemoPage = () => (
                       </span>
                       <span>Download</span>
                     </a>
-                  </p>
+                  </Control>
                 </div>
               </div>
             </div>
@@ -5171,7 +3178,7 @@ const DemoPage = () => (
         <nav className="navbar is-warning">
           <div className="navbar-brand">
             <a className="navbar-item" href="http://bulma.io">
-              <img
+              <Image
                 src="http://bulma.io/images/bulma-logo.png"
                 alt="Bulma: a modern CSS framework based on Flexbox"
                 width="112"
@@ -5350,12 +3357,12 @@ const DemoPage = () => (
               </a>
               <div className="navbar-item">
                 <div className="field is-grouped">
-                  <p className="control">
-                    <a id="twitter" className="button">
+                  <Control>
+                    <Button>
                       <span>Tweet</span>
-                    </a>
-                  </p>
-                  <p className="control">
+                    </Button>
+                  </Control>
+                  <Control>
                     <a
                       className="button is-primary"
                       href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
@@ -5365,7 +3372,7 @@ const DemoPage = () => (
                       </span>
                       <span>Download</span>
                     </a>
-                  </p>
+                  </Control>
                 </div>
               </div>
             </div>
@@ -5376,7 +3383,7 @@ const DemoPage = () => (
         <nav className="navbar is-danger">
           <div className="navbar-brand">
             <a className="navbar-item" href="http://bulma.io">
-              <img
+              <Image
                 src="http://bulma.io/images/bulma-logo.png"
                 alt="Bulma: a modern CSS framework based on Flexbox"
                 width="112"
@@ -5555,12 +3562,12 @@ const DemoPage = () => (
               </a>
               <div className="navbar-item">
                 <div className="field is-grouped">
-                  <p className="control">
-                    <a id="twitter" className="button">
+                  <Control>
+                    <Button>
                       <span>Tweet</span>
-                    </a>
-                  </p>
-                  <p className="control">
+                    </Button>
+                  </Control>
+                  <Control>
                     <a
                       className="button is-primary"
                       href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
@@ -5570,7 +3577,7 @@ const DemoPage = () => (
                       </span>
                       <span>Download</span>
                     </a>
-                  </p>
+                  </Control>
                 </div>
               </div>
             </div>
@@ -5581,7 +3588,7 @@ const DemoPage = () => (
         <nav className="navbar is-white">
           <div className="navbar-brand">
             <a className="navbar-item" href="http://bulma.io">
-              <img
+              <Image
                 src="http://bulma.io/images/bulma-logo.png"
                 alt="Bulma: a modern CSS framework based on Flexbox"
                 width="112"
@@ -5760,12 +3767,12 @@ const DemoPage = () => (
               </a>
               <div className="navbar-item">
                 <div className="field is-grouped">
-                  <p className="control">
-                    <a id="twitter" className="button">
+                  <Control>
+                    <Button>
                       <span>Tweet</span>
-                    </a>
-                  </p>
-                  <p className="control">
+                    </Button>
+                  </Control>
+                  <Control>
                     <a
                       className="button is-primary"
                       href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
@@ -5775,7 +3782,7 @@ const DemoPage = () => (
                       </span>
                       <span>Download</span>
                     </a>
-                  </p>
+                  </Control>
                 </div>
               </div>
             </div>
@@ -5786,7 +3793,7 @@ const DemoPage = () => (
         <nav className="navbar is-black">
           <div className="navbar-brand">
             <a className="navbar-item" href="http://bulma.io">
-              <img
+              <Image
                 src="http://bulma.io/images/bulma-logo.png"
                 alt="Bulma: a modern CSS framework based on Flexbox"
                 width="112"
@@ -5965,12 +3972,12 @@ const DemoPage = () => (
               </a>
               <div className="navbar-item">
                 <div className="field is-grouped">
-                  <p className="control">
-                    <a id="twitter" className="button">
+                  <Control>
+                    <Button>
                       <span>Tweet</span>
-                    </a>
-                  </p>
-                  <p className="control">
+                    </Button>
+                  </Control>
+                  <Control>
                     <a
                       className="button is-primary"
                       href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
@@ -5980,7 +3987,7 @@ const DemoPage = () => (
                       </span>
                       <span>Download</span>
                     </a>
-                  </p>
+                  </Control>
                 </div>
               </div>
             </div>
@@ -5991,7 +3998,7 @@ const DemoPage = () => (
         <nav className="navbar is-light">
           <div className="navbar-brand">
             <a className="navbar-item" href="http://bulma.io">
-              <img
+              <Image
                 src="http://bulma.io/images/bulma-logo.png"
                 alt="Bulma: a modern CSS framework based on Flexbox"
                 width="112"
@@ -6173,12 +4180,12 @@ const DemoPage = () => (
               </a>
               <div className="navbar-item">
                 <div className="field is-grouped">
-                  <p className="control">
-                    <a id="twitter" className="button">
+                  <Control>
+                    <Button>
                       <span>Tweet</span>
-                    </a>
-                  </p>
-                  <p className="control">
+                    </Button>
+                  </Control>
+                  <Control>
                     <a
                       className="button is-primary"
                       href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
@@ -6188,7 +4195,7 @@ const DemoPage = () => (
                       </span>
                       <span>Download</span>
                     </a>
-                  </p>
+                  </Control>
                 </div>
               </div>
             </div>
@@ -6199,7 +4206,7 @@ const DemoPage = () => (
         <nav className="navbar is-dark">
           <div className="navbar-brand">
             <a className="navbar-item" href="http://bulma.io">
-              <img
+              <Image
                 src="http://bulma.io/images/bulma-logo.png"
                 alt="Bulma: a modern CSS framework based on Flexbox"
                 width="112"
@@ -6381,12 +4388,12 @@ const DemoPage = () => (
               </a>
               <div className="navbar-item">
                 <div className="field is-grouped">
-                  <p className="control">
-                    <a id="twitter" className="button">
+                  <Control>
+                    <Button>
                       <span>Tweet</span>
-                    </a>
-                  </p>
-                  <p className="control">
+                    </Button>
+                  </Control>
+                  <Control>
                     <a
                       className="button is-primary"
                       href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
@@ -6396,7 +4403,7 @@ const DemoPage = () => (
                       </span>
                       <span>Download</span>
                     </a>
-                  </p>
+                  </Control>
                 </div>
               </div>
             </div>
@@ -6408,7 +4415,7 @@ const DemoPage = () => (
         <nav className="navbar is-transparent">
           <div className="navbar-brand">
             <a className="navbar-item" href="http://bulma.io">
-              <img
+              <Image
                 src="http://bulma.io/images/bulma-logo.png"
                 alt="Bulma: a modern CSS framework based on Flexbox"
                 width="112"
@@ -6478,12 +4485,12 @@ const DemoPage = () => (
               </a>
               <div className="navbar-item">
                 <div className="field is-grouped">
-                  <p className="control">
-                    <a id="twitter" className="button">
+                  <Control>
+                    <Button>
                       <span>Tweet</span>
-                    </a>
-                  </p>
-                  <p className="control">
+                    </Button>
+                  </Control>
+                  <Control>
                     <a
                       className="button is-primary"
                       href="https://github.com/jgthms/bulma/archive/0.4.3.zip"
@@ -6493,7 +4500,7 @@ const DemoPage = () => (
                       </span>
                       <span>Download</span>
                     </a>
-                  </p>
+                  </Control>
                 </div>
               </div>
             </div>
@@ -6502,7 +4509,8 @@ const DemoPage = () => (
       </Section>
 
       <Section>
-        <h1 className="title">Pagination</h1>
+        <Title>Pagination</Title>
+
         <hr />
         <nav className="pagination">
           <a className="pagination-previous is-disabled">Previous</a>
@@ -6580,7 +4588,8 @@ const DemoPage = () => (
       </Section>
 
       <Section>
-        <h1 className="title">Panel</h1>
+        <Title>Panel</Title>
+
         <hr />
         <div className="column is-4">
           <nav className="panel">
