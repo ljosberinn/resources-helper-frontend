@@ -13,9 +13,14 @@ export type Color =
   | 'warning'
   | 'danger';
 export const colors: Color[] = [
+  'link',
+  'success',
+  'black',
+  'white',
+  'dark',
+  'light',
   'primary',
   'info',
-  'success',
   'warning',
   'danger',
 ];
