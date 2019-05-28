@@ -6,6 +6,8 @@ import {
   Label,
   Radio,
   Column,
+  Icon,
+  Help,
   Control,
   Textarea,
   Input,
@@ -29,38 +31,38 @@ export const Forms = () => (
         </Field>
         <Field>
           <Label>Username</Label>
-          <p className="control has-icons-left has-icons-right">
+          <Control iconLeft iconRight>
             <Input
               color="success"
               placeholder="Text input"
               defaultValue="bulma"
             />
-            <span className="icon is-small is-left">
+            <Icon size="small" align="left">
               <i className="fa fa-user" />
-            </span>
-            <span className="icon is-small is-right">
+            </Icon>
+            <Icon size="small" align="right">
               <i className="fa fa-check" />
-            </span>
-          </p>
-          <p className="help is-success">This username is available</p>
+            </Icon>
+          </Control>
+          <Help color="success">This username is available</Help>
         </Field>
         <Field>
           <Label>Email</Label>
-          <p className="control has-icons-left has-icons-right">
-            <input
-              className="input is-danger"
+          <Control iconLeft iconRight>
+            <Input
+              color="danger"
               type="text"
               placeholder="Email input"
               defaultValue="hello@"
             />
-            <span className="icon is-small is-left">
+            <Icon size="small" align="left">
               <i className="fa fa-envelope" />
-            </span>
-            <span className="icon is-small is-right">
+            </Icon>
+            <Icon size="small" align="right">
               <i className="fa fa-warning" />
-            </span>
-          </p>
-          <p className="help is-danger">This email is invalid</p>
+            </Icon>
+          </Control>
+          <Help color="danger">This email is invalid</Help>
         </Field>
         <Field>
           <Label>Subject</Label>
@@ -83,8 +85,8 @@ export const Forms = () => (
         <Field>
           <Control>
             <Label>
-              <Checkbox /> I agree to the
-              <a href="#">terms and conditions</a>
+              <Checkbox /> I agree to the{' '}
+              <a href="/terms-and-conditions">terms and conditions</a>
             </Label>
           </Control>
         </Field>
@@ -98,16 +100,18 @@ export const Forms = () => (
             </Label>
           </Control>
         </Field>
-        <div className="field is-grouped">
+        <Field className="is-grouped">
           <Control>
             <Button color="primary">Submit</Button>
           </Control>
           <Control>
             <Button color="link">Cancel</Button>
           </Control>
-        </div>
+        </Field>
         <br />
-        <h4 className="subtitle"> Disabled </h4>
+        <Title subtitle size={4}>
+          Disabled
+        </Title>
         <hr />
         <Field>
           <Control>
@@ -136,77 +140,77 @@ export const Forms = () => (
             </Label>
           </Control>
         </Field>
-        <div className="field is-grouped">
+        <Field className="is-grouped">
           <Control>
-            <Button primary disabled>
+            <Button color="primary" disabled>
               Submit
             </Button>
           </Control>
           <Control>
             <Button disabled>Cancel</Button>
           </Control>
-        </div>
+        </Field>
         <br />
         <Title size={3}>Horizontal Form</Title>
 
         <hr />
-        <div className="field is-horizontal">
-          <div className="field-label is-normal">
+        <Field className="is-horizontal">
+          <Field.Label className="field-label is-normal">
             <Label>From</Label>
-          </div>
-          <div className="field-body">
-            <div className="field is-grouped">
-              <p className="control is-expanded has-icons-left">
-                <input className="input" type="text" placeholder="Name" />
-                <span className="icon is-small is-left">
+          </Field.Label>
+          <Field.Body className="field-body">
+            <Field className="is-grouped">
+              <Control iconLeft expanded>
+                <Input type="text" placeholder="Name" />
+                <Icon align="left" size="small">
                   <i className="fa fa-user" />
-                </span>
-              </p>
-            </div>
+                </Icon>
+              </Control>
+            </Field>
             <Field>
-              <p className="control is-expanded has-icons-left has-icons-right">
-                <input
-                  className="input is-success"
+              <Control expanded iconLeft iconRight>
+                <Input
+                  color="success"
                   type="email"
                   placeholder="Email"
                   defaultValue="alex@smith.com"
                 />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-envelope" />
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fa fa-check" />
-                </span>
-              </p>
-              <p className="help is-success">This email is correct</p>
+                <Icon align="left" size="small">
+                  <i className="fa fa-user" />
+                </Icon>
+                <Icon align="right" size="small">
+                  <i className="fa fa-user" />
+                </Icon>
+              </Control>
+              <Help color="success">This email is correct</Help>
             </Field>
-          </div>
-        </div>
-        <div className="field is-horizontal">
-          <div className="field-label is-normal">
+          </Field.Body>
+        </Field>
+        <Field className="is-horizontal">
+          <Field.Label className="is-normal">
             <Label>Department</Label>
-          </div>
-          <div className="field-body">
-            <div className="field is-narrow">
+          </Field.Label>
+          <Field.Body>
+            <Field narrow>
               <Control>
-                <Select.Container>
-                  <Select fullwidth>
+                <Select.Container fullwidth>
+                  <Select>
                     {['Business development', 'Marketing', 'Sales'].map(
                       option => (
-                        <Select.Option>{option}</Select.Option>
+                        <Select.Option key={option}>{option}</Select.Option>
                       ),
                     )}
                   </Select>
                 </Select.Container>
               </Control>
-            </div>
-          </div>
-        </div>
-        <div className="field is-horizontal">
-          <div className="field-label">
-            <Label className="label">Already a member?</Label>
-          </div>
-          <div className="field-body">
+            </Field>
+          </Field.Body>
+        </Field>
+        <Field className="is-horizontal">
+          <Field.Label>
+            <Label>Already a member?</Label>
+          </Field.Label>
+          <Field.Body>
             <Field narrow>
               <Control className="control">
                 <Label>
@@ -217,13 +221,13 @@ export const Forms = () => (
                 </Label>
               </Control>
             </Field>
-          </div>
-        </div>
-        <div className="field is-horizontal">
-          <div className="field-label is-normal">
+          </Field.Body>
+        </Field>
+        <Field className="is-horizontal">
+          <Field.Label>
             <Label>Subject</Label>
-          </div>
-          <div className="field-body">
+          </Field.Label>
+          <Field.Body>
             <Field>
               <Control>
                 <Input
@@ -231,31 +235,31 @@ export const Forms = () => (
                   placeholder="e.g. Partnership opportunity"
                 />
               </Control>
-              <p className="help is-danger">This field is required</p>
+              <Help color="danger">This field is required</Help>
             </Field>
-          </div>
-        </div>
-        <div className="field is-horizontal">
-          <div className="field-label is-normal">
+          </Field.Body>
+        </Field>
+        <Field className="is-horizontal">
+          <Field.Label>
             <Label>Question</Label>
-          </div>
-          <div className="field-body">
+          </Field.Label>
+          <Field.Body>
             <Field>
-              <div className="control">
+              <Control>
                 <Textarea placeholder="Explain how we can help you" />
-              </div>
+              </Control>
             </Field>
-          </div>
-        </div>
-        <File horizontal>
+          </Field.Body>
+        </Field>
+        <File className="is-horizontal">
           <File.Label />
-          <div className="field-body">
+          <Field.Body>
             <Field>
               <Control>
                 <Button color="primary">Send message</Button>
               </Control>
             </Field>
-          </div>
+          </Field.Body>
         </File>
         <br />
         <Title size={3}>File</Title>
@@ -414,322 +418,278 @@ export const Forms = () => (
         </Field>
         <Field>
           <Control>
-            <span className="select is-small">
-              <select>
-                <option>Select dropdown</option>
-                <option>With options</option>
-              </select>
-            </span>
+            <Select.Container size="small">
+              <Select>
+                {['Select dropdown', 'With options'].map(option => (
+                  <Select.Option key={option}>{option}</Select.Option>
+                ))}
+              </Select>
+            </Select.Container>
           </Control>
         </Field>
         <Field>
           <Control>
-            <span className="select">
-              <select>
-                <option>Select dropdown</option>
-                <option>With options</option>
-              </select>
-            </span>
+            <Select.Container>
+              <Select>
+                {['Select dropdown', 'With options'].map(option => (
+                  <Select.Option key={option}>{option}</Select.Option>
+                ))}
+              </Select>
+            </Select.Container>
           </Control>
         </Field>
         <Field>
           <Control>
-            <span className="select is-medium">
-              <select>
-                <option>Select dropdown</option>
-                <option>With options</option>
-              </select>
-            </span>
+            <Select.Container size="medium">
+              <Select>
+                {['Select dropdown', 'With options'].map(option => (
+                  <Select.Option key={option}>{option}</Select.Option>
+                ))}
+              </Select>
+            </Select.Container>
           </Control>
         </Field>
         <Field>
           <Control>
-            <span className="select is-large">
-              <select>
-                <option>Select dropdown</option>
-                <option>With options</option>
-              </select>
-            </span>
+            <Select.Container size="large">
+              <Select>
+                {['Select dropdown', 'With options'].map(option => (
+                  <Select.Option key={option}>{option}</Select.Option>
+                ))}
+              </Select>
+            </Select.Container>
           </Control>
         </Field>
         <Field>
           <Label size="small">Small input</Label>
-          <p className="control has-icons-left has-icons-right">
-            <input
-              className="input is-small"
-              type="email"
-              placeholder="Email"
-            />
-            <span className="icon is-small is-left">
+          <Control className="has-icons-left has-icons-right">
+            <Input size="small" type="email" placeholder="Email" />
+            <Icon size="small" align="left">
               <i className="fa fa-envelope" />
-            </span>
-            <span className="icon is-small is-right">
+            </Icon>
+            <Icon size="small" align="right">
               <i className="fa fa-check" />
-            </span>
-          </p>
+            </Icon>
+          </Control>
         </Field>
         <Field>
           <Label>Normal input</Label>
-          <p className="control has-icons-left has-icons-right">
-            <input className="input" type="email" placeholder="Email" />
-            <span className="icon is-small is-left">
+          <Control className="has-icons-left has-icons-right">
+            <Input type="email" placeholder="Email" />
+            <Icon size="small" align="left">
               <i className="fa fa-envelope" />
-            </span>
-            <span className="icon is-small is-right">
+            </Icon>
+            <Icon size="small" align="right">
               <i className="fa fa-check" />
-            </span>
-          </p>
+            </Icon>
+          </Control>
         </Field>
         <Field>
-          <p className="control has-icons-left has-icons-right">
-            <input className="input" type="email" placeholder="Email" />
-            <span className="icon is-left">
+          <Control className="has-icons-left has-icons-right">
+            <Input type="email" placeholder="Email" />
+            <Icon align="left">
               <i className="fa fa-envelope" />
-            </span>
-            <span className="icon is-right">
+            </Icon>
+            <Icon align="right">
               <i className="fa fa-check" />
-            </span>
-          </p>
+            </Icon>
+          </Control>
         </Field>
         <Field>
           <Label size="medium">Medium input</Label>
-          <p className="control has-icons-left has-icons-right">
-            <input
-              className="input is-medium"
-              type="email"
-              placeholder="Email"
-            />
-            <span className="icon is-small is-left">
+          <Control className="has-icons-left has-icons-right">
+            <Input size="medium" type="email" placeholder="Email" />
+            <Icon size="small" align="left">
               <i className="fa fa-envelope" />
-            </span>
-            <span className="icon is-small is-right">
+            </Icon>
+            <Icon size="small" align="right">
               <i className="fa fa-check" />
-            </span>
-          </p>
+            </Icon>
+          </Control>
         </Field>
         <Field>
-          <p className="control has-icons-left has-icons-right">
-            <input
-              className="input is-medium"
-              type="email"
-              placeholder="Email"
-            />
-            <span className="icon is-left">
+          <Control className="has-icons-left has-icons-right">
+            <Input size="medium" type="email" placeholder="Email" />
+            <Icon align="left">
               <i className="fa fa-envelope" />
-            </span>
-            <span className="icon is-right">
+            </Icon>
+            <Icon align="right">
               <i className="fa fa-check" />
-            </span>
-          </p>
+            </Icon>
+          </Control>
         </Field>
         <Field>
-          <p className="control has-icons-left has-icons-right">
-            <input
-              className="input is-medium"
-              type="email"
-              placeholder="Email"
-            />
-            <span className="icon is-medium is-left">
+          <Control className="has-icons-left has-icons-right">
+            <Input size="medium" type="email" placeholder="Email" />
+            <Icon size="medium" align="left">
               <i className="fa fa-envelope" />
-            </span>
-            <span className="icon is-medium is-right">
+            </Icon>
+            <Icon size="medium" align="right">
               <i className="fa fa-check" />
-            </span>
-          </p>
+            </Icon>
+          </Control>
         </Field>
         <Field>
           <Label size="large">Large input</Label>
-          <p className="control has-icons-left has-icons-right">
-            <input
-              className="input is-large"
-              type="email"
-              placeholder="Email"
-            />
-            <span className="icon is-small is-left">
+          <Control className="has-icons-left has-icons-right">
+            <Input size="large" type="email" placeholder="Email" />
+            <Icon size="small" align="left">
               <i className="fa fa-envelope" />
-            </span>
-            <span className="icon is-small is-right">
+            </Icon>
+            <Icon size="small" align="right">
               <i className="fa fa-check" />
-            </span>
-          </p>
+            </Icon>
+          </Control>
         </Field>
         <Field>
-          <p className="control has-icons-left has-icons-right">
-            <input
-              className="input is-large"
-              type="email"
-              placeholder="Email"
-            />
-            <span className="icon is-left">
+          <Control className="has-icons-left has-icons-right">
+            <Input size="large" type="email" placeholder="Email" />
+            <Icon align="left">
               <i className="fa fa-envelope" />
-            </span>
-            <span className="icon is-right">
+            </Icon>
+            <Icon align="right">
               <i className="fa fa-check" />
-            </span>
-          </p>
+            </Icon>
+          </Control>
         </Field>
         <Field>
-          <p className="control has-icons-left has-icons-right">
-            <input
-              className="input is-large"
-              type="email"
-              placeholder="Email"
-            />
-            <span className="icon is-medium is-left">
+          <Control className="has-icons-left has-icons-right">
+            <Input size="large" type="email" placeholder="Email" />
+            <Icon size="medium" align="left">
               <i className="fa fa-envelope" />
-            </span>
-            <span className="icon is-medium is-right">
+            </Icon>
+            <Icon size="medium" align="right">
               <i className="fa fa-check" />
-            </span>
-          </p>
+            </Icon>
+          </Control>
         </Field>
         <Field>
-          <p className="control has-icons-left has-icons-right">
-            <input
-              className="input is-large"
-              type="email"
-              placeholder="Email"
-            />
-            <span className="icon is-large is-left">
+          <Control className="has-icons-left has-icons-right">
+            <Input size="large" type="email" placeholder="Email" />
+            <Icon size="large" align="left">
               <i className="fa fa-envelope" />
-            </span>
-            <span className="icon is-large is-right">
+            </Icon>
+            <Icon size="large" align="right">
               <i className="fa fa-check" />
-            </span>
-          </p>
+            </Icon>
+          </Control>
         </Field>
         <br />
         <h4 className="subtitle"> With Font Awesome icons </h4>
         <hr />
         <Field>
-          <p className="control has-icons-left">
-            <input className="input" type="email" placeholder="Email" />
-            <span className="icon is-small is-left">
-              <i className="fa fa-envelope" />
-            </span>
-          </p>
+          <Control className="has-icons-left">
+            <Input type="email" placeholder="Email" />
+            <Icon align="left" size="small">
+              <i className="fa fa-lock" />
+            </Icon>
+          </Control>
         </Field>
         <Field>
-          <p className="control has-icons-left">
-            <input className="input" type="password" placeholder="Password" />
-            <span className="icon is-small is-left">
+          <Control className="has-icons-left">
+            <Input type="password" placeholder="Password" />
+            <Icon align="left" size="small">
               <i className="fa fa-lock" />
-            </span>
-          </p>
+            </Icon>
+          </Control>
         </Field>
         <Field>
           <Control>
-            <button className="button is-success">Login</button>
+            <Button color="success">Login</Button>
           </Control>
         </Field>
         <br />
         <Title size={3}>Form addons</Title>
         <hr />
-        <div className="field has-addons">
+        <Field kind="addons">
           <Control>
-            <input
-              className="input"
-              type="text"
-              placeholder="Find a repository"
-            />
+            <Input type="text" placeholder="Find a repository" />
           </Control>
           <Control>
             <Button color="info">Search</Button>
           </Control>
-        </div>
-        <div className="field has-addons">
+        </Field>
+        <Field kind="addons">
           <Control>
-            <input
-              className="input is-large"
-              type="text"
-              placeholder="Find a repository"
-            />
+            <Input size="large" type="text" placeholder="Find a repository" />
           </Control>
           <Control>
             <Button color="info" size="large">
               Search
             </Button>
           </Control>
-        </div>
-        <div className="field has-addons">
+        </Field>
+        <Field kind="addons">
           <Control>
-            <span className="select">
-              <select>
-                <option>$</option>
-                <option>£</option>
-                <option>€</option>
-              </select>
-            </span>
+            <Select.Container>
+              <Select>
+                {['$', '£', '€'].map(currency => (
+                  <Select.Option key={currency}>{currency}</Select.Option>
+                ))}
+              </Select>
+            </Select.Container>
           </Control>
           <Control>
-            <input
-              className="input"
-              type="text"
-              placeholder="Amount of money"
-            />
+            <Input type="text" placeholder="Amount of money" />
           </Control>
           <Control>
             <Button>Transfer</Button>
           </Control>
-        </div>
-        <div className="field has-addons">
+        </Field>
+        <Field kind="addons">
           <Control>
-            <span className="select">
-              <select>
-                <option>$</option>
-                <option>£</option>
-                <option>€</option>
-              </select>
-            </span>
+            <Select.Container>
+              <Select>
+                {['$', '£', '€'].map(currency => (
+                  <Select.Option key={currency}>{currency}</Select.Option>
+                ))}
+              </Select>
+            </Select.Container>
           </Control>
-          <p className="control is-expanded">
-            <input
-              className="input"
-              type="text"
-              placeholder="Amount of money"
-            />
-          </p>
+          <Control expanded>
+            <Input type="text" placeholder="Amount of money" />
+          </Control>
           <Control>
             <Button>Transfer</Button>
           </Control>
-        </div>
-        <div className="field has-addons">
-          <p className="control is-expanded">
-            <span className="select is-fullwidth">
-              <select name="country">
-                <option defaultValue="Argentina">Argentina</option>
-                <option defaultValue="Bolivia">Bolivia</option>
-                <option defaultValue="Brazil">Brazil</option>
-                <option defaultValue="Chile">Chile</option>
-                <option defaultValue="Colombia">Colombia</option>
-                <option defaultValue="Ecuador">Ecuador</option>
-                <option defaultValue="Guyana">Guyana</option>
-                <option defaultValue="Paraguay">Paraguay</option>
-                <option defaultValue="Peru">Peru</option>
-                <option defaultValue="Suriname">Suriname</option>
-                <option defaultValue="Uruguay">Uruguay</option>
-                <option defaultValue="Venezuela">Venezuela</option>
-              </select>
-            </span>
-          </p>
+        </Field>
+        <Field kind="addons">
+          <Control expanded>
+            <Select.Container fullwidth>
+              <Select name="country">
+                {[
+                  'Argentinia',
+                  'Bolivia',
+                  'Brazil',
+                  'Chile',
+                  'Colombia',
+                  'Ecuador',
+                  'Guyana',
+                  'Paraguay',
+                  'Peru',
+                  'Suriname',
+                  'Uruguay',
+                  'Venezuela',
+                ].map(country => (
+                  <Select.Option key={country}>{country}</Select.Option>
+                ))}
+              </Select>
+            </Select.Container>
+          </Control>
           <Control>
-            <button type="submit" className="button is-primary">
+            <Button color="primary" type="submit">
               Choose
-            </button>
+            </Button>
           </Control>
-        </div>
-        <div className="field is-grouped">
-          <p className="control is-expanded">
-            <input
-              className="input"
-              type="text"
-              placeholder="Find a repository"
-            />
-          </p>
+        </Field>
+        <Field className="is-grouped">
+          <Control expanded>
+            <Input type="text" placeholder="Find a repository" />
+          </Control>
           <Control>
             <Button color="info">Search</Button>
           </Control>
-        </div>
+        </Field>
       </Column>
     </Column.Group>
   </Section>

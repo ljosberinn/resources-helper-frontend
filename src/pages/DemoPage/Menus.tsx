@@ -46,7 +46,7 @@ export const Menus = () => (
         <Menu.Label>{label}</Menu.Label>
         <Menu.List>
           {listItems.map(listItem => (
-            <Menu.List.Item>{listItem}</Menu.List.Item>
+            <Menu.List.Item key={listItem}>{listItem}</Menu.List.Item>
           ))}
         </Menu.List>
       </Fragment>

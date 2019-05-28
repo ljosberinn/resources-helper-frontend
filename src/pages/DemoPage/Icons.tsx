@@ -1,21 +1,21 @@
 import React from 'react';
-import { Section, Title } from 'rbx';
+import { Section, Title, Icon } from 'rbx';
 
 export const Icons = () => (
   <Section>
     <Title>Icons</Title>
     <hr />
-    <span className="icon is-small">
+    <Icon size="small">
       <i className="fa fa-home"> </i>
-    </span>
-    <span className="icon">
+    </Icon>
+    <Icon className="icon">
       <i className="fa fa-home"> </i>
-    </span>
-    <span className="icon is-medium">
+    </Icon>
+    <Icon size="medium">
       <i className="fa fa-home"> </i>
-    </span>
-    <span className="icon is-large">
+    </Icon>
+    <Icon size="large">
       <i className="fa fa-home"> </i>
-    </span>
+    </Icon>
   </Section>
 );

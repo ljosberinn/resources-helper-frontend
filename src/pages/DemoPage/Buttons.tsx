@@ -54,13 +54,13 @@ export const Buttons = () => (
             </Icon>
           </Button>
           <Button>
-            <Icon className="icon">
+            <Icon>
               <i className="fa fa-github"> </i>
             </Icon>
             <span> GitHub </span>
           </Button>
           <Button color="primary">
-            <Icon className="icon">
+            <Icon>
               <i className="fa fa-twitter"> </i>
             </Icon>
             <span> Twitter </span>
@@ -78,59 +78,31 @@ export const Buttons = () => (
             </Icon>
           </Button>
         </Field>
-        <Field hasAddons>
-          <Control>
-            <Button>
-              <Icon size="small">
-                <i className="fa fa-bold" />
-              </Icon>
-              <span>Bold</span>
-            </Button>
-          </Control>
-          <Control>
-            <Button>
-              <Icon size="small">
-                <i className="fa fa-italic" />
-              </Icon>
-              <span>Italic</span>
-            </Button>
-          </Control>
-          <Control>
-            <Button>
-              <Icon size="small">
-                <i className="fa fa-underline" />
-              </Icon>
-              <span>Underline</span>
-            </Button>
-          </Control>
-        </Field>
+        <Button.Group hasAddons>
+          {['bold', 'italic', 'underline'].map(size => (
+            <Control key={size}>
+              <Button>
+                <Icon size="small">
+                  <i className={`fa fa-${size}`} />
+                </Icon>
+                <span>{size}</span>
+              </Button>
+            </Control>
+          ))}
+        </Button.Group>
 
-        <Field hasAddons>
-          <Control>
-            <Button>
-              <Icon size="small">
-                <i className="fa fa-align-left" />
-              </Icon>
-              <span>Left</span>
-            </Button>
-          </Control>
-          <Control>
-            <Button>
-              <Icon size="small">
-                <i className="fa fa-align-center" />
-              </Icon>
-              <span>Center</span>
-            </Button>
-          </Control>
-          <Control>
-            <Button>
-              <Icon size="small">
-                <i className="fa fa-align-right" />
-              </Icon>
-              <span>Right</span>
-            </Button>
-          </Control>
-        </Field>
+        <Button.Group hasAddons>
+          {['left', 'center', 'right'].map(direction => (
+            <Control key={direction}>
+              <Button>
+                <Icon size="small">
+                  <i className={`fa fa-${direction}`} />
+                </Icon>
+                <span>{direction}</span>
+              </Button>
+            </Control>
+          ))}
+        </Button.Group>
         <Button.Group>
           <Button rounded>rounded</Button>
           <Button color="primary" rounded>
@@ -171,7 +143,7 @@ export const Buttons = () => (
             outlined
           </Button>
         </Button.Group>
-        <div className="buttons notification is-primary">
+        <Button.Group className="notification is-primary">
           <Button color="primary" inverted outlined>
             inverted outlined
           </Button>
@@ -184,8 +156,8 @@ export const Buttons = () => (
           <Button color="danger" inverted outlined>
             inverted outlined
           </Button>
-        </div>
-        <div className="buttons notification is-primary">
+        </Button.Group>
+        <Button.Group className="notification is-primary">
           <Button color="primary" inverted>
             inverted
           </Button>
@@ -198,84 +170,84 @@ export const Buttons = () => (
           <Button color="danger" inverted>
             inverted
           </Button>
-        </div>
+        </Button.Group>
         <Button.Group>
           <Button size="small">
-            <span className="icon is-small">
+            <Icon size="small">
               <i className="fa fa-github"> </i>
-            </span>
+            </Icon>
             <span> GitHub </span>
           </Button>
           <Button>
-            <span className="icon">
+            <Icon>
               <i className="fa fa-github"> </i>
-            </span>
+            </Icon>
             <span> GitHub </span>
           </Button>
           <Button size="medium">
-            <span className="icon">
+            <Icon>
               <i className="fa fa-github"> </i>
-            </span>
+            </Icon>
             <span> GitHub </span>
           </Button>
           <Button size="large">
-            <span className="icon is-medium">
+            <Icon size="medium">
               <i className="fa fa-github"> </i>
-            </span>
+            </Icon>
             <span> GitHub </span>
           </Button>
         </Button.Group>
         <Field>
           <Button size="small">
-            <span className="icon is-small">
+            <Icon size="small">
               <i className="fa fa-header"> </i>
-            </span>
+            </Icon>
           </Button>
         </Field>
         <Field>
           <Button>
-            <span className="icon is-small">
+            <Icon size="small">
               <i className="fa fa-header"> </i>
-            </span>
+            </Icon>
           </Button>
           <Button>
-            <span className="icon">
+            <Icon>
               <i className="fa fa-header fa-lg"> </i>
-            </span>
+            </Icon>
           </Button>
         </Field>
         <Field>
           <Button size="medium">
-            <span className="icon is-small">
+            <Icon size="small">
               <i className="fa fa-header"> </i>
-            </span>
+            </Icon>
           </Button>
           <Button size="medium">
-            <span className="icon">
+            <Icon>
               <i className="fa fa-header fa-lg"> </i>
-            </span>
+            </Icon>
           </Button>
           <Button size="medium">
-            <span className="icon is-medium">
+            <Icon size="medium">
               <i className="fa fa-header fa-2x"> </i>
-            </span>
+            </Icon>
           </Button>
         </Field>
         <Field>
           <Button size="large">
-            <span className="icon is-small">
+            <Icon size="small">
               <i className="fa fa-header"> </i>
-            </span>
+            </Icon>
           </Button>
           <Button size="large">
-            <span className="icon is-medium">
+            <Icon size="medium">
               <i className="fa fa-header fa-lg"> </i>
-            </span>
+            </Icon>
           </Button>
           <Button size="large">
-            <span className="icon is-large">
+            <Icon size="large">
               <i className="fa fa-header fa-2x"> </i>
-            </span>
+            </Icon>
           </Button>
         </Field>
       </Column>

@@ -127,7 +127,7 @@ export const Tables = () => (
           <Table.Cell> +32 </Table.Cell>
           <Table.Cell> 81 </Table.Cell>
           <Table.Cell>
-            Qualification for Table.Headinge
+            Qualification for the
             <a
               href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
               title="2016–17 UEFA Champions League"
@@ -155,7 +155,7 @@ export const Tables = () => (
           <Table.Cell> +29 </Table.Cell>
           <Table.Cell> 71 </Table.Cell>
           <Table.Cell>
-            Qualification for Table.Headinge
+            Qualification for the
             <a
               href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
               title="2016–17 UEFA Champions League"
@@ -183,7 +183,7 @@ export const Tables = () => (
           <Table.Cell> +34 </Table.Cell>
           <Table.Cell> 70 </Table.Cell>
           <Table.Cell>
-            Qualification for Table.Headinge
+            Qualification for the
             <a
               href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
               title="2016–17 UEFA Champions League"
@@ -211,7 +211,7 @@ export const Tables = () => (
           <Table.Cell> +30 </Table.Cell>
           <Table.Cell> 66 </Table.Cell>
           <Table.Cell>
-            Qualification for Table.Headinge
+            Qualification for the
             <a
               href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Play-off_round"
               title="2016–17 UEFA Champions League"
@@ -239,7 +239,7 @@ export const Tables = () => (
           <Table.Cell> +14 </Table.Cell>
           <Table.Cell> 66 </Table.Cell>
           <Table.Cell>
-            Qualification for Table.Headinge
+            Qualification for the
             <a
               href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage"
               title="2016–17 UEFA Europa League"
@@ -267,7 +267,7 @@ export const Tables = () => (
           <Table.Cell> +18 </Table.Cell>
           <Table.Cell> 63 </Table.Cell>
           <Table.Cell>
-            Qualification for Table.Headinge
+            Qualification for the
             <a
               href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage"
               title="2016–17 UEFA Europa League"
@@ -295,7 +295,7 @@ export const Tables = () => (
           <Table.Cell> +14 </Table.Cell>
           <Table.Cell> 62 </Table.Cell>
           <Table.Cell>
-            Qualification for Table.Headinge
+            Qualification for the
             <a
               href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Table.Headingird_qualifying_round"
               title="2016–17 UEFA Europa League"
@@ -524,7 +524,7 @@ export const Tables = () => (
           <Table.Cell> −21 </Table.Cell>
           <Table.Cell> 37 </Table.Cell>
           <Table.Cell>
-            Relegation to Table.Headinge
+            Relegation to the
             <a
               href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship"
               title="2016–17 Football League Championship"
@@ -553,7 +553,7 @@ export const Tables = () => (
           <Table.Cell> −28 </Table.Cell>
           <Table.Cell> 34 </Table.Cell>
           <Table.Cell>
-            Relegation to Table.Headinge
+            Relegation to the
             <a
               href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship"
               title="2016–17 Football League Championship"
@@ -582,7 +582,7 @@ export const Tables = () => (
           <Table.Cell> −49 </Table.Cell>
           <Table.Cell> 17 </Table.Cell>
           <Table.Cell>
-            Relegation to Table.Headinge
+            Relegation to the
             <a
               href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship"
               title="2016–17 Football League Championship"

@@ -15,13 +15,18 @@ export const ProgressBars = () => (
     </Progress>
 
     {colors.map(color => (
-      <Progress color={color} max={MAX} value={DEFAULT_VALUE}>
+      <Progress color={color} max={MAX} value={DEFAULT_VALUE} key={color}>
         {DEFAULT_VALUE}%
       </Progress>
     ))}
 
     {sizes.map((size, index) => (
-      <Progress size={size} max={MAX} value={DEFAULT_VALUE * (index + 1)}>
+      <Progress
+        size={size}
+        max={MAX}
+        value={DEFAULT_VALUE * (index + 1)}
+        key={index}
+      >
         {DEFAULT_VALUE * (index + 1)}%
       </Progress>
     ))}
