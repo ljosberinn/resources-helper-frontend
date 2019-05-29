@@ -1,7 +1,7 @@
 import React from 'react';
 import { Section, Title, Tag, Delete } from 'rbx';
 
-export const Deleters = () => (
+export const DeleteDemo = () => (
   <Section>
     <Title>Delete</Title>
     <hr />

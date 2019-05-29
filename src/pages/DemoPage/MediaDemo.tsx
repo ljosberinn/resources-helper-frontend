@@ -17,7 +17,7 @@ import {
   Button,
 } from 'rbx';
 
-export const MediaObject = () => (
+export const MediaDemo = () => (
   <Section>
     <Title>Media Object</Title>
 

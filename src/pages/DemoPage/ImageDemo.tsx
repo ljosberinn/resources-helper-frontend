@@ -1,7 +1,7 @@
 import React from 'react';
 import { Section, Title, Image } from 'rbx';
 
-export const Images = () => (
+export const ImageDemo = () => (
   <Section>
     <Title>Images</Title>
     <hr />

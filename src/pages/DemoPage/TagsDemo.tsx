@@ -3,7 +3,7 @@ import { Tag, Section, Title, Control, Field, Delete } from 'rbx';
 
 import { colors } from './constants';
 
-export const Tags = () => (
+export const TagsDemo = () => (
   <Section>
     <Title>Tag</Title>
 

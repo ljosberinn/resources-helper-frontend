@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Section, Title, Breadcrumb } from 'rbx';
 
-export const Breadcrumbs = () => (
+export const BreadcrumbsDemo = () => (
   <Section>
     <Title>Breadcrumb</Title>
     <hr />

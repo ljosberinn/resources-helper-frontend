@@ -39,7 +39,7 @@ const MenuLists = [
   },
 ];
 
-export const Menus = () => (
+export const MenuDemo = () => (
   <Menu className="section">
     {MenuLists.map(({ label, listItems }) => (
       <Fragment key={label}>

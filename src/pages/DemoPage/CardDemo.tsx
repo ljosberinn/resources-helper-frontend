@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Card, Section, Title, Column, Image, Icon, Content, Media } from 'rbx';
 
-export const Cards = () => (
+export const CardDemo = () => (
   <Section>
     <Title>Cards</Title>
     <hr />

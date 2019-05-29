@@ -35,7 +35,7 @@ const GenericTableContent = () => (
   </>
 );
 
-export const Tables = () => (
+export const TableDemo = () => (
   <Section>
     <Title>Table</Title>
     <hr />

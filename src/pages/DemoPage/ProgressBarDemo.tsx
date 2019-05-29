@@ -5,7 +5,7 @@ import { Section, Title, Progress } from 'rbx';
 const DEFAULT_VALUE = 15;
 const MAX = 100;
 
-export const ProgressBars = () => (
+export const ProgressBarDemo = () => (
   <Section>
     <Title>Progress bars</Title>
     <hr />

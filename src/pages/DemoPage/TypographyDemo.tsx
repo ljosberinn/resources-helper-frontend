@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Section, Title, Column } from 'rbx';
 
-export const Typography = () => (
+export const TypographyDemo = () => (
   <Section>
     <Title>Typography</Title>
     <hr />

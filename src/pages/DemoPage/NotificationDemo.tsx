@@ -2,7 +2,7 @@ import React from 'react';
 import { Section, Title, Column, Delete, Notification } from 'rbx';
 import { colors } from './constants';
 
-export const Notifications = () => (
+export const NotificationDemo = () => (
   <Section>
     <Title>Notifications</Title>
     <hr />

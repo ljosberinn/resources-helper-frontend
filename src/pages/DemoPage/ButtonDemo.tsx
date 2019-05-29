@@ -3,7 +3,7 @@ import React from 'react';
 import { Field, Control, Section, Icon, Title, Column, Button } from 'rbx';
 import { states, colors } from './constants';
 
-export const Buttons = () => (
+export const ButtonDemo = () => (
   <Section>
     <Title>Button</Title>
     <hr />

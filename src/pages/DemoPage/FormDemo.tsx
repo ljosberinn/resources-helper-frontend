@@ -17,7 +17,7 @@ import {
   Select,
 } from 'rbx';
 
-export const Forms = () => (
+export const FormDemo = () => (
   <Section>
     <Title>Form</Title>
     <hr />

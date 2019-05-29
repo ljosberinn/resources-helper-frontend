@@ -15,7 +15,7 @@ import {
 
 import { colors } from './constants';
 
-export const Heros = () => (
+export const HeroDemo = () => (
   <Section>
     <Title>Hero</Title>
     <hr />
