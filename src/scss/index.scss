@@ -1,0 +1,24 @@
+@import 'bulma-mods.scss';
+@import 'octocat.scss';
+@import 'notification-progress.scss';
+
+a[href='/account'] {
+  padding: 0.5em 0;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: unset;
+  }
+
+  button {
+    background-color: transparent;
+    border-color: $primary;
+    color: $primary;
+  }
+
+  &.active button,
+  :hover {
+    background-color: $primary;
+    color: white;
+  }
+}

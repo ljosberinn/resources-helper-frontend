@@ -1,73 +1,81 @@
-import { Menu } from 'rbx';
 import React from 'react';
-import createStore from 'storeon';
-import useStoreon from 'storeon/react';
-import { IUserState } from '../types/user';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import { MetaRoutes, AccountRoutes, GameRoutes } from '../Routes';
+import { NavLink } from 'react-router-dom';
+import { Menu, Button } from 'rbx';
+import { IRoutes } from '../Routes';
 import { GitHubTag } from './GitHubTag';
+import { AuthenticationRoute } from '../Routes';
+import createStore from 'storeon';
 
-interface NavigationStoreon {
+interface LoginLogoutProps {
+  isAuthenticated: boolean;
   dispatch: createStore.Dispatch;
-  user: IUserState;
 }
 
-const menus = [
-  {
-    title: 'Site',
-    routes: AccountRoutes,
-  },
-  {
-    title: 'Resources',
-    routes: GameRoutes,
-  },
-  {
-    title: 'Meta',
-    routes: MetaRoutes,
-  },
-];
+const LoginLogout = ({ dispatch, isAuthenticated }: LoginLogoutProps) => (
+  <NavLink
+    to="/auth"
+    onClick={() => isAuthenticated && dispatch('user/logout')}
+    onMouseOver={AuthenticationRoute.preload}
+    onFocus={AuthenticationRoute.preload}
+    className="is-link"
+  >
+    <Button textAlign="centered" outlined fullwidth>
+      {isAuthenticated ? 'Logout' : 'Login | Register'}
+    </Button>
+  </NavLink>
+);
 
-export const Navigation = () => {
-  const { user }: NavigationStoreon = useStoreon('user');
-  const { t } = useTranslation();
+interface NavigationProps {
+  routes: IRoutes[];
+  isAuthenticated: boolean;
+  dispatch: createStore.Dispatch;
+}
 
-  return (
-    <Menu className="section">
-      {menus.map(({ title, routes }) => (
+export const Navigation = ({
+  routes,
+  isAuthenticated,
+  dispatch,
+}: NavigationProps) => (
+  <Menu className="section">
+    <Menu.List>
+      <Menu.List.Item
+        as={LoginLogout}
+        dispatch={dispatch}
+        isAuthenticated={isAuthenticated}
+      />
+    </Menu.List>
+    {(isAuthenticated ? ['general', 'game', 'meta'] : ['general', 'meta'])
+      .map(title => ({
+        title,
+        routes: routes.filter(({ parentMenu }) => parentMenu === title),
+      }))
+      .map(({ title, routes }) => (
         <React.Fragment key={title}>
           <Menu.Label>{title}</Menu.Label>
           <Menu.List>
-            {routes
-              .filter(route =>
-                !route.requiresAuth ||
-                (route.requiresAuth && user.isAuthenticated)
-                  ? route
-                  : null,
-              )
-              .map(({ component, title, path }) => (
-                <Menu.List.Item
-                  as={Link}
-                  to={path}
-                  onMouseOver={() => component.preload()}
-                  onFocus={() => component.preload()}
-                  key={title}
-                >
-                  {t(title)}
-                </Menu.List.Item>
-              ))}
+            {routes.map(({ component, title, path }) => (
+              <Menu.List.Item
+                as={NavLink}
+                activeClassName="is-active"
+                to={path}
+                onMouseOver={component.preload}
+                onFocus={component.preload}
+                key={title}
+              >
+                {title}
+              </Menu.List.Item>
+            ))}
           </Menu.List>
         </React.Fragment>
       ))}
-      <a
-        rel="noreferrer noopener"
-        href="https://github.com/ljosberinn/resources-helper"
-        target="_blank"
-        className="github-corner"
-        aria-label={t('githubLink')}
-      >
-        <GitHubTag />
-      </a>
-    </Menu>
-  );
-};
+    <a
+      rel="noreferrer noopener"
+      href="https://github.com/ljosberinn/resources-helper"
+      target="_blank"
+      className="github-corner"
+      aria-label="githubLink"
+    >
+      <GitHubTag />
+    </a>
+  </Menu>
+);

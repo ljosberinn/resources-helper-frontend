@@ -33,12 +33,13 @@ const LoadingFactory = (
     loader: () => component,
     loading: LoadInterceptor,
     timeout: 3000,
-    delay: 300,
+    delay: 0,
   });
 
 export interface IRoutes {
   title: string;
   path: string;
+  parentMenu: string;
   component:
     | (React.ComponentClass<{}, any> & Loadable.LoadableComponent)
     | (React.FunctionComponent<{}> & Loadable.LoadableComponent);
@@ -47,45 +48,18 @@ export interface IRoutes {
 
 export const AccountRoutes: IRoutes[] = [
   {
-    path: '/settings',
-    component: LoadingFactory(import('./pages/SettingsPage')),
+    title: 'API',
+    path: '/api',
+    parentMenu: 'general',
+    component: LoadingFactory(import('./features/API')),
     requiresAuth: true,
-    title: 'settingsLink',
   },
 ];
 
-export const MetaRoutes: IRoutes[] = [
-  {
-    path: '/donate',
-    component: LoadingFactory(import('./pages/DonatePage')),
-    requiresAuth: false,
-    title: 'donateLink',
-  },
-  {
-    path: '/contact',
-    component: LoadingFactory(import('./pages/ContactPage')),
-    requiresAuth: false,
-    title: 'contactLink',
-  },
-  {
-    path: '/tos',
-    component: LoadingFactory(import('./pages/ToSPage')),
-    requiresAuth: false,
-    title: 'tosLink',
-  },
-];
+export const AuthenticationRoute = LoadingFactory(
+  import('./features/Authentication/'),
+);
 
-export const GameRoutes: IRoutes[] = [
-  {
-    path: '/mines',
-    component: LoadingFactory(import('./pages/MinesPage')),
-    requiresAuth: false,
-    title: 'minesLink',
-  },
-  {
-    path: '/demo',
-    component: LoadingFactory(import('./pages/DemoPage')),
-    requiresAuth: false,
-    title: 'demoLink',
-  },
-];
+export const MetaRoutes: IRoutes[] = [];
+
+export const GameRoutes: IRoutes[] = [];

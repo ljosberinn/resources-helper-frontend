@@ -1,60 +1,57 @@
-import { createBrowserHistory } from 'history';
-import { Container, Hero, Column, Title } from 'rbx';
-import React, { Suspense } from 'react';
-import { Route, Router, Switch } from 'react-router';
-import StoreContext from 'storeon/react/context';
-import { PageSubTitle } from './components/PageSubTitle';
-import LandingPage from './pages/LandingPage';
-import { store } from './store';
+import React from 'react';
+import useStoreon from 'storeon/react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Hero, Container, Title, Column } from 'rbx';
+import { AccountRoutes, AuthenticationRoute } from './Routes';
 import { Navigation } from './components/Navigation';
-import { ErrorBoundary } from './components/ErrorBoundary';
-import { MetaRoutes, GameRoutes, AccountRoutes } from './Routes';
 
-const AllRoutes = [...MetaRoutes, ...GameRoutes, ...AccountRoutes];
+const AllRoutes = [...AccountRoutes];
 
-const ResourcesHelper = () => (
-  <StoreContext.Provider value={store}>
-    <Router history={createBrowserHistory()}>
+export const ResourcesHelper = () => {
+  const { user, dispatch } = useStoreon('user');
+  const { isAuthenticated } = user;
+
+  const currentRoutes = AllRoutes.filter(
+    route => !route.requiresAuth || (isAuthenticated && route.requiresAuth),
+  );
+
+  return (
+    <Router>
       <Hero>
         <Hero.Body as="header">
           <Container>
             <Title className="is-size-1 is-size-3-mobile">
               Resources Helper
             </Title>
-            <Suspense fallback={null}>
-              <PageSubTitle />
-            </Suspense>
           </Container>
         </Hero.Body>
       </Hero>
       <Column.Group as="main">
-        <ErrorBoundary>
-          <Suspense fallback={null}>
-            <Column size={2}>
-              <Navigation />
-            </Column>
-            <Column>
-              <Switch>
-                <Route path="/" component={LandingPage} exact={true} />
+        <Column size={2}>
+          <Navigation
+            routes={currentRoutes}
+            isAuthenticated={isAuthenticated}
+            dispatch={dispatch}
+          />
+        </Column>
+        <Column size={9}>
+          <Switch>
+            <Route path="/" component={() => <h1>Home</h1>} exact={true} />
+            <Route path="/auth" component={AuthenticationRoute} exact={true} />
 
-                {AllRoutes.map(({ path, component }, index) => (
-                  <Route
-                    path={path}
-                    component={component}
-                    exact={true}
-                    key={index}
-                  />
-                ))}
+            {currentRoutes.map(({ path, component }) => (
+              <Route
+                path={path}
+                component={component}
+                exact={true}
+                key={path}
+              />
+            ))}
 
-                <Route component={() => <h1>404 - not found</h1>} />
-              </Switch>
-            </Column>
-          </Suspense>
-        </ErrorBoundary>
+            <Route component={() => <h1>404 - not found</h1>} />
+          </Switch>
+        </Column>
       </Column.Group>
     </Router>
-  </StoreContext.Provider>
-);
-
-export default ResourcesHelper;
-ResourcesHelper.whyDidYouRender = true;
+  );
+};

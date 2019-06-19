@@ -1,0 +1,43 @@
+.notification[class*='progress-bar'] {
+  &.progress-bar-5::after {
+    animation: progress-fill 5s linear;
+  }
+
+  &::after {
+    width: 100%;
+    height: 5px;
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0%;
+  }
+
+  $combinations: (
+    'danger': $danger,
+    'info': $info,
+    'success': $success,
+    'primary': $primary,
+    'link': $link,
+    'warning': $warning,
+    'light': $light,
+    'dark': $dark,
+    'white': $white,
+    'black': $black,
+  );
+
+  @each $className, $color in $combinations {
+    &.is-#{$className}::after {
+      background-color: darken($color, 25%);
+    }
+  }
+}
+
+@keyframes progress-fill {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
