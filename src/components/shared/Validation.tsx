@@ -2,7 +2,8 @@
 const mailRegExp = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 const isValidMail = (mail: string) => mailRegExp.test(mail);
 
-const passwordPattern = '^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{4,}$';
+const passwordPattern =
+  '^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!#$%&? "]).*$';
 const passwordRegExp = new RegExp(passwordPattern);
 const isValidPassword = (password: string) => passwordRegExp.test(password);
 

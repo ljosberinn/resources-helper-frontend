@@ -54,6 +54,13 @@ export const AccountRoutes: IRoutes[] = [
     component: LoadingFactory(import('./features/API')),
     requiresAuth: true,
   },
+  {
+    title: 'Profile',
+    path: '/profile',
+    parentMenu: 'general',
+    component: LoadingFactory(import('./features/Profile')),
+    requiresAuth: true,
+  },
 ];
 
 export const AuthenticationRoute = LoadingFactory(

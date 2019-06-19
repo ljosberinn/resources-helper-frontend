@@ -8,9 +8,9 @@ import {
   ValidityIconLeft,
   ValidityIconRight,
 } from '../../components/shared';
-import useStoreon from 'storeon/react';
 import { AuthenticationJSON } from '../../types';
 import { History } from 'history';
+import { Dispatch } from 'storeon';
 
 const initialState = {
   mail: '',
@@ -56,11 +56,10 @@ const reducer = (state: InitialStateType, action: ReducerAction) => {
 
 interface RegistrationProps {
   history: History;
+  dispatch: Dispatch;
 }
 
-export const Registration = ({ history }: RegistrationProps) => {
-  const { dispatch } = useStoreon();
-
+export const Registration = ({ history, dispatch }: RegistrationProps) => {
   const [
     {
       isSubmitting,
@@ -140,7 +139,7 @@ export const Registration = ({ history }: RegistrationProps) => {
 
       const body = new FormData();
       body.append('mail', mail);
-      body.append('password', password);
+      body.append('password', password.trim());
 
       try {
         const response = await fetch('/register', { method: 'POST', body });
@@ -182,7 +181,7 @@ export const Registration = ({ history }: RegistrationProps) => {
           isAuthenticated: true,
         });
 
-        history.push('/');
+        history.push('/profile');
       } catch (e) {
         setState({
           type: 'SET_SUBMIT_ERROR',
@@ -221,67 +220,65 @@ export const Registration = ({ history }: RegistrationProps) => {
         </Message.Body>
       </Message>
 
-      <Field grouped>
-        <Field.Body>
-          <Field>
-            <Label>
-              Mail
-              <Control iconLeft iconRight>
-                <Input
-                  as={DebounceInput}
-                  type="email"
-                  onChange={handleSetMail}
-                  size="small"
-                  debounceTimeout={300}
-                />
-                <ValidityIconLeft type="mail" value={mail} />
-                <ValidityIconRight type="mail" value={mail} />
-              </Control>
-            </Label>
-            {mailError.length > 0 && <Help color="danger">{mailError}</Help>}
-          </Field>
+      <Field kind="group">
+        <Field.Label>
+          <Label>Mail</Label>
+        </Field.Label>
+        <Field>
+          <Control iconLeft iconRight>
+            <Input
+              as={DebounceInput}
+              type="email"
+              onChange={handleSetMail}
+              size="small"
+              debounceTimeout={300}
+            />
+            <ValidityIconLeft type="mail" value={mail} />
+            <ValidityIconRight type="mail" value={mail} />
+          </Control>
+          {mailError.length > 0 && <Help color="danger">{mailError}</Help>}
+        </Field>
 
-          <Field>
-            <Label>
-              Password
-              <Control iconLeft iconRight>
-                <Input
-                  as={DebounceInput}
-                  type="password"
-                  onChange={handleSetPassword}
-                  pattern={passwordPattern}
-                  size="small"
-                  debounceTimeout={300}
-                />
-                <ValidityIconLeft type="password" value={password} />
-                <ValidityIconRight type="password" value={password} />
-              </Control>
-            </Label>
-          </Field>
+        <Field.Label>
+          <Label>Password</Label>
+        </Field.Label>
+        <Field>
+          <Control iconLeft iconRight>
+            <Input
+              as={DebounceInput}
+              type="password"
+              onChange={handleSetPassword}
+              pattern={passwordPattern}
+              size="small"
+              debounceTimeout={300}
+            />
+            <ValidityIconLeft type="password" value={password} />
+            <ValidityIconRight type="password" value={password} />
+          </Control>
+        </Field>
 
-          <Field>
-            <Label>
-              Repeat password
-              <Control iconLeft iconRight>
-                <Input
-                  as={DebounceInput}
-                  type="password"
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    handleSetPassword(e, true)
-                  }
-                  pattern={passwordPattern}
-                  size="small"
-                  debounceTimeout={300}
-                />
-                <ValidityIconLeft type="password" value={repeatedPassword} />
-                <ValidityIconRight type="password" value={repeatedPassword} />
-              </Control>
-            </Label>
-            {passwordError.length > 0 && (
-              <Help color="danger">{passwordError}</Help>
-            )}
-          </Field>
-        </Field.Body>
+        <Field.Label>
+          <Label>Repeat password</Label>
+        </Field.Label>
+        <Field>
+          <Control iconLeft iconRight>
+            <Input
+              as={DebounceInput}
+              type="password"
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                handleSetPassword(e, true)
+              }
+              pattern={passwordPattern}
+              size="small"
+              debounceTimeout={300}
+            />
+            <ValidityIconLeft type="password" value={repeatedPassword} />
+            <ValidityIconRight type="password" value={repeatedPassword} />
+          </Control>
+          {passwordError.length > 0 && (
+            <Help color="danger">{passwordError}</Help>
+          )}
+        </Field>
       </Field>
 
       <Button

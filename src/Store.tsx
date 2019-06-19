@@ -5,20 +5,24 @@ export interface IUserState {
   isAuthenticated: boolean;
   token: string;
   apiKey: string;
+  settings: IUserSettings;
+}
+
+export interface IUserSettings {
+  language: string;
 }
 
 export interface IPreloadedState {
   user: IUserState;
 }
 
-export interface IUseStoreon {
-  dispatch: createStore.Dispatch;
-}
-
 const userState: IUserState = {
   isAuthenticated: false,
   token: '',
   apiKey: '',
+  settings: {
+    language: 'de',
+  },
 };
 
 export const user = (store: createStore.Store<IPreloadedState>) => {
