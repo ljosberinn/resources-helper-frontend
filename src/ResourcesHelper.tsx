@@ -2,7 +2,7 @@ import React from 'react';
 import useStoreon from 'storeon/react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Hero, Container, Title, Column } from 'rbx';
-import { AccountRoutes, AuthenticationRoute } from './Routes';
+import { AccountRoutes, AuthenticationRoute, ProfileRoute } from './Routes';
 import { Navigation } from './components/Navigation';
 
 const AllRoutes = [...AccountRoutes];
@@ -38,6 +38,7 @@ export const ResourcesHelper = () => {
           <Switch>
             <Route path="/" component={() => <h1>Home</h1>} exact={true} />
             <Route path="/auth" component={AuthenticationRoute} exact={true} />
+            <Route path="/profile/:id" component={ProfileRoute} exact={true} />
 
             {currentRoutes.map(({ path, component }) => (
               <Route

@@ -25,13 +25,17 @@ const initialState = {
 type InitialStateType = typeof initialState;
 
 type ReducerAction =
-  | { type: 'SET_MAIL_ERROR'; value: string }
-  | { type: 'SET_PASSWORD_ERROR'; value: string }
-  | { type: 'SET_PASSWORD'; value: string }
-  | { type: 'SET_MAIL'; value: string }
-  | { type: 'SET_REPEATED_PASSWORD'; value: string }
-  | { type: 'SET_IS_SUBMITTING'; value: boolean }
-  | { type: 'SET_SUBMIT_ERROR'; value: string };
+  | {
+      type:
+        | 'SET_MAIL_ERROR'
+        | 'SET_PASSWORD_ERROR'
+        | 'SET_PASSWORD'
+        | 'SET_MAIL'
+        | 'SET_REPEATED_PASSWORD'
+        | 'SET_SUBMIT_ERROR';
+      value: string;
+    }
+  | { type: 'SET_IS_SUBMITTING'; value: boolean };
 
 const reducer = (state: InitialStateType, action: ReducerAction) => {
   switch (action.type) {
@@ -52,6 +56,18 @@ const reducer = (state: InitialStateType, action: ReducerAction) => {
   }
 
   return state;
+};
+
+const translation = {
+  MAIL_INVALID: 'Invalid mail.',
+  PASSWORD_INVALID: 'Password not matching required pattern.',
+  UNMATCHING_PASSWORDS: 'Passwords not matching.',
+  MAIL_EXISTS: 'Mail already exists.',
+  PASSWORD_INSECURE: 'Provided password is considered insecure.',
+  INIT_ERROR: 'Oops, something went wrong',
+  SUBMIT: 'Submit',
+  REPEAT_PASSWORD: 'Repeat password',
+  PASSWORD: 'Password',
 };
 
 interface RegistrationProps {
@@ -105,7 +121,7 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
       if (!isValidPassword(value)) {
         setState({
           type: 'SET_PASSWORD_ERROR',
-          value: 'Password not matching required pattern.',
+          value: translation.PASSWORD_INVALID,
         });
         return;
       }
@@ -116,7 +132,7 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
       ) {
         setState({
           type: 'SET_PASSWORD_ERROR',
-          value: 'Passwords not matching.',
+          value: translation.UNMATCHING_PASSWORDS,
         });
         return;
       }
@@ -150,13 +166,13 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
             case 'MAIL_EXISTS':
               setState({
                 type: 'SET_SUBMIT_ERROR',
-                value: 'Mail already exists.',
+                value: translation.MAIL_EXISTS,
               });
               break;
             case 'PASSWORD_INSECURE':
               setState({
                 type: 'SET_SUBMIT_ERROR',
-                value: 'Provided password is considered insecure.',
+                value: translation.PASSWORD_INSECURE,
               });
               break;
             default:
@@ -185,7 +201,7 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
       } catch (e) {
         setState({
           type: 'SET_SUBMIT_ERROR',
-          value: 'Oops, something went wrong',
+          value: translation.INIT_ERROR,
         });
 
         setState({
@@ -197,7 +213,7 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
     [mail, password, dispatch, history],
   );
 
-  const maySubmit =
+  const mayNotSubmit =
     !isValidMail(mail) ||
     mailError.length > 0 ||
     passwordError.length > 0 ||
@@ -240,7 +256,7 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
         </Field>
 
         <Field.Label>
-          <Label>Password</Label>
+          <Label>{translation.PASSWORD}</Label>
         </Field.Label>
         <Field>
           <Control iconLeft iconRight>
@@ -258,7 +274,7 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
         </Field>
 
         <Field.Label>
-          <Label>Repeat password</Label>
+          <Label>{translation.REPEAT_PASSWORD}</Label>
         </Field.Label>
         <Field>
           <Control iconLeft iconRight>
@@ -284,10 +300,10 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
       <Button
         type="submit"
         color="primary"
-        disabled={maySubmit}
+        disabled={mayNotSubmit}
         state={isSubmitting ? 'loading' : undefined}
       >
-        Submit
+        {translation.SUBMIT}
       </Button>
       {submitError.length > 0 && <Help color="danger">{submitError}</Help>}
     </form>

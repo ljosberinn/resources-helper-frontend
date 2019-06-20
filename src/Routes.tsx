@@ -46,6 +46,8 @@ export interface IRoutes {
   requiresAuth: boolean;
 }
 
+export const ProfileRoute = LoadingFactory(import('./features/Profile'));
+
 export const AccountRoutes: IRoutes[] = [
   {
     title: 'API',
@@ -58,7 +60,7 @@ export const AccountRoutes: IRoutes[] = [
     title: 'Profile',
     path: '/profile',
     parentMenu: 'general',
-    component: LoadingFactory(import('./features/Profile')),
+    component: ProfileRoute,
     requiresAuth: true,
   },
 ];
