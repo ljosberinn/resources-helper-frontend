@@ -5,7 +5,15 @@ export interface IUserState {
   isAuthenticated: boolean;
   token: string;
   apiKey: string;
+  apiHistory: APIHistoryEntry[];
   settings: IUserSettings;
+}
+
+export type APIEndpointID = 0 | 1 | 2 | 3 | 4 | 5 | 51 | 6 | 7 | 8 | 9 | 10;
+export interface APIHistoryEntry {
+  id: APIEndpointID;
+  lastQuery: number;
+  active: 0 | 1;
 }
 
 export interface IUserSettings {
@@ -20,6 +28,7 @@ const userState: IUserState = {
   isAuthenticated: false,
   token: '',
   apiKey: '',
+  apiHistory: [],
   settings: {
     language: 'de',
   },
