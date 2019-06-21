@@ -49,6 +49,9 @@ const reducer = (state: InitialStateType, action: ReducerAction) => {
 
   return state;
 };
+
+const BACKEND_ROUTE = '/auth/login';
+
 interface LoginProps {
   history: History;
   dispatch: Dispatch;
@@ -118,7 +121,7 @@ export const Login = ({ history, dispatch }: LoginProps) => {
         body.append('mail', mail);
         body.append('password', password);
 
-        const response = await fetch('/login', { method: 'POST', body });
+        const response = await fetch(BACKEND_ROUTE, { method: 'POST', body });
         const json = (await response.json()) as AuthenticationJSON;
 
         if (json.error) {

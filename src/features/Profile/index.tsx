@@ -24,7 +24,7 @@ const Profile = ({ history, match: { params } }: ProfileProps) => {
   const [initializationError, setInitializationError] = useState('');
   const isOwnProfile = id === undefined;
 
-  const BACKEND_ROUTE = isOwnProfile ? '/account' : `/profile/${id}`;
+  const BACKEND_ROUTE = isOwnProfile ? '/account/' : `/profile/${id}`;
 
   const translation = {
     UNKNOWN_PROFILE: 'No profile found.',

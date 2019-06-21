@@ -70,6 +70,8 @@ const translation = {
   PASSWORD: 'Password',
 };
 
+const BACKEND_ROUTE = '/auth/register';
+
 interface RegistrationProps {
   history: History;
   dispatch: Dispatch;
@@ -158,7 +160,10 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
       body.append('password', password.trim());
 
       try {
-        const response = await fetch('/register', { method: 'POST', body });
+        const response = await fetch(BACKEND_ROUTE, {
+          method: 'POST',
+          body,
+        });
         const json = (await response.json()) as AuthenticationJSON;
 
         if (json.error) {

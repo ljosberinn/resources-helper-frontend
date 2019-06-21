@@ -28,6 +28,11 @@ const translation = {
   SUBMIT_ERROR: 'Oops, something went wrong...',
 };
 
+const BACKEND_ROUTES = {
+  updateQueryHistory: '/account/updateQueryHistory',
+  api: (query: APIEndpointID) => `/api/${query}`,
+};
+
 interface APIProps {
   history: History;
 }
@@ -55,7 +60,7 @@ const API = ({ history }: APIProps) => {
           body.append('queries[]', query.toString()),
         );
 
-        const response = await fetch('/account/updateQueries', {
+        const response = await fetch(BACKEND_ROUTES.updateQueryHistory, {
           method: 'POST',
           headers,
           body,
@@ -67,8 +72,14 @@ const API = ({ history }: APIProps) => {
           return;
         }
 
+        const json = await response.json();
+
+        if (json.token) {
+          dispatch('user/refreshToken', { token: json.token });
+        }
+
         upcomingQueries.forEach(async query => {
-          const response = await fetch(`/api/${query}`, {
+          const response = await fetch(BACKEND_ROUTES.api(query), {
             method: 'GET',
             headers,
           });
@@ -154,7 +165,7 @@ const API = ({ history }: APIProps) => {
             />
           );
         })}
-        <Button color="primary" disabled={upcomingQueries.length === 0}>
+        <Button color="primary" disabled={upcomingQueries.length === 1}>
           Query
         </Button>
       </form>
