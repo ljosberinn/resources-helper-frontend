@@ -9,7 +9,7 @@ export interface IUserState {
   settings: IUserSettings;
 }
 
-export type APIEndpointID = 0 | 1 | 2 | 3 | 4 | 5 | 51 | 6 | 7 | 8 | 9 | 10;
+export type APIEndpointID = 1 | 2 | 3 | 4 | 5 | 51 | 6 | 7 | 8 | 9 | 10;
 export interface APIHistoryEntry {
   id: APIEndpointID;
   lastQuery: number;

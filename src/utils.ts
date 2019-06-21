@@ -1,5 +1,6 @@
 import { History } from 'history';
 import { Dispatch } from 'storeon';
+import jwt from 'jsonwebtoken';
 
 type Header = 'PUT' | 'PATCH';
 
@@ -61,4 +62,16 @@ const delayedLogout = (dispatch: Dispatch, history: History, timeout = 5) => {
   }, timeout * 1000);
 };
 
-export { createTokenizedHeader, tokenizedFakePatch, delayedLogout };
+interface DecodedJWT {
+  exp: number;
+}
+
+const isTokenExpired = (token: string) =>
+  (jwt.decode(token) as DecodedJWT).exp * 1000 < Date.now();
+
+export {
+  isTokenExpired,
+  createTokenizedHeader,
+  tokenizedFakePatch,
+  delayedLogout,
+};

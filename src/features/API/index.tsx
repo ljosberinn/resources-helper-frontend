@@ -8,7 +8,8 @@ import { APIKey } from './APIKey';
 import { StyledCheckbox } from '../../components/shared';
 import { APIEndpointID, IUserState, APIHistoryEntry } from '../../Store';
 import { Dispatch } from 'storeon';
-import { createTokenizedHeader, delayedLogout } from '../../utils';
+import { createTokenizedHeader, isTokenExpired } from '../../utils';
+import { GenericTokenResponse } from '../../types';
 
 const queryEndpoints: { id: APIEndpointID; title: string }[] = [
   { id: 1, title: 'Factories' },
@@ -44,9 +45,11 @@ const API = ({ history }: APIProps) => {
   }: { user: IUserState; dispatch: Dispatch } = useStoreon('user');
   const { token, apiHistory, apiKey } = user;
 
-  const [sessionExpired, setSessionExpiration] = useState(false);
+  const [sessionExpired, setSessionExpiration] = useState(
+    isTokenExpired(token),
+  );
   const [submitError, setSubmitError] = useState('');
-  const [upcomingQueries, setUpcomingQueries] = useState<APIEndpointID[]>([0]);
+  const [upcomingQueries, setUpcomingQueries] = useState<APIEndpointID[]>([]);
 
   const handleSubmit = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
@@ -55,40 +58,37 @@ const API = ({ history }: APIProps) => {
       try {
         const headers = createTokenizedHeader(token);
 
-        const body = new FormData();
-        upcomingQueries.forEach(query =>
-          body.append('queries[]', query.toString()),
-        );
-
         const response = await fetch(BACKEND_ROUTES.updateQueryHistory, {
           method: 'POST',
           headers,
-          body,
+          body: upcomingQueries.reduce((carry, query) => {
+            carry.append('queries[]', query.toString());
+            return carry;
+          }, new FormData()),
         });
 
-        if (!response.ok && response.status === 401) {
+        if (response.status === 401) {
           setSessionExpiration(true);
-          delayedLogout(dispatch, history);
           return;
         }
 
-        const json = await response.json();
+        dispatch('user/refreshToken', {
+          token: ((await response.json()) as GenericTokenResponse).token,
+        });
 
-        if (json.token) {
-          dispatch('user/refreshToken', { token: json.token });
-        }
+        const body = new FormData();
+        body.append('apiKey', apiKey);
 
         upcomingQueries.forEach(async query => {
           const response = await fetch(BACKEND_ROUTES.api(query), {
             method: 'GET',
             headers,
+            body,
           });
 
           const json = await response.json();
 
           switch (query) {
-            case 0:
-              break;
             case 1:
               break;
             case 2:
@@ -117,7 +117,7 @@ const API = ({ history }: APIProps) => {
         setSubmitError(translation.SUBMIT_ERROR);
       }
     },
-    [dispatch, history, token, upcomingQueries],
+    [dispatch, history, token, upcomingQueries, apiKey],
   );
 
   const handleChange = useCallback(
@@ -139,7 +139,9 @@ const API = ({ history }: APIProps) => {
 
   return (
     <>
-      {sessionExpired && <SessionExpirationNotice />}
+      {sessionExpired && (
+        <SessionExpirationNotice dispatch={dispatch} history={history} />
+      )}
       <APIKey
         user={user}
         dispatch={dispatch}

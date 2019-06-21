@@ -164,6 +164,7 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
           method: 'POST',
           body,
         });
+
         const json = (await response.json()) as AuthenticationJSON;
 
         if (json.error) {

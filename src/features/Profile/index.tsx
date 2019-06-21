@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { History } from 'history';
 import { SessionExpirationNotice } from '../../components/SessionExpirationNotice';
 import { match } from 'react-router-dom';
-
+import { isTokenExpired } from '../../utils';
 interface ProfileParams {
   id?: string | undefined;
 }
@@ -20,7 +20,9 @@ const Profile = ({ history, match: { params } }: ProfileProps) => {
   const { user, dispatch } = useStoreon('user');
   const { token, isAuthenticated } = user;
 
-  const [sessionExpired, setSessionExpiration] = useState(false);
+  const [sessionExpired, setSessionExpiration] = useState(
+    isTokenExpired(token),
+  );
   const [initializationError, setInitializationError] = useState('');
   const isOwnProfile = id === undefined;
 
@@ -49,7 +51,6 @@ const Profile = ({ history, match: { params } }: ProfileProps) => {
               break;
             case 401:
               setSessionExpiration(true);
-              delayedLogout(dispatch, history);
               break;
             case 403:
               setInitializationError(translation.PROFILE_PRIVATE);
@@ -83,7 +84,9 @@ const Profile = ({ history, match: { params } }: ProfileProps) => {
 
   return (
     <>
-      {sessionExpired && <SessionExpirationNotice />}
+      {sessionExpired && (
+        <SessionExpirationNotice dispatch={dispatch} history={history} />
+      )}
       <h1>Profile</h1>
     </>
   );
