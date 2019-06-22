@@ -1,21 +1,19 @@
 import React, { useState, FormEvent, useCallback, ChangeEvent } from 'react';
 import useStoreon from 'storeon/react';
-import { Button, Help, Control, Field } from 'rbx';
+import { Button, Help } from 'rbx';
 import { withRouter } from 'react-router';
 import { History } from 'history';
 import { SessionExpirationNotice } from '../../components/SessionExpirationNotice';
 import { APIKey } from './APIKey';
-import { StyledCheckbox } from '../../components/shared';
-import { APIEndpointID, IUserState } from '../../Store';
+import { APIEndpointID, IUserState, APIQueryHistoryEntry } from '../../Store';
 import { Dispatch } from 'storeon';
 import { createTokenizedHeader, isTokenExpired } from '../../utils';
 import { GenericTokenResponse } from '../../types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock } from '@fortawesome/free-solid-svg-icons';
 import {
   calcRemainingAnimationDuration,
   getAPIQueryHistory,
 } from '../../utils';
+import { QueryCheckbox } from './QueryCheckbox';
 
 const translation = {
   SUBMIT_ERROR: 'Oops, something went wrong...',
@@ -27,7 +25,7 @@ const translation = {
   MINE_SUMMARY: 'Mine summary',
   TRADE_LOG: 'Trade Log',
   PLAYER_INFO: 'Player Information',
-  MONETRARY_ITEMS: 'Monetrary Items',
+  MONETARY_ITEMS: 'Monetrary Items',
   COMBAT_LOG: 'Combat Log',
   MISSIONS: 'Missions',
   INFO_FACTORIES: 'Lorem ipsum dolor sit amet',
@@ -38,9 +36,10 @@ const translation = {
   INFO_MINE_SUMMARY: 'Lorem ipsum dolor sit amet',
   INFO_TRADE_LOG: 'Lorem ipsum dolor sit amet',
   INFO_PLAYER_INFO: 'Lorem ipsum dolor sit amet',
-  INFO_MONETRARY_ITEMS: 'Lorem ipsum dolor sit amet',
+  INFO_MONETARY_ITEMS: 'Lorem ipsum dolor sit amet',
   INFO_COMBAT_LOG: 'Lorem ipsum dolor sit amet',
   INFO_MISSIONS: 'Lorem ipsum dolor sit amet',
+  SUBMIT: 'Query',
 };
 
 const queryEndpoints: { id: APIEndpointID; title: string; info: string }[] = [
@@ -66,8 +65,8 @@ const queryEndpoints: { id: APIEndpointID; title: string; info: string }[] = [
   { id: 7, title: translation.PLAYER_INFO, info: translation.INFO_PLAYER_INFO },
   {
     id: 8,
-    title: translation.MONETRARY_ITEMS,
-    info: translation.INFO_MONETRARY_ITEMS,
+    title: translation.MONETARY_ITEMS,
+    info: translation.INFO_MONETARY_ITEMS,
   },
   { id: 9, title: translation.COMBAT_LOG, info: translation.INFO_COMBAT_LOG },
   { id: 10, title: translation.MISSIONS, info: translation.INFO_MISSIONS },
@@ -75,7 +74,45 @@ const queryEndpoints: { id: APIEndpointID; title: string; info: string }[] = [
 
 const BACKEND_ROUTES = {
   apiQueryHistory: '/account/apiQueryHistory',
-  api: (query: APIEndpointID) => `/api/${query}`,
+  api: (apiKey: string, query: APIEndpointID) => `/api/${apiKey}/${query}`,
+};
+
+const reduceToUpcomingQueries = (apiQueryHistory: APIQueryHistoryEntry[]) =>
+  apiQueryHistory.reduce((carry: APIEndpointID[], { active, id }) => {
+    if (active) {
+      carry.push(id);
+    }
+
+    return carry;
+  }, []);
+
+const setAPIQueryHistory = async (
+  upcomingQueries: APIEndpointID[],
+  headers: Headers,
+) => {
+  const data = {
+    sessionExpired: false,
+    json: {
+      token: '',
+    },
+  };
+
+  const response = await fetch(BACKEND_ROUTES.apiQueryHistory, {
+    method: 'POST',
+    headers,
+    body: upcomingQueries.reduce((carry, query) => {
+      carry.append('queries[]', query.toString());
+      return carry;
+    }, new FormData()),
+  });
+
+  if (response.status === 401) {
+    data.sessionExpired = true;
+    return data;
+  }
+
+  data.json.token = ((await response.json()) as GenericTokenResponse).token;
+  return data;
 };
 
 interface APIProps {
@@ -94,15 +131,7 @@ const API = ({ history }: APIProps) => {
   );
   const [submitError, setSubmitError] = useState('');
   const [upcomingQueries, setUpcomingQueries] = useState<APIEndpointID[]>(
-    apiQueryHistory.length > 0
-      ? apiQueryHistory.reduce((carry: APIEndpointID[], { active, id }) => {
-          if (active) {
-            carry.push(id);
-          }
-
-          return carry;
-        }, [])
-      : [],
+    reduceToUpcomingQueries(apiQueryHistory),
   );
   const [queriesInProgress, setQueriesInProgress] = useState<APIEndpointID[]>(
     [],
@@ -112,89 +141,70 @@ const API = ({ history }: APIProps) => {
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
+      const headers = createTokenizedHeader(token);
+
+      const { json, sessionExpired } = await setAPIQueryHistory(
+        upcomingQueries,
+        headers,
+      );
+
+      if (sessionExpired) {
+        setSessionExpiration(true);
+        return;
+      }
+
+      dispatch('user/refreshToken', {
+        token: json.token,
+      });
+
       try {
-        const headers = createTokenizedHeader(token);
-
-        const response = await fetch(BACKEND_ROUTES.apiQueryHistory, {
-          method: 'POST',
-          headers,
-          body: upcomingQueries.reduce((carry, query) => {
-            carry.append('queries[]', query.toString());
-            return carry;
-          }, new FormData()),
-        });
-
-        if (response.status === 401) {
-          setSessionExpiration(true);
-          return;
-        }
-
-        dispatch('user/refreshToken', {
-          token: ((await response.json()) as GenericTokenResponse).token,
-        });
-
         setQueriesInProgress(upcomingQueries);
 
         upcomingQueries.forEach(async query => {
           const start = Date.now();
 
-          const response = await fetch(
-            `${BACKEND_ROUTES.api(query)}?apiKey=${apiKey}`,
-            {
+          try {
+            const response = await fetch(BACKEND_ROUTES.api(apiKey, query), {
               method: 'GET',
               headers,
-            },
-          );
+            });
 
-          const json = await response.json();
+            const json = await response.json();
 
-          switch (query) {
-            case 1:
-              console.log(json);
-              break;
-            case 2:
-              console.log(json);
-              break;
-            case 3:
-              console.log(json);
-              break;
-            case 4:
-              console.log(json);
-              break;
-            case 5:
-              console.log(json);
-              break;
-            case 51:
-              console.log(json);
-              break;
-            case 6:
-              console.log(json);
-              break;
-            case 7:
-              console.log(json);
-              break;
-            case 8:
-              console.log(json);
-              break;
-            case 9:
-              console.log(json);
-              break;
-            case 10:
-              console.log(json);
-              break;
+            switch (query) {
+              case 1:
+              case 2:
+              case 3:
+              case 4:
+              case 5:
+              case 51:
+              case 6:
+              case 7:
+              case 8:
+              case 9:
+              case 10:
+                console.log(json);
+                break;
+            }
+          } catch (e) {
+            console.log(e);
+            return;
           }
 
-          const timeout = calcRemainingAnimationDuration(start, Date.now());
+          const timeout = calcRemainingAnimationDuration(start);
 
           setTimeout(() => {
-            queriesInProgress.splice(queriesInProgress.indexOf(query), 1);
-
-            setQueriesInProgress([...queriesInProgress]);
+            upcomingQueries.splice(upcomingQueries.indexOf(query), 1);
+            setQueriesInProgress([...upcomingQueries]);
           }, timeout);
         });
 
         const newAPIHistory = await getAPIQueryHistory(token);
-        dispatch('user/setAPIQueryHistory', { apiQueryHistory: newAPIHistory });
+        dispatch('user/setAPIQueryHistory', {
+          apiQueryHistory: newAPIHistory,
+        });
+
+        setUpcomingQueries(reduceToUpcomingQueries(newAPIHistory));
       } catch (e) {
         setSubmitError(translation.SUBMIT_ERROR);
       }
@@ -239,30 +249,21 @@ const API = ({ history }: APIProps) => {
           const wasRecentlyQueried =
             hasHistory && historyEntry ? historyEntry.active : false;
 
-          const isLoading = queriesInProgress.includes(id);
-
           return (
-            <Field key={id}>
-              <Control>
-                <StyledCheckbox
-                  defaultChecked={wasRecentlyQueried}
-                  id={`endpoint-${id}`}
-                  label={title}
-                  onChange={handleChange}
-                  value={id}
-                  disabled={isLoading}
-                />
-                <Help color="info">{info}</Help>
-                {isLoading ? (
-                  <Button state="loading" className="is-icon" />
-                ) : (
-                  historyEntry &&
-                  historyEntry.lastQuery > 0 && (
-                    <Help color="primary">{getQueryTime(historyEntry)}</Help>
-                  )
-                )}
-              </Control>
-            </Field>
+            <QueryCheckbox
+              wasRecentlyQueried={wasRecentlyQueried}
+              isLoading={queriesInProgress.includes(id)}
+              title={title}
+              info={info}
+              id={id}
+              lastQuery={
+                historyEntry && historyEntry.lastQuery > 0
+                  ? historyEntry.lastQuery
+                  : 0
+              }
+              handleChange={handleChange}
+              key={id}
+            />
           );
         })}
         <Button
@@ -270,26 +271,11 @@ const API = ({ history }: APIProps) => {
           state={isLoading ? 'loading' : undefined}
           disabled={isLoading || upcomingQueries.length === 0}
         >
-          Query
+          {translation.SUBMIT}
         </Button>
         {submitError && <Help color="warning">{submitError}</Help>}
       </form>
     </>
-  );
-};
-
-const getQueryTime = ({ lastQuery }: { lastQuery: number }) => {
-  const date = new Date(lastQuery);
-
-  const diff =
-    Math.abs(date.getTime() - new Date(Date.now()).getTime()) /
-    (1000 * 60 * 60 * 24);
-
-  return (
-    <time dateTime={date.toISOString().split('.')[0]}>
-      <FontAwesomeIcon icon={faClock} />{' '}
-      {diff < 1 ? 'less than a day' : `${Math.ceil(diff)} day(s)`} ago
-    </time>
   );
 };
 
