@@ -5,19 +5,20 @@ export interface IUserState {
   isAuthenticated: boolean;
   token: string;
   apiKey: string;
-  apiHistory: APIHistoryEntry[];
+  apiQueryHistory: APIQueryHistoryEntry[];
   settings: IUserSettings;
 }
 
 export type APIEndpointID = 1 | 2 | 3 | 4 | 5 | 51 | 6 | 7 | 8 | 9 | 10;
-export interface APIHistoryEntry {
+export interface APIQueryHistoryEntry {
   id: APIEndpointID;
   lastQuery: number;
-  active: 0 | 1;
+  active: boolean;
 }
 
 export interface IUserSettings {
   language: string;
+  remembersAPIKey: 0 | 1;
 }
 
 export interface IPreloadedState {
@@ -28,9 +29,10 @@ const userState: IUserState = {
   isAuthenticated: false,
   token: '',
   apiKey: '',
-  apiHistory: [],
+  apiQueryHistory: [],
   settings: {
     language: 'de',
+    remembersAPIKey: 0,
   },
 };
 
@@ -66,6 +68,30 @@ export const user = (store: createStore.Store<IPreloadedState>) => {
       isAuthenticated: false,
     },
   }));
+
+  store.on(
+    'user/setAPIQueryHistory',
+    ({ user }, payload) =>
+      ({
+        user: {
+          ...user,
+          apiQueryHistory: payload.apiQueryHistory,
+        },
+      } as Partial<IPreloadedState>),
+  );
+
+  store.on(
+    'user/acknowledgeProfileData',
+    ({ user }, payload) =>
+      ({
+        user: {
+          ...user,
+          apiKey: payload.apiKey,
+          apiQueryHistory: payload.apiQueryHistory,
+          settings: payload.settings,
+        },
+      } as Partial<IPreloadedState>),
+  );
 
   store.on(
     'user/setAPIKey',

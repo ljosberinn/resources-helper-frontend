@@ -67,6 +67,14 @@ const Profile = ({ history, match: { params } }: ProfileProps) => {
           dispatch('user/refreshToken', { token: json.token });
         }
 
+        const { apiQueryHistory, settings, apiKey } = json;
+
+        dispatch('user/acknowledgeProfileData', {
+          apiQueryHistory,
+          settings,
+          apiKey,
+        });
+
         console.log(json);
       } catch (e) {
         setInitializationError(translation.INIT_ERROR);
