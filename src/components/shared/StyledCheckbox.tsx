@@ -2,6 +2,7 @@ import React, { ChangeEvent } from 'react';
 import { Label } from 'rbx';
 
 interface StyledCheckboxProps {
+  disabled?: boolean;
   checked?: boolean;
   defaultChecked?: boolean;
   id: string;
@@ -16,6 +17,7 @@ interface CheckboxProps extends Partial<StyledCheckboxProps> {
 }
 
 export const StyledCheckbox = ({
+  disabled,
   checked,
   defaultChecked,
   id,
@@ -29,6 +31,7 @@ export const StyledCheckbox = ({
     id: id,
   };
 
+  disabled && (inputProps.disabled = disabled);
   onChange && (inputProps.onChange = onChange);
   checked && (inputProps.checked = checked);
   defaultChecked && (inputProps.defaultChecked = defaultChecked);

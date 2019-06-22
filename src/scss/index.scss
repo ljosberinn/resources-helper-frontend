@@ -22,3 +22,17 @@ a[href='/auth'] {
     color: white;
   }
 }
+
+button.is-icon {
+  border: none;
+  background-color: transparent;
+  height: 1em;
+  vertical-align: 0.125em;
+}
+
+.centered-image {
+  left: 37.5%;
+  width: 25%;
+  height: 25%;
+  position: relative;
+}

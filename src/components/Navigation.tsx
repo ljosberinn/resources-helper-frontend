@@ -37,45 +37,48 @@ export const Navigation = ({
   dispatch,
 }: NavigationProps) => (
   <Menu className="section">
-    <Menu.List>
-      <Menu.List.Item
-        as={LoginLogout}
-        dispatch={dispatch}
-        isAuthenticated={isAuthenticated}
-      />
-    </Menu.List>
-    {(isAuthenticated ? ['general', 'game', 'meta'] : ['general', 'meta'])
-      .map(title => ({
-        title,
-        routes: routes.filter(({ parentMenu }) => parentMenu === title),
-      }))
-      .map(({ title, routes }) => (
-        <React.Fragment key={title}>
-          <Menu.Label>{title}</Menu.Label>
-          <Menu.List>
-            {routes.map(({ component, title, path }) => (
-              <Menu.List.Item
-                as={NavLink}
-                activeClassName="is-active"
-                to={path}
-                onMouseOver={component.preload}
-                onFocus={component.preload}
-                key={title}
-              >
-                {title}
-              </Menu.List.Item>
-            ))}
-          </Menu.List>
-        </React.Fragment>
-      ))}
-    <a
-      rel="noreferrer noopener"
-      href="https://github.com/ljosberinn/resources-helper"
-      target="_blank"
-      className="github-corner"
-      aria-label="githubLink"
-    >
-      <GitHubTag />
-    </a>
+    <nav aria-label="primary">
+      <Menu.List>
+        <Menu.List.Item
+          as={LoginLogout}
+          dispatch={dispatch}
+          isAuthenticated={isAuthenticated}
+        />
+      </Menu.List>
+      {(isAuthenticated ? ['general', 'game', 'meta'] : ['general', 'meta'])
+        .map(title => ({
+          title,
+          routes: routes.filter(({ parentMenu }) => parentMenu === title),
+        }))
+        .map(({ title, routes }) => (
+          <React.Fragment key={title}>
+            <Menu.Label>{title}</Menu.Label>
+            <Menu.List>
+              {routes.map(({ component, title, path }) => (
+                <Menu.List.Item
+                  as={NavLink}
+                  activeClassName="is-active"
+                  to={path}
+                  onMouseOver={component.preload}
+                  onFocus={component.preload}
+                  key={title}
+                >
+                  {title}
+                </Menu.List.Item>
+              ))}
+            </Menu.List>
+          </React.Fragment>
+        ))}
+      <a
+        rel="noreferrer noopener"
+        href="https://github.com/ljosberinn/resources-helper"
+        target="_blank"
+        className="github-corner"
+        aria-label="githubLink"
+        aria-hidden="true"
+      >
+        <GitHubTag />
+      </a>
+    </nav>
   </Menu>
 );

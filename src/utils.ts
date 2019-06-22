@@ -1,6 +1,7 @@
 import { History } from 'history';
 import { Dispatch } from 'storeon';
 import jwt from 'jsonwebtoken';
+import { APIQueryHistoryEntry } from './Store';
 
 type Header = 'PUT' | 'PATCH';
 
@@ -69,9 +70,43 @@ interface DecodedJWT {
 const isTokenExpired = (token: string) =>
   (jwt.decode(token) as DecodedJWT).exp * 1000 < Date.now();
 
+const calcRemainingAnimationDuration = (
+  start: number,
+  end: number,
+  max = 750,
+) => {
+  const diff = end - start;
+
+  if (diff >= max) {
+    return 1;
+  }
+
+  if (diff < max) {
+    return max - diff;
+  }
+};
+
+const getAPIQueryHistory = async (
+  token: string,
+  headers: null | Headers = null,
+) => {
+  try {
+    const response = await fetch('/account/apiQueryHistory', {
+      method: 'GET',
+      headers: headers ? headers : createTokenizedHeader(token),
+    });
+
+    return (await response.json()) as APIQueryHistoryEntry[];
+  } catch (e) {
+    return [];
+  }
+};
+
 export {
   isTokenExpired,
   createTokenizedHeader,
   tokenizedFakePatch,
   delayedLogout,
+  calcRemainingAnimationDuration,
+  getAPIQueryHistory,
 };
