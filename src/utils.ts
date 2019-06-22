@@ -72,7 +72,7 @@ const isTokenExpired = (token: string) =>
 
 const calcRemainingAnimationDuration = (
   start: number,
-  end: number,
+  end = Date.now(),
   max = 750,
 ) => {
   const diff = end - start;

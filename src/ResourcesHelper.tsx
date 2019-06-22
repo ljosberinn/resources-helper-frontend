@@ -70,6 +70,7 @@ export const ResourcesHelper = () => {
                   render={() => (
                     <Redirect to={isAuthenticated ? '/profile' : '/auth'} />
                   )}
+                  key={path}
                 />
               ))}
               <Route render={() => <Redirect to="/" />} />
