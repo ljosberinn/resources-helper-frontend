@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useStoreon from 'storeon/react';
-import { createTokenizedHeader, delayedLogout } from '../../utils';
+import { createTokenizedHeader } from '../../utils';
 import { withRouter } from 'react-router-dom';
 import { History } from 'history';
 import { SessionExpirationNotice } from '../../components/SessionExpirationNotice';
@@ -80,11 +80,22 @@ const Profile = ({ history, match: { params } }: ProfileProps) => {
         setInitializationError(translation.INIT_ERROR);
         setTimeout(() => {
           // eslint-disable-next-line
-          //location.reload();
+          location.reload();
         }, 5000);
       }
     })();
-  }, [BACKEND_ROUTE, dispatch, history, isOwnProfile, token, isAuthenticated]);
+  }, [
+    BACKEND_ROUTE,
+    dispatch,
+    history,
+    isOwnProfile,
+    token,
+    isAuthenticated,
+    initializationError.length,
+    translation.INIT_ERROR,
+    translation.PROFILE_PRIVATE,
+    translation.UNKNOWN_PROFILE,
+  ]);
 
   if (initializationError.length > 0) {
     return <h1>{initializationError}</h1>;
