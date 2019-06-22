@@ -43,7 +43,7 @@ export const ValidityIconLeft = ({ type, value }: ValidityIconProps) => {
 
   if (type === 'apiKey') {
     const color =
-      value.length > 0
+      value && value.length > 0
         ? isValidAPIKey(value)
           ? 'success'
           : 'danger'

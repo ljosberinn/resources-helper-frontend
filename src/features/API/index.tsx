@@ -229,6 +229,11 @@ const API = ({ history }: APIProps) => {
 
   const hasHistory = apiQueryHistory.length > 0;
   const isLoading = queriesInProgress.length > 0;
+  const maySubmit =
+    isLoading ||
+    upcomingQueries.length === 0 ||
+    !apiKey ||
+    (apiKey && apiKey.length === 0);
 
   return (
     <>
@@ -269,7 +274,7 @@ const API = ({ history }: APIProps) => {
         <Button
           color="primary"
           state={isLoading ? 'loading' : undefined}
-          disabled={isLoading || upcomingQueries.length === 0}
+          disabled={maySubmit}
         >
           {translation.SUBMIT}
         </Button>

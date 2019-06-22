@@ -6,7 +6,7 @@ import { isValidMail, isValidAPIKey, isValidPassword } from './Validation';
 import { ValidityIconProps } from './Validation';
 
 export const ValidityIconRight = ({ type, value }: ValidityIconProps) => {
-  if (value.length === 0) {
+  if (!value || value.length === 0) {
     return null;
   }
 
