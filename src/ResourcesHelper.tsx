@@ -1,7 +1,12 @@
 import React from 'react';
 import useStoreon from 'storeon/react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Hero, Container, Title, Column } from 'rbx';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
+import { Hero, Container, Title, Column, Section } from 'rbx';
 import { AccountRoutes, AuthenticationRoute, ProfileRoute } from './Routes';
 import { Navigation } from './components/Navigation';
 
@@ -35,22 +40,41 @@ export const ResourcesHelper = () => {
           />
         </Column>
         <Column size={9}>
-          <Switch>
-            <Route path="/" component={() => <h1>Home</h1>} exact={true} />
-            <Route path="/auth" component={AuthenticationRoute} exact={true} />
-            <Route path="/profile/:id" component={ProfileRoute} exact={true} />
-
-            {currentRoutes.map(({ path, component }) => (
+          <Section>
+            <Switch>
+              <Route path="/" component={() => <h1>Home</h1>} exact={true} />
               <Route
-                path={path}
-                component={component}
+                path="/auth"
+                component={AuthenticationRoute}
                 exact={true}
-                key={path}
               />
-            ))}
+              <Route
+                path="/profile/:id"
+                component={ProfileRoute}
+                exact={true}
+              />
 
-            <Route component={() => <h1>404 - not found</h1>} />
-          </Switch>
+              {currentRoutes.map(({ path, component }) => (
+                <Route
+                  path={path}
+                  component={component}
+                  exact={true}
+                  key={path}
+                />
+              ))}
+
+              {['/login', '/register', '/signin', '/signup'].map(path => (
+                <Route
+                  path={path}
+                  exact={true}
+                  render={() => (
+                    <Redirect to={isAuthenticated ? '/profile' : '/auth'} />
+                  )}
+                />
+              ))}
+              <Route render={() => <Redirect to="/" />} />
+            </Switch>
+          </Section>
         </Column>
       </Column.Group>
     </Router>
