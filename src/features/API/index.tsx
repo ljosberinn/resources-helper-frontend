@@ -1,6 +1,6 @@
 import React, { useState, FormEvent, useCallback, ChangeEvent } from 'react';
 import useStoreon from 'storeon/react';
-import { Button, Help } from 'rbx';
+import { Button, Help, Column, Card, Content } from 'rbx';
 import { withRouter } from 'react-router';
 import { History } from 'history';
 import { SessionExpirationNotice } from '../../components/SessionExpirationNotice';
@@ -10,6 +10,7 @@ import { Dispatch } from 'storeon';
 import { createTokenizedHeader, isTokenExpired } from '../../utils';
 import { calcRemainingAnimationDuration } from '../../utils';
 import { QueryCheckbox } from './QueryCheckbox';
+import { QueryTime } from './QueryTime';
 
 const translation = {
   SUBMIT_ERROR: 'Oops, something went wrong...',
@@ -207,29 +208,38 @@ const API = ({ history }: APIProps) => {
         setSessionExpiration={setSessionExpiration}
       />
       <form onSubmit={handleSubmit}>
-        {queryEndpoints.map(({ id, title, info }) => {
-          const historyEntry = apiQueryHistory.find(entry => entry.id === id);
+        <Column.Group multiline>
+          {queryEndpoints.map(({ id, title, info }) => {
+            const historyEntry = apiQueryHistory.find(entry => entry.id === id);
 
-          const wasRecentlyQueried =
-            hasHistory && historyEntry ? historyEntry.active : false;
+            const wasRecentlyQueried =
+              hasHistory && historyEntry ? historyEntry.active : false;
 
-          return (
-            <QueryCheckbox
-              wasRecentlyQueried={wasRecentlyQueried}
-              isLoading={queriesInProgress.includes(id)}
-              title={title}
-              info={info}
-              id={id}
-              lastQuery={
-                historyEntry && historyEntry.lastQuery > 0
-                  ? historyEntry.lastQuery
-                  : 0
-              }
-              handleChange={handleChange}
-              key={id}
-            />
-          );
-        })}
+            return (
+              <Column size="one-third" key={id}>
+                <Card>
+                  <Card.Header>
+                    <Card.Header.Title>{title}</Card.Header.Title>
+                    <Card.Header.Icon>
+                      <QueryTime historyEntry={historyEntry} />
+                    </Card.Header.Icon>
+                  </Card.Header>
+                  <Card.Content>
+                    <Content>
+                      <QueryCheckbox
+                        wasRecentlyQueried={wasRecentlyQueried}
+                        isLoading={queriesInProgress.includes(id)}
+                        title={info}
+                        id={id}
+                        handleChange={handleChange}
+                      />
+                    </Content>
+                  </Card.Content>
+                </Card>
+              </Column>
+            );
+          })}
+        </Column.Group>
         <Button
           color="primary"
           state={isLoading ? 'loading' : undefined}
