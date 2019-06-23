@@ -8,7 +8,7 @@ import {
 } from '../../components/shared';
 import { History } from 'history';
 import { DebounceInput } from 'react-debounce-input';
-import { Label, Field, Input, Control, Button, Help } from 'rbx';
+import { Label, Field, Input, Control, Button, Help, Title } from 'rbx';
 import { AuthenticationJSON } from '../../types';
 import { Dispatch } from 'storeon';
 
@@ -171,10 +171,11 @@ export const Login = ({ history, dispatch }: LoginProps) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <Title>Login</Title>
       <Field kind="group">
         <Field.Body>
           <Field.Label>
-            <Label>Mail</Label>
+            <Label htmlFor="login-1">Mail</Label>
           </Field.Label>
           <Field>
             <Control iconLeft iconRight>
@@ -186,6 +187,9 @@ export const Login = ({ history, dispatch }: LoginProps) => {
                 debounceTimeout={300}
                 autoFocus
                 state="focused"
+                required
+                id="login-1"
+                name="mail"
               />
               <ValidityIconLeft type="mail" value={mail} />
               <ValidityIconRight type="mail" value={mail} />
@@ -197,7 +201,7 @@ export const Login = ({ history, dispatch }: LoginProps) => {
       <Field kind="group">
         <Field.Body>
           <Field.Label>
-            <Label>Password</Label>
+            <Label htmlFor="login-2">Password</Label>
           </Field.Label>
           <Field>
             <Control iconLeft iconRight>
@@ -208,6 +212,9 @@ export const Login = ({ history, dispatch }: LoginProps) => {
                 pattern={passwordPattern}
                 size="small"
                 debounceTimeout={300}
+                required
+                id="login-2"
+                name="password"
               />
               <ValidityIconLeft type="password" value={password} />
               <ValidityIconRight type="password" value={password} />
