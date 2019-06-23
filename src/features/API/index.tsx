@@ -143,71 +143,53 @@ const API = ({ history }: APIProps) => {
 
       const headers = createTokenizedHeader(token);
 
-      const { json, sessionExpired } = await setAPIQueryHistory(
-        upcomingQueries,
-        headers,
-      );
+      setQueriesInProgress(upcomingQueries);
 
-      if (sessionExpired) {
-        setSessionExpiration(true);
-        return;
-      }
+      upcomingQueries.forEach(async query => {
+        const start = Date.now();
 
-      dispatch('user/refreshToken', {
-        token: json.token,
+        try {
+          const response = await fetch(BACKEND_ROUTES.api(apiKey, query), {
+            method: 'GET',
+            headers,
+          });
+
+          const json = await response.json();
+
+          switch (query) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 51:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+              console.log(json);
+              break;
+          }
+        } catch (e) {
+          setSubmitError(translation.SUBMIT_ERROR);
+        }
+
+        const timeout = calcRemainingAnimationDuration(start);
+
+        setTimeout(() => {
+          upcomingQueries.splice(upcomingQueries.indexOf(query), 1);
+          setQueriesInProgress([...upcomingQueries]);
+        }, timeout);
       });
 
-      try {
-        setQueriesInProgress(upcomingQueries);
+      // todo: refactor to regular store update without fetch
+      const newAPIHistory = await getAPIQueryHistory(token);
+      dispatch('user/setAPIQueryHistory', {
+        apiQueryHistory: newAPIHistory,
+      });
 
-        upcomingQueries.forEach(async query => {
-          const start = Date.now();
-
-          try {
-            const response = await fetch(BACKEND_ROUTES.api(apiKey, query), {
-              method: 'GET',
-              headers,
-            });
-
-            const json = await response.json();
-
-            switch (query) {
-              case 1:
-              case 2:
-              case 3:
-              case 4:
-              case 5:
-              case 51:
-              case 6:
-              case 7:
-              case 8:
-              case 9:
-              case 10:
-                console.log(json);
-                break;
-            }
-          } catch (e) {
-            console.log(e);
-            return;
-          }
-
-          const timeout = calcRemainingAnimationDuration(start);
-
-          setTimeout(() => {
-            upcomingQueries.splice(upcomingQueries.indexOf(query), 1);
-            setQueriesInProgress([...upcomingQueries]);
-          }, timeout);
-        });
-
-        const newAPIHistory = await getAPIQueryHistory(token);
-        dispatch('user/setAPIQueryHistory', {
-          apiQueryHistory: newAPIHistory,
-        });
-
-        setUpcomingQueries(reduceToUpcomingQueries(newAPIHistory));
-      } catch (e) {
-        setSubmitError(translation.SUBMIT_ERROR);
-      }
+      setUpcomingQueries(reduceToUpcomingQueries(newAPIHistory));
     },
     [dispatch, token, upcomingQueries, apiKey],
   );
