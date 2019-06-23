@@ -1,7 +1,6 @@
 import { History } from 'history';
 import { Dispatch } from 'storeon';
 import jwt from 'jsonwebtoken';
-import { APIQueryHistoryEntry } from './Store';
 
 type Header = 'PUT' | 'PATCH';
 
@@ -86,27 +85,10 @@ const calcRemainingAnimationDuration = (
   }
 };
 
-const getAPIQueryHistory = async (
-  token: string,
-  headers: null | Headers = null,
-) => {
-  try {
-    const response = await fetch('/account/apiQueryHistory', {
-      method: 'GET',
-      headers: headers ? headers : createTokenizedHeader(token),
-    });
-
-    return (await response.json()) as APIQueryHistoryEntry[];
-  } catch (e) {
-    return [];
-  }
-};
-
 export {
   isTokenExpired,
   createTokenizedHeader,
   tokenizedFakePatch,
   delayedLogout,
   calcRemainingAnimationDuration,
-  getAPIQueryHistory,
 };

@@ -8,11 +8,7 @@ import { APIKey } from './APIKey';
 import { APIEndpointID, IUserState, APIQueryHistoryEntry } from '../../Store';
 import { Dispatch } from 'storeon';
 import { createTokenizedHeader, isTokenExpired } from '../../utils';
-import { GenericTokenResponse } from '../../types';
-import {
-  calcRemainingAnimationDuration,
-  getAPIQueryHistory,
-} from '../../utils';
+import { calcRemainingAnimationDuration } from '../../utils';
 import { QueryCheckbox } from './QueryCheckbox';
 
 const translation = {
@@ -25,7 +21,7 @@ const translation = {
   MINE_SUMMARY: 'Mine summary',
   TRADE_LOG: 'Trade Log',
   PLAYER_INFO: 'Player Information',
-  MONETARY_ITEMS: 'Monetrary Items',
+  MONETARY_ITEMS: 'Monetary Items',
   COMBAT_LOG: 'Combat Log',
   MISSIONS: 'Missions',
   INFO_FACTORIES: 'Lorem ipsum dolor sit amet',
@@ -85,35 +81,6 @@ const reduceToUpcomingQueries = (apiQueryHistory: APIQueryHistoryEntry[]) =>
 
     return carry;
   }, []);
-
-const setAPIQueryHistory = async (
-  upcomingQueries: APIEndpointID[],
-  headers: Headers,
-) => {
-  const data = {
-    sessionExpired: false,
-    json: {
-      token: '',
-    },
-  };
-
-  const response = await fetch(BACKEND_ROUTES.apiQueryHistory, {
-    method: 'POST',
-    headers,
-    body: upcomingQueries.reduce((carry, query) => {
-      carry.append('queries[]', query.toString());
-      return carry;
-    }, new FormData()),
-  });
-
-  if (response.status === 401) {
-    data.sessionExpired = true;
-    return data;
-  }
-
-  data.json.token = ((await response.json()) as GenericTokenResponse).token;
-  return data;
-};
 
 interface APIProps {
   history: History;
@@ -183,15 +150,24 @@ const API = ({ history }: APIProps) => {
         }, timeout);
       });
 
-      // todo: refactor to regular store update without fetch
-      const newAPIHistory = await getAPIQueryHistory(token);
-      dispatch('user/setAPIQueryHistory', {
-        apiQueryHistory: newAPIHistory,
+      const newAPIQueryHistory = apiQueryHistory.map(entry => {
+        if (upcomingQueries.includes(entry.id)) {
+          entry.active = true;
+          entry.lastQuery = Date.now();
+        } else {
+          entry.active = false;
+        }
+
+        return entry;
       });
 
-      setUpcomingQueries(reduceToUpcomingQueries(newAPIHistory));
+      setUpcomingQueries(reduceToUpcomingQueries(newAPIQueryHistory));
+
+      dispatch('user/setAPIQueryHistory', {
+        apiQueryHistory: newAPIQueryHistory,
+      });
     },
-    [dispatch, token, upcomingQueries, apiKey],
+    [dispatch, token, upcomingQueries, apiKey, apiQueryHistory],
   );
 
   const handleChange = useCallback(
@@ -213,6 +189,7 @@ const API = ({ history }: APIProps) => {
   const isLoading = queriesInProgress.length > 0;
   const maySubmit =
     isLoading ||
+    submitError.length > 0 ||
     upcomingQueries.length === 0 ||
     !apiKey ||
     (apiKey && apiKey.length === 0);
