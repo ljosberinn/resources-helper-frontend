@@ -17,18 +17,18 @@
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "storeon": "^0.8.5",
+    "storeon": "^0.8.6",
     "typescript": "3.5.2"
   },
   "devDependencies": {
     "@types/jest": "24.0.15",
-    "@types/node": "12.0.8",
-    "@types/react": "16.8.20",
+    "@types/node": "12.0.10",
+    "@types/react": "16.8.22",
     "@types/react-dom": "16.8.4",
     "@types/react-loadable": "^5.5.1",
     "@types/react-router-dom": "^4.3.4",
     "bulma": "^0.7.5",
-    "bulma-checkradio": "^1.1.0",
+    "bulma-checkradio": "^1.1.1",
     "bulmaswatch": "^0.7.2",
     "node-sass": "^4.12.0"
   },
