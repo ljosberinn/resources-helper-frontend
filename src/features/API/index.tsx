@@ -143,12 +143,12 @@ const API = ({ history }: APIProps) => {
           setSubmitError(translation.SUBMIT_ERROR);
         }
 
-        const timeout = calcRemainingAnimationDuration(start);
+        const animationTimeout = calcRemainingAnimationDuration(start);
 
         setTimeout(() => {
           upcomingQueries.splice(upcomingQueries.indexOf(query), 1);
           setQueriesInProgress([...upcomingQueries]);
-        }, timeout);
+        }, animationTimeout);
       });
 
       const newAPIQueryHistory = apiQueryHistory.map(entry => {
@@ -215,6 +215,15 @@ const API = ({ history }: APIProps) => {
             const wasRecentlyQueried =
               hasHistory && historyEntry ? historyEntry.active : false;
 
+            const queryCheckboxProps = {
+              info,
+              id,
+              isLoading: queriesInProgress.includes(id),
+              onChange: handleChange,
+              defaultChecked:
+                wasRecentlyQueried || upcomingQueries.includes(id),
+            };
+
             return (
               <Column size="one-third" key={id}>
                 <Card>
@@ -226,13 +235,7 @@ const API = ({ history }: APIProps) => {
                   </Card.Header>
                   <Card.Content>
                     <Content>
-                      <QueryCheckbox
-                        wasRecentlyQueried={wasRecentlyQueried}
-                        isLoading={queriesInProgress.includes(id)}
-                        title={info}
-                        id={id}
-                        handleChange={handleChange}
-                      />
+                      <QueryCheckbox {...queryCheckboxProps} />
                     </Content>
                   </Card.Content>
                 </Card>

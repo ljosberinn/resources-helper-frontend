@@ -4,30 +4,24 @@ import { StyledCheckbox } from '../../components/shared';
 import { APIEndpointID } from '../../Store';
 
 interface QueryCheckboxProps {
-  wasRecentlyQueried: boolean;
   isLoading: boolean;
-  title: string;
+  info: string;
   id: APIEndpointID;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  defaultChecked: boolean;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => any;
 }
 
 export const QueryCheckbox = memo(
-  ({
-    wasRecentlyQueried,
-    isLoading,
-    handleChange,
-    title,
-    id,
-  }: QueryCheckboxProps) => (
+  ({ isLoading, info, id, defaultChecked, onChange }: QueryCheckboxProps) => (
     <Field>
       <Control>
         <StyledCheckbox
-          defaultChecked={wasRecentlyQueried}
+          defaultChecked={defaultChecked}
           id={`endpoint-${id}`}
-          label={title}
-          onChange={handleChange}
+          label={info}
           value={id}
           disabled={isLoading}
+          onChange={onChange}
         />
         {isLoading && <Button state="loading" className="is-icon" />}
       </Control>

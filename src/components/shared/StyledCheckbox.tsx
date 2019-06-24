@@ -6,8 +6,8 @@ interface StyledCheckboxProps {
   checked?: boolean;
   defaultChecked?: boolean;
   id: string;
-  value?: string | number;
   label: string;
+  value?: string | number;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => any;
 }
 
@@ -29,13 +29,12 @@ export const StyledCheckbox = ({
     type: 'checkbox',
     className: 'is-checkradio',
     id: id,
+    disabled,
+    onChange,
+    checked,
+    defaultChecked,
+    value,
   };
-
-  disabled && (inputProps.disabled = disabled);
-  onChange && (inputProps.onChange = onChange);
-  checked && (inputProps.checked = checked);
-  defaultChecked && (inputProps.defaultChecked = defaultChecked);
-  value && (inputProps.value = value);
 
   return (
     <>
