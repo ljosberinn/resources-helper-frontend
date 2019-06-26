@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import React from 'react';
 import { Field, Button, Control, Content, Column, Card } from 'rbx';
 import { StyledCheckbox } from '../../components/shared';
 import { APIEndpointID, APIQueryHistoryEntry } from '../../Store';
@@ -26,10 +26,7 @@ export const QueryCard = ({
   historyEntry,
 }: QueryCardProps) => (
   <Column size="one-third">
-    <Card
-      className="query-header"
-      onClick={(e: MouseEvent<HTMLDivElement>) => handleClick(id)}
-    >
+    <Card className="query-header" onClick={() => handleClick(id)}>
       <QueryHeader title={title} historyEntry={historyEntry} />
       <Card.Content>
         <Content>
