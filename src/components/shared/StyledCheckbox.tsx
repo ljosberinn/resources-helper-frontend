@@ -11,11 +11,6 @@ interface StyledCheckboxProps {
   onChange?: (e: ChangeEvent<HTMLInputElement>) => any;
 }
 
-interface CheckboxProps extends Partial<StyledCheckboxProps> {
-  type: 'checkbox';
-  className: 'is-checkradio';
-}
-
 export const StyledCheckbox = ({
   disabled,
   checked,
@@ -24,22 +19,18 @@ export const StyledCheckbox = ({
   label,
   value,
   onChange,
-}: StyledCheckboxProps) => {
-  const inputProps: CheckboxProps = {
-    type: 'checkbox',
-    className: 'is-checkradio',
-    id: id,
-    disabled,
-    onChange,
-    checked,
-    defaultChecked,
-    value,
-  };
-
-  return (
-    <>
-      <input {...inputProps} />
-      <Label htmlFor={id}>{label}</Label>
-    </>
-  );
-};
+}: StyledCheckboxProps) => (
+  <>
+    <input
+      id={id}
+      disabled={disabled}
+      onChange={onChange}
+      checked={checked}
+      defaultChecked={defaultChecked}
+      value={value}
+      type="checkbox"
+      className="is-checkradio"
+    />
+    <Label htmlFor={id}>{label}</Label>
+  </>
+);

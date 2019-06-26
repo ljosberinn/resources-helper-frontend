@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 import { Field, Button, Control, Content, Column, Card } from 'rbx';
 import { StyledCheckbox } from '../../components/shared';
 import { APIEndpointID, APIQueryHistoryEntry } from '../../Store';
