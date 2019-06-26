@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, MouseEvent } from 'react';
 import { Label } from 'rbx';
 
 interface StyledCheckboxProps {
@@ -24,13 +24,19 @@ export const StyledCheckbox = ({
     <input
       id={id}
       disabled={disabled}
-      onChange={onChange}
+      onChange={onChange ? onChange : NoOp}
       checked={checked}
       defaultChecked={defaultChecked}
       value={value}
       type="checkbox"
       className="is-checkradio"
     />
-    <Label htmlFor={id}>{label}</Label>
+    <Label htmlFor={id} onClick={onChange ? undefined : preventDefaultOnLabel}>
+      {label}
+    </Label>
   </>
 );
+
+const NoOp = () => {};
+const preventDefaultOnLabel = (e: MouseEvent<HTMLLabelElement>) =>
+  e.preventDefault();

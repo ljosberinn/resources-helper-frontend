@@ -167,11 +167,9 @@ const API = ({ history }: APIProps) => {
     [upcomingQueries],
   );
 
-  const isGenerallyLoading = upcomingQueries.some(entry => entry.loading);
+  const isLoading = upcomingQueries.some(entry => entry.loading);
   const isDisabled =
-    submitError.length > 0 ||
-    isGenerallyLoading ||
-    upcomingQueries.length === 0;
+    submitError.length > 0 || isLoading || upcomingQueries.length === 0;
 
   return (
     <>
@@ -190,8 +188,8 @@ const API = ({ history }: APIProps) => {
           {queryEndpoints.map(({ id, title, info }) => (
             <QueryCard
               historyEntry={apiQueryHistory.find(entry => entry.id === id)}
-              disabled={isGenerallyLoading}
-              isSpecificallyLoading={isQueryLoading(upcomingQueries, id)}
+              disabled={isLoading}
+              isLoading={isQueryLoading(upcomingQueries, id)}
               handleClick={handleClick}
               checked={
                 upcomingQueries.find(entry => entry.id === id) ? true : false
@@ -205,7 +203,7 @@ const API = ({ history }: APIProps) => {
         </Column.Group>
         <Button
           color="primary"
-          state={isGenerallyLoading ? 'loading' : undefined}
+          state={isLoading ? 'loading' : undefined}
           disabled={isDisabled}
         >
           {translation.SUBMIT}

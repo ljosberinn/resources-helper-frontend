@@ -4,23 +4,9 @@ import { StyledCheckbox } from '../../components/shared';
 import { APIEndpointID, APIQueryHistoryEntry } from '../../Store';
 import { QueryHeader } from './QueryHeader';
 
-const preventDoubleEventDispatchTagNames = ['LABEL', 'INPUT'];
-
-const handleDivClick = (e: MouseEvent<HTMLDivElement>) => {
-  const { target, currentTarget } = e;
-
-  if (
-    preventDoubleEventDispatchTagNames.includes((target as HTMLElement).tagName)
-  ) {
-    return;
-  }
-
-  (currentTarget.querySelector('input') as HTMLInputElement).click();
-};
-
 interface QueryCardProps {
   historyEntry: APIQueryHistoryEntry | undefined;
-  isSpecificallyLoading: boolean;
+  isLoading: boolean;
   disabled: boolean;
   title: string;
   info: string;
@@ -30,7 +16,7 @@ interface QueryCardProps {
 }
 
 export const QueryCard = ({
-  isSpecificallyLoading,
+  isLoading,
   disabled,
   info,
   id,
@@ -39,8 +25,11 @@ export const QueryCard = ({
   title,
   historyEntry,
 }: QueryCardProps) => (
-  <Column size="one-third" onClick={handleDivClick} className="query-header">
-    <Card>
+  <Column size="one-third">
+    <Card
+      className="query-header"
+      onClick={(e: MouseEvent<HTMLDivElement>) => handleClick(id)}
+    >
       <QueryHeader title={title} historyEntry={historyEntry} />
       <Card.Content>
         <Content>
@@ -51,12 +40,9 @@ export const QueryCard = ({
                 id={`endpoint-${id}`}
                 label={info}
                 value={id}
-                disabled={isSpecificallyLoading || disabled}
-                onChange={() => handleClick(id)}
+                disabled={isLoading || disabled}
               />
-              {isSpecificallyLoading && (
-                <Button state="loading" className="is-icon" />
-              )}
+              {isLoading && <Button state="loading" className="is-icon" />}
             </Control>
           </Field>
         </Content>
