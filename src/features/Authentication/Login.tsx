@@ -57,10 +57,13 @@ interface LoginProps {
   dispatch: Dispatch;
 }
 
-export const Login = ({ history, dispatch }: LoginProps) => {
+export const Login = (props: LoginProps) => {
+  const { history } = props;
+  const storeDispatch = props.dispatch;
+
   const [
     { mail, password, isSubmitting, mailError, passwordError, submitError },
-    setState,
+    dispatch,
   ] = useReducer(reducer, initialState);
 
   const handleSetMail = useCallback(
@@ -68,16 +71,16 @@ export const Login = ({ history, dispatch }: LoginProps) => {
       const { value } = e.target;
 
       if (value !== mail) {
-        setState({ type: 'SET_MAIL', value });
+        dispatch({ type: 'SET_MAIL', value });
       }
 
       if (!isValidMail(value)) {
-        setState({ type: 'SET_MAIL_ERROR', value: 'Invalid mail.' });
+        dispatch({ type: 'SET_MAIL_ERROR', value: 'Invalid mail.' });
         return;
       }
 
       if (mailError.length > 0) {
-        setState({ type: 'SET_MAIL_ERROR', value: '' });
+        dispatch({ type: 'SET_MAIL_ERROR', value: '' });
       }
     },
     [mail, mailError],
@@ -87,13 +90,13 @@ export const Login = ({ history, dispatch }: LoginProps) => {
     (e: ChangeEvent<HTMLInputElement>) => {
       const { value } = e.target;
 
-      setState({
+      dispatch({
         type: 'SET_PASSWORD',
         value,
       });
 
       if (!isValidPassword(value)) {
-        setState({
+        dispatch({
           type: 'SET_PASSWORD_ERROR',
           value: 'Password not matching required pattern.',
         });
@@ -101,7 +104,7 @@ export const Login = ({ history, dispatch }: LoginProps) => {
       }
 
       if (passwordError.length > 0) {
-        setState({ type: 'SET_PASSWORD_ERROR', value: '' });
+        dispatch({ type: 'SET_PASSWORD_ERROR', value: '' });
       }
     },
     [passwordError],
@@ -111,7 +114,7 @@ export const Login = ({ history, dispatch }: LoginProps) => {
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      setState({
+      dispatch({
         type: 'SET_IS_SUBMITTING',
         value: true,
       });
@@ -125,12 +128,12 @@ export const Login = ({ history, dispatch }: LoginProps) => {
         const json = (await response.json()) as AuthenticationJSON;
 
         if (json.error) {
-          setState({
+          dispatch({
             type: 'SET_SUBMIT_ERROR',
             value: 'Mail or password invalid.',
           });
 
-          setState({
+          dispatch({
             type: 'SET_IS_SUBMITTING',
             value: false,
           });
@@ -140,28 +143,28 @@ export const Login = ({ history, dispatch }: LoginProps) => {
 
         const { token } = json;
 
-        dispatch('user/login', {
+        storeDispatch('user/login', {
           token,
           isAuthenticated: true,
         });
 
         history.push('/profile');
       } catch (e) {
-        setState({
+        dispatch({
           type: 'SET_SUBMIT_ERROR',
           value: 'Oops, something went wrong.',
         });
 
-        setState({
+        dispatch({
           type: 'SET_IS_SUBMITTING',
           value: false,
         });
       }
     },
-    [dispatch, history, mail, password],
+    [storeDispatch, history, mail, password],
   );
 
-  const maySubmit =
+  const mayNotSubmit =
     !isValidMail(mail) ||
     mailError.length > 0 ||
     passwordError.length > 0 ||
@@ -185,6 +188,7 @@ export const Login = ({ history, dispatch }: LoginProps) => {
                 onChange={handleSetMail}
                 size="small"
                 debounceTimeout={300}
+                disabled={isSubmitting}
                 autoFocus
                 state="focused"
                 required
@@ -212,6 +216,7 @@ export const Login = ({ history, dispatch }: LoginProps) => {
                 pattern={passwordPattern}
                 size="small"
                 debounceTimeout={300}
+                disabled={isSubmitting}
                 required
                 id="login-2"
                 name="password"
@@ -228,7 +233,7 @@ export const Login = ({ history, dispatch }: LoginProps) => {
       <Button
         type="submit"
         color="primary"
-        disabled={maySubmit}
+        disabled={mayNotSubmit}
         state={isSubmitting ? 'loading' : undefined}
       >
         Login
