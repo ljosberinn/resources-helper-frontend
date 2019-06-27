@@ -18,7 +18,7 @@ import {
   ValidityIconLeft,
   ValidityIconRight,
 } from '../../components/shared';
-import { AuthenticationJSON } from '../../types';
+import { register } from '../../API';
 import { History } from 'history';
 import { Dispatch } from 'storeon';
 
@@ -79,8 +79,6 @@ const translation = {
   REPEAT_PASSWORD: 'Repeat password',
   PASSWORD: 'Password',
 };
-
-const BACKEND_ROUTE = '/auth/register';
 
 interface RegistrationProps {
   history: History;
@@ -167,17 +165,8 @@ export const Registration = (props: RegistrationProps) => {
         value: true,
       });
 
-      const body = new FormData();
-      body.append('mail', mail);
-      body.append('password', password.trim());
-
       try {
-        const response = await fetch(BACKEND_ROUTE, {
-          method: 'POST',
-          body,
-        });
-
-        const json = (await response.json()) as AuthenticationJSON;
+        const json = await register({ mail, password });
 
         if (json.error) {
           switch (json.error) {

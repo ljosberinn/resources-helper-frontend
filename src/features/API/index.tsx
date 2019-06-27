@@ -7,10 +7,11 @@ import { SessionExpirationNotice } from '../../components/SessionExpirationNotic
 import { APIKey } from './APIKey';
 import { APIEndpointID, IUserState, APIQueryHistoryEntry } from '../../Store';
 import { Dispatch } from 'storeon';
-import { createTokenizedHeader, isTokenExpired } from '../../utils';
+import { isTokenExpired } from '../../utils';
 import { calcRemainingAnimationDuration } from '../../utils';
 import { QueryCard } from './QueryCard';
 import { isValidAPIKey } from '../../components/shared';
+import { createAPIClient } from '../../API';
 
 const translation = {
   SUBMIT_ERROR: 'Oops, something went wrong...',
@@ -70,11 +71,6 @@ const queryEndpoints: { id: APIEndpointID; title: string; info: string }[] = [
   { id: 10, title: translation.MISSIONS, info: translation.INFO_MISSIONS },
 ];
 
-const BACKEND_ROUTES = {
-  apiQueryHistory: '/account/apiQueryHistory',
-  api: (apiKey: string, query: APIEndpointID | 0) => `/api/${apiKey}/${query}`,
-};
-
 interface UpcomingQuery {
   id: APIEndpointID;
   loading: boolean;
@@ -113,7 +109,7 @@ const API = ({ history }: APIProps) => {
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      const headers = createTokenizedHeader(token);
+      const axiosClient = createAPIClient(apiKey, token);
 
       upcomingQueries.forEach(async ({ id }) => {
         const start = Date.now();
@@ -121,12 +117,9 @@ const API = ({ history }: APIProps) => {
         setUpcomingQueries(reduceLoadingTo(upcomingQueries, id, true));
 
         try {
-          const response = await fetch(BACKEND_ROUTES.api(apiKey, 0), {
-            method: 'GET',
-            headers,
-          });
+          const response = await axiosClient.get(`/${0}`);
 
-          const json = await response.json();
+          const json = response.data;
 
           switch (id) {
             case 1:

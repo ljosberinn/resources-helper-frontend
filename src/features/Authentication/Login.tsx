@@ -9,8 +9,8 @@ import {
 import { History } from 'history';
 import { DebounceInput } from 'react-debounce-input';
 import { Label, Field, Input, Control, Button, Help, Title } from 'rbx';
-import { AuthenticationJSON } from '../../types';
 import { Dispatch } from 'storeon';
+import { authenticate } from '../../API';
 
 const initialState = {
   mail: '',
@@ -49,8 +49,6 @@ const reducer = (state: InitialStateType, action: ReducerAction) => {
 
   return state;
 };
-
-const BACKEND_ROUTE = '/auth/login';
 
 interface LoginProps {
   history: History;
@@ -120,12 +118,7 @@ export const Login = (props: LoginProps) => {
       });
 
       try {
-        const body = new FormData();
-        body.append('mail', mail);
-        body.append('password', password);
-
-        const response = await fetch(BACKEND_ROUTE, { method: 'POST', body });
-        const json = (await response.json()) as AuthenticationJSON;
+        const json = await authenticate({ mail, password });
 
         if (json.error) {
           dispatch({
