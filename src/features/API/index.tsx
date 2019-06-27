@@ -10,6 +10,7 @@ import { Dispatch } from 'storeon';
 import { createTokenizedHeader, isTokenExpired } from '../../utils';
 import { calcRemainingAnimationDuration } from '../../utils';
 import { QueryCard } from './QueryCard';
+import { isValidAPIKey } from '../../components/shared';
 
 const translation = {
   SUBMIT_ERROR: 'Oops, something went wrong...',
@@ -36,6 +37,7 @@ const translation = {
   INFO_COMBAT_LOG: 'Lorem ipsum dolor sit amet',
   INFO_MISSIONS: 'Lorem ipsum dolor sit amet',
   SUBMIT: 'Query',
+  API_COST_INFO: 'Every query consumes 1 API Credit.',
 };
 
 const queryEndpoints: { id: APIEndpointID; title: string; info: string }[] = [
@@ -169,7 +171,10 @@ const API = ({ history }: APIProps) => {
 
   const isLoading = upcomingQueries.some(entry => entry.loading);
   const isDisabled =
-    submitError.length > 0 || isLoading || upcomingQueries.length === 0;
+    submitError.length > 0 ||
+    isLoading ||
+    upcomingQueries.length === 0 ||
+    !isValidAPIKey(apiKey);
 
   return (
     <>
@@ -208,6 +213,7 @@ const API = ({ history }: APIProps) => {
         >
           {translation.SUBMIT}
         </Button>
+        <Help color="info">{translation.API_COST_INFO}</Help>
         {submitError && <Help color="warning">{submitError}</Help>}
       </form>
     </>
