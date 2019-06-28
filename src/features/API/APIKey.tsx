@@ -31,7 +31,7 @@ const BACKEND_ROUTE = '/account/settings/rememberAPIKey';
 
 export const APIKey = memo(
   ({ user, dispatch, token, history, setSessionExpiration }: APIKeyProps) => {
-    const [apiKey, setAPIKey] = useState(user.apiKey);
+    const [apiKey, setAPIKey] = useState(user.settings.apiKey);
     const [submitError, setSubmitError] = useState('');
 
     const handleAPIKeyInputChange = useCallback(
