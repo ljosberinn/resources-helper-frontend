@@ -167,7 +167,7 @@ const API = ({ history }: APIProps) => {
         }, animationTimeout);
       });
     },
-    [apiKey, token, upcomingQueries],
+    [apiKey, token, upcomingQueries, apiQueryHistory, dispatch],
   );
 
   const handleClick = useCallback(
