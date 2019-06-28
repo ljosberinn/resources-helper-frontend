@@ -17,7 +17,7 @@ export const SessionExpirationNotice = ({
 
   return (
     <Notification color="danger" className="progress-bar-5">
-      Your session has expired.Please login again.
+      Your session has expired. Please login again.
       <br />
       You will be redirected in 5 seconds.
     </Notification>

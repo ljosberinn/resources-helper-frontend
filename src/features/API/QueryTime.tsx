@@ -11,7 +11,7 @@ interface QueryTimeProps {
 }
 
 export const QueryTime = ({ historyEntry }: QueryTimeProps) => {
-  if (!historyEntry) {
+  if (!historyEntry || historyEntry.lastQuery === 0) {
     return null;
   }
 
