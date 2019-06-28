@@ -118,6 +118,7 @@ export const APIKey = memo(
               label="Remember API-Key"
               onChange={handleAPIKeyMemory}
               defaultChecked={user.settings.remembersAPIKey === 1}
+              disabled={!isValidAPIKey(apiKey)}
             />
             <Help color="info">
               This will save the API-Key server side so you won't have to

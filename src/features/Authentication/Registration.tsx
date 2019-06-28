@@ -18,7 +18,7 @@ import {
   ValidityIconLeft,
   ValidityIconRight,
 } from '../../components/shared';
-import { AuthenticationJSON } from '../../types';
+import { register } from '../../API';
 import { History } from 'history';
 import { Dispatch } from 'storeon';
 
@@ -80,14 +80,14 @@ const translation = {
   PASSWORD: 'Password',
 };
 
-const BACKEND_ROUTE = '/auth/register';
-
 interface RegistrationProps {
   history: History;
   dispatch: Dispatch;
 }
 
-export const Registration = ({ history, dispatch }: RegistrationProps) => {
+export const Registration = (props: RegistrationProps) => {
+  const { history } = props;
+  const storeDispatch = props.dispatch;
   const [
     {
       isSubmitting,
@@ -98,7 +98,7 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
       passwordError,
       submitError,
     },
-    setState,
+    dispatch,
   ] = useReducer(reducer, initialState);
 
   const handleSetMail = useCallback(
@@ -106,16 +106,16 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
       const { value } = e.target;
 
       if (value !== mail) {
-        setState({ type: 'SET_MAIL', value });
+        dispatch({ type: 'SET_MAIL', value });
       }
 
       if (!isValidMail(value)) {
-        setState({ type: 'SET_MAIL_ERROR', value: 'Invalid mail.' });
+        dispatch({ type: 'SET_MAIL_ERROR', value: 'Invalid mail.' });
         return;
       }
 
       if (mailError.length > 0) {
-        setState({ type: 'SET_MAIL_ERROR', value: '' });
+        dispatch({ type: 'SET_MAIL_ERROR', value: '' });
       }
     },
     [mail, mailError],
@@ -125,13 +125,13 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
     (e: ChangeEvent<HTMLInputElement>, isRepeatedPassword = false) => {
       const { value } = e.target;
 
-      setState({
+      dispatch({
         type: isRepeatedPassword ? 'SET_REPEATED_PASSWORD' : 'SET_PASSWORD',
         value,
       });
 
       if (!isValidPassword(value)) {
-        setState({
+        dispatch({
           type: 'SET_PASSWORD_ERROR',
           value: translation.PASSWORD_INVALID,
         });
@@ -142,7 +142,7 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
         (isRepeatedPassword && value !== password) ||
         (!isRepeatedPassword && value !== repeatedPassword)
       ) {
-        setState({
+        dispatch({
           type: 'SET_PASSWORD_ERROR',
           value: translation.UNMATCHING_PASSWORDS,
         });
@@ -150,7 +150,7 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
       }
 
       if (passwordError.length > 0) {
-        setState({ type: 'SET_PASSWORD_ERROR', value: '' });
+        dispatch({ type: 'SET_PASSWORD_ERROR', value: '' });
       }
     },
     [password, repeatedPassword, passwordError],
@@ -160,45 +160,36 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      setState({
+      dispatch({
         type: 'SET_IS_SUBMITTING',
         value: true,
       });
 
-      const body = new FormData();
-      body.append('mail', mail);
-      body.append('password', password.trim());
-
       try {
-        const response = await fetch(BACKEND_ROUTE, {
-          method: 'POST',
-          body,
-        });
-
-        const json = (await response.json()) as AuthenticationJSON;
+        const json = await register({ mail, password });
 
         if (json.error) {
           switch (json.error) {
             case 'MAIL_EXISTS':
-              setState({
+              dispatch({
                 type: 'SET_SUBMIT_ERROR',
                 value: translation.MAIL_EXISTS,
               });
               break;
             case 'PASSWORD_INSECURE':
-              setState({
+              dispatch({
                 type: 'SET_SUBMIT_ERROR',
                 value: translation.PASSWORD_INSECURE,
               });
               break;
             default:
-              setState({
+              dispatch({
                 type: 'SET_SUBMIT_ERROR',
                 value: json.error,
               });
           }
 
-          setState({
+          dispatch({
             type: 'SET_IS_SUBMITTING',
             value: false,
           });
@@ -208,25 +199,25 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
 
         const { token } = json;
 
-        dispatch('user/login', {
+        storeDispatch('user/login', {
           token,
           isAuthenticated: true,
         });
 
         history.push('/profile');
       } catch (e) {
-        setState({
+        dispatch({
           type: 'SET_SUBMIT_ERROR',
           value: translation.INIT_ERROR,
         });
 
-        setState({
+        dispatch({
           type: 'SET_IS_SUBMITTING',
           value: false,
         });
       }
     },
-    [mail, password, dispatch, history],
+    [mail, password, storeDispatch, history],
   );
 
   const mayNotSubmit =
@@ -270,6 +261,7 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
                 debounceTimeout={300}
                 required
                 id="register-1"
+                disabled={isSubmitting}
               />
               <ValidityIconLeft type="mail" value={mail} />
               <ValidityIconRight type="mail" value={mail} />
@@ -295,6 +287,7 @@ export const Registration = ({ history, dispatch }: RegistrationProps) => {
                 debounceTimeout={300}
                 required
                 id="register-2"
+                disabled={isSubmitting}
               />
               <ValidityIconLeft type="password" value={password} />
               <ValidityIconRight type="password" value={password} />

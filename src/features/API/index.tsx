@@ -1,16 +1,17 @@
-import React, { useState, FormEvent, useCallback, ChangeEvent } from 'react';
+import React, { useState, FormEvent, useCallback } from 'react';
 import useStoreon from 'storeon/react';
-import { Button, Help, Column, Card, Content } from 'rbx';
+import { Button, Help, Column } from 'rbx';
 import { withRouter } from 'react-router';
 import { History } from 'history';
 import { SessionExpirationNotice } from '../../components/SessionExpirationNotice';
 import { APIKey } from './APIKey';
 import { APIEndpointID, IUserState, APIQueryHistoryEntry } from '../../Store';
 import { Dispatch } from 'storeon';
-import { createTokenizedHeader, isTokenExpired } from '../../utils';
+import { isTokenExpired } from '../../utils';
 import { calcRemainingAnimationDuration } from '../../utils';
-import { QueryCheckbox } from './QueryCheckbox';
-import { QueryTime } from './QueryTime';
+import { QueryCard } from './QueryCard';
+import { isValidAPIKey } from '../../components/shared';
+import { createAPIClient } from '../../API';
 
 const translation = {
   SUBMIT_ERROR: 'Oops, something went wrong...',
@@ -37,6 +38,7 @@ const translation = {
   INFO_COMBAT_LOG: 'Lorem ipsum dolor sit amet',
   INFO_MISSIONS: 'Lorem ipsum dolor sit amet',
   SUBMIT: 'Query',
+  API_COST_INFO: 'Every query consumes 1 API Credit.',
 };
 
 const queryEndpoints: { id: APIEndpointID; title: string; info: string }[] = [
@@ -69,15 +71,15 @@ const queryEndpoints: { id: APIEndpointID; title: string; info: string }[] = [
   { id: 10, title: translation.MISSIONS, info: translation.INFO_MISSIONS },
 ];
 
-const BACKEND_ROUTES = {
-  apiQueryHistory: '/account/apiQueryHistory',
-  api: (apiKey: string, query: APIEndpointID) => `/api/${apiKey}/${query}`,
-};
+interface UpcomingQuery {
+  id: APIEndpointID;
+  loading: boolean;
+}
 
-const reduceToUpcomingQueries = (apiQueryHistory: APIQueryHistoryEntry[]) =>
-  apiQueryHistory.reduce((carry: APIEndpointID[], { active, id }) => {
+const reducePreviousQueries = (apiQueryHistory: APIQueryHistoryEntry[]) =>
+  apiQueryHistory.reduce((carry: UpcomingQuery[], { id, active }) => {
     if (active) {
-      carry.push(id);
+      carry.push({ id, loading: false });
     }
 
     return carry;
@@ -98,33 +100,28 @@ const API = ({ history }: APIProps) => {
     isTokenExpired(token),
   );
   const [submitError, setSubmitError] = useState('');
-  const [upcomingQueries, setUpcomingQueries] = useState<APIEndpointID[]>(
-    reduceToUpcomingQueries(apiQueryHistory),
-  );
-  const [queriesInProgress, setQueriesInProgress] = useState<APIEndpointID[]>(
-    [],
+
+  const [upcomingQueries, setUpcomingQueries] = useState<UpcomingQuery[]>(
+    reducePreviousQueries(apiQueryHistory),
   );
 
   const handleSubmit = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      const headers = createTokenizedHeader(token);
+      const axiosClient = createAPIClient(apiKey, token);
 
-      setQueriesInProgress(upcomingQueries);
-
-      upcomingQueries.forEach(async query => {
+      upcomingQueries.forEach(async ({ id }) => {
         const start = Date.now();
 
+        setUpcomingQueries(reduceLoadingTo(upcomingQueries, id, true));
+
         try {
-          const response = await fetch(BACKEND_ROUTES.api(apiKey, query), {
-            method: 'GET',
-            headers,
-          });
+          const response = await axiosClient.get(`/${0}`);
 
-          const json = await response.json();
+          const json = response.data;
 
-          switch (query) {
+          switch (id) {
             case 1:
             case 2:
             case 3:
@@ -146,54 +143,31 @@ const API = ({ history }: APIProps) => {
         const animationTimeout = calcRemainingAnimationDuration(start);
 
         setTimeout(() => {
-          upcomingQueries.splice(upcomingQueries.indexOf(query), 1);
-          setQueriesInProgress([...upcomingQueries]);
+          setUpcomingQueries(reduceLoadingTo(upcomingQueries, id, false));
         }, animationTimeout);
       });
-
-      const newAPIQueryHistory = apiQueryHistory.map(entry => {
-        if (upcomingQueries.includes(entry.id)) {
-          entry.active = true;
-          entry.lastQuery = Date.now();
-        } else {
-          entry.active = false;
-        }
-
-        return entry;
-      });
-
-      setUpcomingQueries(reduceToUpcomingQueries(newAPIQueryHistory));
-
-      dispatch('user/setAPIQueryHistory', {
-        apiQueryHistory: newAPIQueryHistory,
-      });
     },
-    [dispatch, token, upcomingQueries, apiKey, apiQueryHistory],
+    [apiKey, token, upcomingQueries],
   );
 
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      const value = parseInt(e.target.value) as APIEndpointID;
-
-      if (upcomingQueries.includes(value)) {
-        upcomingQueries.splice(upcomingQueries.indexOf(value), 1);
-        setUpcomingQueries([...upcomingQueries]);
+  const handleClick = useCallback(
+    (id: APIEndpointID) => {
+      if (!upcomingQueries.find(entry => entry.id === id)) {
+        setUpcomingQueries([...upcomingQueries, { id, loading: false }]);
         return;
       }
 
-      setUpcomingQueries([...upcomingQueries, value]);
+      setUpcomingQueries(upcomingQueries.filter(entry => entry.id !== id));
     },
     [upcomingQueries],
   );
 
-  const hasHistory = apiQueryHistory.length > 0;
-  const isLoading = queriesInProgress.length > 0;
-  const maySubmit =
-    isLoading ||
+  const isLoading = upcomingQueries.some(entry => entry.loading);
+  const isDisabled =
     submitError.length > 0 ||
+    isLoading ||
     upcomingQueries.length === 0 ||
-    !apiKey ||
-    (apiKey && apiKey.length === 0);
+    !isValidAPIKey(apiKey);
 
   return (
     <>
@@ -209,51 +183,60 @@ const API = ({ history }: APIProps) => {
       />
       <form onSubmit={handleSubmit}>
         <Column.Group multiline>
-          {queryEndpoints.map(({ id, title, info }) => {
-            const historyEntry = apiQueryHistory.find(entry => entry.id === id);
-
-            const wasRecentlyQueried =
-              hasHistory && historyEntry ? historyEntry.active : false;
-
-            const queryCheckboxProps = {
-              info,
-              id,
-              isLoading: queriesInProgress.includes(id),
-              onChange: handleChange,
-              defaultChecked:
-                wasRecentlyQueried || upcomingQueries.includes(id),
-            };
-
-            return (
-              <Column size="one-third" key={id}>
-                <Card>
-                  <Card.Header>
-                    <Card.Header.Title>{title}</Card.Header.Title>
-                    <Card.Header.Icon>
-                      <QueryTime historyEntry={historyEntry} />
-                    </Card.Header.Icon>
-                  </Card.Header>
-                  <Card.Content>
-                    <Content>
-                      <QueryCheckbox {...queryCheckboxProps} />
-                    </Content>
-                  </Card.Content>
-                </Card>
-              </Column>
-            );
-          })}
+          {queryEndpoints.map(({ id, title, info }) => (
+            <QueryCard
+              historyEntry={apiQueryHistory.find(entry => entry.id === id)}
+              disabled={isLoading}
+              isLoading={isQueryLoading(upcomingQueries, id)}
+              handleClick={handleClick}
+              checked={
+                upcomingQueries.find(entry => entry.id === id) ? true : false
+              }
+              title={title}
+              info={info}
+              key={id}
+              id={id}
+            />
+          ))}
         </Column.Group>
         <Button
           color="primary"
           state={isLoading ? 'loading' : undefined}
-          disabled={maySubmit}
+          disabled={isDisabled}
         >
           {translation.SUBMIT}
         </Button>
+        <Help color="info">{translation.API_COST_INFO}</Help>
         {submitError && <Help color="warning">{submitError}</Help>}
       </form>
     </>
   );
+};
+
+const reduceLoadingTo = (
+  upcomingQueries: UpcomingQuery[],
+  id: APIEndpointID,
+  value: boolean,
+) =>
+  upcomingQueries.map(entry => {
+    if (entry.id === id) {
+      entry.loading = value;
+    }
+
+    return entry;
+  });
+
+const isQueryLoading = (
+  upcomingQueries: UpcomingQuery[],
+  id: APIEndpointID,
+) => {
+  const query = upcomingQueries.find(entry => entry.id === id);
+
+  if (upcomingQueries.length === 0 || !query) {
+    return false;
+  }
+
+  return query.loading;
 };
 
 export default withRouter(API);

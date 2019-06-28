@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useStoreon from 'storeon/react';
-import { createTokenizedHeader } from '../../utils';
+import { getProfileResponse } from '../../API';
 import { withRouter } from 'react-router-dom';
 import { History } from 'history';
 import { SessionExpirationNotice } from '../../components/SessionExpirationNotice';
@@ -36,46 +36,38 @@ const Profile = ({ history, match: { params } }: ProfileProps) => {
 
   useEffect(() => {
     (async () => {
-      const options = {
-        method: 'GET',
-        headers: isOwnProfile ? createTokenizedHeader(token) : undefined,
-      };
-
       try {
-        const response = await fetch(BACKEND_ROUTE, options);
+        const response = await getProfileResponse(BACKEND_ROUTE, token);
 
-        if (!response.ok) {
-          switch (response.status) {
-            case 400:
-              setInitializationError(translation.UNKNOWN_PROFILE);
-              break;
-            case 401:
-              setSessionExpiration(true);
-              break;
-            case 403:
-              setInitializationError(translation.PROFILE_PRIVATE);
-              break;
-          }
-          return;
+        switch (response.status) {
+          case 400:
+            setInitializationError(translation.UNKNOWN_PROFILE);
+            return;
+          case 401:
+            setSessionExpiration(true);
+            return;
+          case 403:
+            setInitializationError(translation.PROFILE_PRIVATE);
+            return;
+          case 200:
+            initializationError.length > 0 && setInitializationError('');
+
+            const json = response.data;
+
+            if (isAuthenticated && json.token) {
+              dispatch('user/refreshToken', { token: json.token });
+            }
+
+            const { apiQueryHistory, settings, apiKey } = json;
+
+            dispatch('user/acknowledgeProfileData', {
+              apiQueryHistory,
+              settings,
+              apiKey,
+            });
+
+            console.log(json);
         }
-
-        initializationError.length > 0 && setInitializationError('');
-
-        const json = await response.json();
-
-        if (isAuthenticated && json.token) {
-          dispatch('user/refreshToken', { token: json.token });
-        }
-
-        const { apiQueryHistory, settings, apiKey } = json;
-
-        dispatch('user/acknowledgeProfileData', {
-          apiQueryHistory,
-          settings,
-          apiKey,
-        });
-
-        console.log(json);
       } catch (e) {
         setInitializationError(translation.INIT_ERROR);
         setTimeout(() => {
