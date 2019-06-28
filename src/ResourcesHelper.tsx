@@ -39,7 +39,7 @@ export const ResourcesHelper = () => {
             dispatch={dispatch}
           />
         </Column>
-        <Column size={9}>
+        <Column size={10}>
           <Section>
             <Switch>
               <Route path="/" component={() => <h1>Home</h1>} exact={true} />

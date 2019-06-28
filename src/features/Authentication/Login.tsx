@@ -24,12 +24,16 @@ const initialState = {
 type InitialStateType = typeof initialState;
 
 type ReducerAction =
-  | { type: 'SET_MAIL_ERROR'; value: string }
-  | { type: 'SET_PASSWORD_ERROR'; value: string }
-  | { type: 'SET_PASSWORD'; value: string }
-  | { type: 'SET_MAIL'; value: string }
-  | { type: 'SET_IS_SUBMITTING'; value: boolean }
-  | { type: 'SET_SUBMIT_ERROR'; value: string };
+  | {
+      type:
+        | 'SET_MAIL_ERROR'
+        | 'SET_PASSWORD_ERROR'
+        | 'SET_PASSWORD'
+        | 'SET_MAIL'
+        | 'SET_SUBMIT_ERROR';
+      value: string;
+    }
+  | { type: 'SET_IS_SUBMITTING'; value: boolean };
 
 const reducer = (state: InitialStateType, action: ReducerAction) => {
   switch (action.type) {
