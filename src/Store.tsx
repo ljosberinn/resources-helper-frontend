@@ -4,7 +4,6 @@ import persistState from '@storeon/localstorage';
 export interface IUserState {
   isAuthenticated: boolean;
   token: string;
-  apiKey: string;
   apiQueryHistory: APIQueryHistoryEntry[];
   settings: IUserSettings;
 }
@@ -17,9 +16,18 @@ export interface APIQueryHistoryEntry {
 }
 
 export interface IUserSettings {
-  language: string;
+  locale: ILocales;
   remembersAPIKey: 0 | 1;
+  apiKey: string;
 }
+
+export type ILocales =
+  | 'de_DE'
+  | 'en_US'
+  | 'ru_RU'
+  | 'jp_JP'
+  | 'cn_CN'
+  | 'es_ES';
 
 export interface IPreloadedState {
   user: IUserState;
@@ -28,11 +36,11 @@ export interface IPreloadedState {
 const userState: IUserState = {
   isAuthenticated: false,
   token: '',
-  apiKey: '',
   apiQueryHistory: [],
   settings: {
-    language: 'de',
+    locale: 'de_DE',
     remembersAPIKey: 0,
+    apiKey: '',
   },
 };
 
