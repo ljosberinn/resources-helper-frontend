@@ -94,7 +94,8 @@ const API = ({ history }: APIProps) => {
     user,
     dispatch,
   }: { user: IUserState; dispatch: Dispatch } = useStoreon('user');
-  const { token, apiQueryHistory, apiKey } = user;
+  const { token, apiQueryHistory } = user;
+  const apiKey = user.settings.apiKey;
 
   const [sessionExpired, setSessionExpiration] = useState(
     isTokenExpired(token),
@@ -109,17 +110,24 @@ const API = ({ history }: APIProps) => {
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
+      // set all previously active queries to inactive
+      dispatch('user/setAPIQueryHistory', {
+        apiQueryHistory: apiQueryHistory.map(entry => {
+          entry.active = false;
+
+          return entry;
+        }),
+      });
+
       const axiosClient = createAPIClient(apiKey, token);
 
       upcomingQueries.forEach(async ({ id }) => {
         const start = Date.now();
 
-        setUpcomingQueries(reduceLoadingTo(upcomingQueries, id, true));
+        setUpcomingQueries(reduceLoadingToState(upcomingQueries, id, true));
 
         try {
-          const response = await axiosClient.get(`/${0}`);
-
-          const json = response.data;
+          const { data } = await axiosClient.get(`/${0}`);
 
           switch (id) {
             case 1:
@@ -133,7 +141,7 @@ const API = ({ history }: APIProps) => {
             case 8:
             case 9:
             case 10:
-              console.log(json);
+              console.log(data);
               break;
           }
         } catch (e) {
@@ -143,7 +151,19 @@ const API = ({ history }: APIProps) => {
         const animationTimeout = calcRemainingAnimationDuration(start);
 
         setTimeout(() => {
-          setUpcomingQueries(reduceLoadingTo(upcomingQueries, id, false));
+          setUpcomingQueries(reduceLoadingToState(upcomingQueries, id, false));
+
+          // update the current query to active
+          dispatch('user/setAPIQueryHistory', {
+            apiQueryHistory: apiQueryHistory.map(entry => {
+              if (entry.id === id) {
+                entry.lastQuery = start;
+                entry.active = true;
+              }
+
+              return entry;
+            }),
+          });
         }, animationTimeout);
       });
     },
@@ -213,7 +233,7 @@ const API = ({ history }: APIProps) => {
   );
 };
 
-const reduceLoadingTo = (
+const reduceLoadingToState = (
   upcomingQueries: UpcomingQuery[],
   id: APIEndpointID,
   value: boolean,
