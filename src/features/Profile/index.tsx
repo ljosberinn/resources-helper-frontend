@@ -52,13 +52,13 @@ const Profile = ({ history, match: { params } }: ProfileProps) => {
           case 200:
             initializationError.length > 0 && setInitializationError('');
 
-            const json = response.data;
+            const { data } = response;
 
-            if (isAuthenticated && json.token) {
-              dispatch('user/refreshToken', { token: json.token });
+            if (isAuthenticated && data.token) {
+              dispatch('user/refreshToken', { token: data.token });
             }
 
-            const { apiQueryHistory, settings, apiKey } = json;
+            const { apiQueryHistory, settings, apiKey } = data;
 
             dispatch('user/acknowledgeProfileData', {
               apiQueryHistory,
@@ -66,7 +66,7 @@ const Profile = ({ history, match: { params } }: ProfileProps) => {
               apiKey,
             });
 
-            console.log(json);
+            console.log(data);
         }
       } catch (e) {
         setInitializationError(translation.INIT_ERROR);

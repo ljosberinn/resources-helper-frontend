@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 interface AxiosDefaultParams {
   timeout: number;
@@ -22,15 +22,20 @@ interface AuthenticationPayload {
   password: string;
 }
 
-const authenticate = async (data: AuthenticationPayload) =>
-  (await axios.post('/auth/login', data, defaultParams))
-    .data as AuthenticationResponse;
+const authenticate = async (
+  data: AuthenticationPayload,
+): Promise<AuthenticationResponse> =>
+  (await axios.post('/auth/login', data, defaultParams)).data;
 
-const register = async (data: AuthenticationPayload) =>
-  (await axios.post('/auth/register', data, defaultParams))
-    .data as AuthenticationResponse;
+const register = async (
+  data: AuthenticationPayload,
+): Promise<AuthenticationResponse> =>
+  (await axios.post('/auth/register', data, defaultParams)).data;
 
-const getProfileResponse = async (url: string, token: string | undefined) => {
+const getProfileResponse = async (
+  url: string,
+  token: string | undefined,
+): Promise<AxiosResponse> => {
   token && refreshAuthorization(token);
 
   return await axios.get(url, defaultParams);
