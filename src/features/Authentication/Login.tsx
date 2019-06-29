@@ -122,12 +122,22 @@ export const Login = (props: LoginProps) => {
       });
 
       try {
-        const json = await authenticate({ mail, password });
+        const response = await authenticate({ mail, password });
 
-        if (json.error) {
+        if (response.status !== 200) {
           dispatch({
             type: 'SET_SUBMIT_ERROR',
-            value: 'Mail or password invalid.',
+            value: 'Invalid data provided. Please try again.',
+          });
+          return;
+        }
+
+        const { data } = response;
+
+        if (data.error) {
+          dispatch({
+            type: 'SET_SUBMIT_ERROR',
+            value: data.error,
           });
 
           dispatch({
@@ -138,7 +148,7 @@ export const Login = (props: LoginProps) => {
           return;
         }
 
-        const { token } = json;
+        const { token } = data;
 
         storeDispatch('user/login', {
           token,

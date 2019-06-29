@@ -166,10 +166,20 @@ export const Registration = (props: RegistrationProps) => {
       });
 
       try {
-        const json = await register({ mail, password });
+        const response = await register({ mail, password });
 
-        if (json.error) {
-          switch (json.error) {
+        if (response.status !== 200) {
+          dispatch({
+            type: 'SET_SUBMIT_ERROR',
+            value: 'Invalid data provided. Please try again.',
+          });
+          return;
+        }
+
+        const { data } = response;
+
+        if (data.error) {
+          switch (data.error) {
             case 'MAIL_EXISTS':
               dispatch({
                 type: 'SET_SUBMIT_ERROR',
@@ -185,7 +195,7 @@ export const Registration = (props: RegistrationProps) => {
             default:
               dispatch({
                 type: 'SET_SUBMIT_ERROR',
-                value: json.error,
+                value: data.error,
               });
           }
 
@@ -197,7 +207,7 @@ export const Registration = (props: RegistrationProps) => {
           return;
         }
 
-        const { token } = json;
+        const { token } = data;
 
         storeDispatch('user/login', {
           token,

@@ -24,13 +24,13 @@ interface AuthenticationPayload {
 
 const authenticate = async (
   data: AuthenticationPayload,
-): Promise<AuthenticationResponse> =>
-  (await axios.post('/auth/login', data, defaultParams)).data;
+): Promise<AxiosResponse<AuthenticationResponse>> =>
+  await axios.post('/auth/login', data, defaultParams);
 
 const register = async (
   data: AuthenticationPayload,
-): Promise<AuthenticationResponse> =>
-  (await axios.post('/auth/register', data, defaultParams)).data;
+): Promise<AxiosResponse<AuthenticationResponse>> =>
+  await axios.post('/auth/register', data, defaultParams);
 
 const getProfileResponse = async (
   url: string,
