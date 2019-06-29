@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Login /> renders without crashing 1`] = `
+<div>
+  <form>
+    <h1
+      class="title"
+    >
+      Login
+    </h1>
+    <div
+      class="field is-grouped"
+    >
+      <div
+        class="field-body"
+      >
+        <div
+          class="field-label"
+        >
+          <label
+            class="label"
+            for="login-1"
+          >
+            Mail
+          </label>
+        </div>
+        <div
+          class="field"
+        >
+          <div
+            class="control has-icons-left has-icons-right"
+          >
+            <input
+              class="input is-small is-focused"
+              id="login-1"
+              name="mail"
+              required=""
+              type="email"
+              value=""
+            />
+            <span
+              class="icon is-left"
+            >
+              <svg
+                aria-hidden="true"
+                class="svg-inline--fa fa-envelope fa-w-16 "
+                data-icon="envelope"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                viewBox="0 0 512 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="field is-grouped"
+    >
+      <div
+        class="field-body"
+      >
+        <div
+          class="field-label"
+        >
+          <label
+            class="label"
+            for="login-2"
+          >
+            Password
+          </label>
+        </div>
+        <div
+          class="field"
+        >
+          <div
+            class="control has-icons-left has-icons-right"
+          >
+            <input
+              class="input is-small"
+              id="login-2"
+              name="password"
+              pattern="^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\\\\d)(?=.*[!#$%&? \\"]).*$"
+              required=""
+              type="password"
+              value=""
+            />
+            <span
+              class="icon is-left"
+            >
+              <svg
+                aria-hidden="true"
+                class="svg-inline--fa fa-lock-open fa-w-18 "
+                data-icon="lock-open"
+                data-prefix="fas"
+                focusable="false"
+                role="img"
+                viewBox="0 0 576 512"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M423.5 0C339.5.3 272 69.5 272 153.5V224H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48h-48v-71.1c0-39.6 31.7-72.5 71.3-72.9 40-.4 72.7 32.1 72.7 72v80c0 13.3 10.7 24 24 24h32c13.3 0 24-10.7 24-24v-80C576 68 507.5-.3 423.5 0z"
+                  fill="currentColor"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      class="button is-primary"
+      disabled=""
+      type="submit"
+    >
+      Login
+    </button>
+  </form>
+</div>
+`;
+
+exports[`<Login /> should display errors on invalid mail and valid password pattern 1`] = `"<input class=\\"input is-small is-focused\\" type=\\"email\\" required=\\"\\" id=\\"login-1\\" name=\\"mail\\" value=\\"abc\\"><input class=\\"input is-small\\" type=\\"password\\" pattern=\\"^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\\\\d)(?=.*[!#$%&amp;? &quot;]).*$\\" required=\\"\\" id=\\"login-2\\" name=\\"password\\" value=\\"somePassword1!\\">"`;
+
+exports[`<Login /> should display errors on valid mail and invalid password pattern 1`] = `"<input class=\\"input is-small is-focused\\" type=\\"email\\" required=\\"\\" id=\\"login-1\\" name=\\"mail\\" value=\\"a@b.de\\"><input class=\\"input is-small\\" type=\\"password\\" pattern=\\"^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\\\\d)(?=.*[!#$%&amp;? &quot;]).*$\\" required=\\"\\" id=\\"login-2\\" name=\\"password\\" value=\\"somelongerpassword\\">"`;
+
+exports[`<Login /> should display errors on valid mail and short password 1`] = `"<input class=\\"input is-small is-focused\\" type=\\"email\\" required=\\"\\" id=\\"login-1\\" name=\\"mail\\" value=\\"a@b.de\\"><input class=\\"input is-small\\" type=\\"password\\" pattern=\\"^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\\\\d)(?=.*[!#$%&amp;? &quot;]).*$\\" required=\\"\\" id=\\"login-2\\" name=\\"password\\" value=\\"abc\\">"`;
+
+exports[`<Login /> should submit with valid mail and password 1`] = `"<input class=\\"input is-small is-focused\\" type=\\"email\\" required=\\"\\" id=\\"login-1\\" name=\\"mail\\" value=\\"a@b.de\\" disabled=\\"\\"><input class=\\"input is-small\\" type=\\"password\\" pattern=\\"^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\\\\d)(?=.*[!#$%&amp;? &quot;]).*$\\" required=\\"\\" id=\\"login-2\\" name=\\"password\\" value=\\"somePassword1!\\" disabled=\\"\\">"`;
