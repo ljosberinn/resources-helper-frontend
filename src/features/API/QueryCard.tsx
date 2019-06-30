@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, Button, Control, Content, Column, Card } from 'rbx';
+import { Field, Control, Content, Column, Card, Loader } from 'rbx';
 import { StyledCheckbox } from '../../components/shared';
 import { APIEndpointID, APIQueryHistoryEntry } from '../../Store';
 import { QueryHeader } from './QueryHeader';
@@ -39,7 +39,7 @@ export const QueryCard = ({
                 value={id}
                 disabled={isLoading || disabled}
               />
-              {isLoading && <Button state="loading" className="is-icon" />}
+              {isLoading && <Loader />}
             </Control>
           </Field>
         </Content>

@@ -23,11 +23,8 @@ a[href='/auth'] {
   }
 }
 
-button.is-icon {
-  border: none;
-  background-color: transparent;
-  height: 1em;
-  vertical-align: 0.125em;
+.loader {
+  display: inline-block;
 }
 
 .centered-image {
