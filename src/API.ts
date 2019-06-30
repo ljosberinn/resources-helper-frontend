@@ -41,6 +41,19 @@ const getProfileResponse = async (
   return await axios.get(url, defaultParams);
 };
 
+const postProcessQuery5 = async (
+  iteration: number,
+  cycles: number,
+  token: string,
+): Promise<AxiosResponse> => {
+  token && refreshAuthorization(token);
+
+  return await axios.post(
+    `/api/processQuery5/${iteration}/${cycles}`,
+    defaultParams,
+  );
+};
+
 const createAPIClient = (apiKey: string, token: string) => {
   refreshAuthorization(token);
 
@@ -50,4 +63,10 @@ const createAPIClient = (apiKey: string, token: string) => {
   });
 };
 
-export { authenticate, register, getProfileResponse, createAPIClient };
+export {
+  authenticate,
+  register,
+  getProfileResponse,
+  createAPIClient,
+  postProcessQuery5,
+};

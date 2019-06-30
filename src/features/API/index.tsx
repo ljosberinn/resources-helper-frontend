@@ -11,7 +11,8 @@ import { isTokenExpired } from '../../utils';
 import { calcRemainingAnimationDuration } from '../../utils';
 import { QueryCard } from './QueryCard';
 import { isValidAPIKey } from '../../components/shared';
-import { createAPIClient } from '../../API';
+import { createAPIClient, postProcessQuery5 } from '../../API';
+import { AxiosResponse } from 'axios';
 
 const translation = {
   SUBMIT_ERROR: 'Oops, something went wrong...',
@@ -85,6 +86,10 @@ const reducePreviousQueries = (apiQueryHistory: APIQueryHistoryEntry[]) =>
     return carry;
   }, []);
 
+interface GenericAPIResponse {
+  response: any[] | number;
+}
+
 interface APIProps {
   history: History;
 }
@@ -102,7 +107,7 @@ const API = ({ history }: APIProps) => {
   );
   const [submitError, setSubmitError] = useState('');
 
-  const [upcomingQueries, setUpcomingQueries] = useState<UpcomingQuery[]>(
+  const [upcomingQueries, setUpcomingQueries] = useState(
     reducePreviousQueries(apiQueryHistory),
   );
 
@@ -127,7 +132,16 @@ const API = ({ history }: APIProps) => {
         setUpcomingQueries(reduceLoadingToState(upcomingQueries, id, true));
 
         try {
-          const { data } = await axiosClient.get(`/${0}`);
+          const response: AxiosResponse<
+            GenericAPIResponse
+          > = await axiosClient.get(`/${id}`);
+
+          if (response.status !== 200) {
+            setSubmitError(response.statusText);
+            return;
+          }
+
+          const { data } = response;
 
           switch (id) {
             case 1:
@@ -135,6 +149,13 @@ const API = ({ history }: APIProps) => {
             case 3:
             case 4:
             case 5:
+              let i = 1;
+              const cycles = data.response as number;
+              while (i <= cycles) {
+                await postProcessQuery5(i, cycles, token);
+                ++i;
+              }
+              break;
             case 51:
             case 6:
             case 7:
