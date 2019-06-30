@@ -1,31 +1,8 @@
-@import 'bulma-mods.scss';
+@import 'mods/bulma-mods.scss';
 @import 'octocat.scss';
-@import 'notification-progress.scss';
+@import 'mods/notification-progress.scss';
 
-a[href='/auth'] {
-  padding: 0.5em 0;
-  text-transform: uppercase;
-
-  &:hover {
-    background-color: unset;
-  }
-
-  button {
-    background-color: transparent;
-    border-color: $primary;
-    color: $primary;
-  }
-
-  &.active button,
-  :hover {
-    background-color: $primary;
-    color: white;
-  }
-}
-
-.loader {
-  display: inline-block;
-}
+@import 'features/index';
 
 .centered-image {
   left: 37.5%;
@@ -34,6 +11,8 @@ a[href='/auth'] {
   position: relative;
 }
 
-.query-header {
-  cursor: pointer;
+.notification.sticky {
+  position: sticky;
+  bottom: 5%;
+  left: 5%;
 }
