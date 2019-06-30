@@ -13,6 +13,7 @@ import { QueryCard } from './QueryCard';
 import { isValidAPIKey } from '../../components/shared';
 import { createAPIClient, postProcessQuery5 } from '../../API';
 import { AxiosResponse } from 'axios';
+import { Query5PostProcessing } from './Query5PostProcessing';
 
 const translation = {
   SUBMIT_ERROR: 'Oops, something went wrong...',
@@ -110,6 +111,10 @@ const API = ({ history }: APIProps) => {
   const [upcomingQueries, setUpcomingQueries] = useState(
     reducePreviousQueries(apiQueryHistory),
   );
+  const [query5PostProcess, setQuery5PostProcess] = useState({
+    progress: 0,
+    cycles: 0,
+  });
 
   const handleSubmit = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
@@ -152,6 +157,7 @@ const API = ({ history }: APIProps) => {
               let i = 1;
               const cycles = data.response as number;
               while (i <= cycles) {
+                setQuery5PostProcess({ progress: i, cycles });
                 await postProcessQuery5(i, cycles, token);
                 ++i;
               }
@@ -250,6 +256,7 @@ const API = ({ history }: APIProps) => {
         <Help color="info">{translation.API_COST_INFO}</Help>
         {submitError && <Help color="warning">{submitError}</Help>}
       </form>
+      <Query5PostProcessing {...query5PostProcess} />
     </>
   );
 };
