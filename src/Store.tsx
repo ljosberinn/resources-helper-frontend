@@ -1,5 +1,6 @@
 import createStore from 'storeon';
 import persistState from '@storeon/localstorage';
+import { refreshAuthorization } from './API';
 
 export interface IUserState {
   isAuthenticated: boolean;
@@ -69,13 +70,16 @@ export const user = (store: createStore.Store<IPreloadedState>) => {
       } as Partial<IPreloadedState>),
   );
 
-  store.on('user/logout', ({ user }) => ({
-    user: {
-      ...user,
-      token: '',
-      isAuthenticated: false,
-    },
-  }));
+  store.on('user/logout', ({ user }) => {
+    refreshAuthorization();
+    return {
+      user: {
+        ...user,
+        token: '',
+        isAuthenticated: false,
+      },
+    };
+  });
 
   store.on(
     'user/setAPIQueryHistory',

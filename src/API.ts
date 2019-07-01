@@ -9,8 +9,14 @@ const defaultParams: AxiosDefaultParams = {
   timeout: 1000 * 10,
 };
 
-const refreshAuthorization = (token: string) =>
-  (axios.defaults.headers.common['Authorization'] = 'Bearer ' + token);
+const refreshAuthorization = (token?: string) => {
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+    return;
+  }
+
+  delete axios.defaults.headers.common['Authorization'];
+};
 
 interface AuthenticationResponse {
   token?: string;
@@ -36,7 +42,7 @@ const getProfileResponse = async (
   url: string,
   token: string | undefined,
 ): Promise<AxiosResponse> => {
-  token && refreshAuthorization(token);
+  refreshAuthorization(token);
 
   return await axios.get(url, defaultParams);
 };
@@ -46,7 +52,7 @@ const postProcessQuery5 = async (
   cycles: number,
   token: string,
 ): Promise<AxiosResponse> => {
-  token && refreshAuthorization(token);
+  refreshAuthorization(token);
 
   return await axios.post(
     `/api/processQuery5/${iteration}/${cycles}`,
@@ -69,4 +75,5 @@ export {
   getProfileResponse,
   createAPIClient,
   postProcessQuery5,
+  refreshAuthorization,
 };
