@@ -6,13 +6,14 @@ import { Login } from './Login';
 import { Registration } from './Registration';
 import { History } from 'history';
 import useStoreon from 'storeon/react';
+import { IPreloadedState, Events } from '../../Store';
 
 interface AccountProps {
   history: History;
 }
 
 const Authentication = ({ history }: AccountProps) => {
-  const { dispatch } = useStoreon();
+  const { dispatch } = useStoreon<IPreloadedState, Events>();
 
   const props = { dispatch, history };
 

@@ -6,6 +6,7 @@ import { History } from 'history';
 import { SessionExpirationNotice } from '../../components/SessionExpirationNotice';
 import { match } from 'react-router-dom';
 import { isTokenExpired } from '../../utils';
+import { IPreloadedState, Events } from '../../Store';
 interface ProfileParams {
   id?: string | undefined;
 }
@@ -17,7 +18,7 @@ interface ProfileProps {
 
 const Profile = ({ history, match: { params } }: ProfileProps) => {
   const { id } = params;
-  const { user, dispatch } = useStoreon('user');
+  const { user, dispatch } = useStoreon<IPreloadedState, Events>('user');
   const { token, isAuthenticated } = user;
 
   const [sessionExpired, setSessionExpiration] = useState(
@@ -58,12 +59,11 @@ const Profile = ({ history, match: { params } }: ProfileProps) => {
               dispatch('user/refreshToken', { token: data.token });
             }
 
-            const { apiQueryHistory, settings, apiKey } = data;
+            const { apiQueryHistory, settings } = data;
 
             dispatch('user/acknowledgeProfileData', {
               apiQueryHistory,
               settings,
-              apiKey,
             });
 
             console.log(data);

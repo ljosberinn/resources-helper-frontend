@@ -5,7 +5,13 @@ import { withRouter } from 'react-router';
 import { History } from 'history';
 import { SessionExpirationNotice } from '../../components/SessionExpirationNotice';
 import { APIKey } from './APIKey';
-import { APIEndpointID, IUserState, APIQueryHistoryEntry } from '../../Store';
+import {
+  APIEndpointID,
+  IUserState,
+  APIQueryHistoryEntry,
+  IPreloadedState,
+  Events,
+} from '../../Store';
 import { Dispatch } from 'storeon';
 import { isTokenExpired } from '../../utils';
 import { calcRemainingAnimationDuration } from '../../utils';
@@ -99,7 +105,10 @@ const API = ({ history }: APIProps) => {
   const {
     user,
     dispatch,
-  }: { user: IUserState; dispatch: Dispatch } = useStoreon('user');
+  }: { user: IUserState; dispatch: Dispatch } = useStoreon<
+    IPreloadedState,
+    Events
+  >('user');
   const { token, apiQueryHistory } = user;
   const apiKey = user.settings.apiKey;
 

@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+import { IUserSettings, APIQueryHistoryEntry } from './Store';
 
 interface AxiosDefaultParams {
   timeout: number;
@@ -32,10 +33,16 @@ const register = async (
 ): Promise<AxiosResponse<AuthenticationResponse>> =>
   await axios.post('/auth/register', data, defaultParams);
 
+interface ProfileResponse {
+  token: string;
+  settings: IUserSettings;
+  apiQueryHistory: APIQueryHistoryEntry[];
+}
+
 const getProfileResponse = async (
   url: string,
   token: string | undefined,
-): Promise<AxiosResponse> => {
+): Promise<AxiosResponse<ProfileResponse>> => {
   token && refreshAuthorization(token);
 
   return await axios.get(url, defaultParams);
@@ -49,7 +56,7 @@ const postProcessQuery5 = async (
   token && refreshAuthorization(token);
 
   return await axios.post(
-    `/api/processQuery5/${iteration}/${cycles}`,
+    `/api/postProcessQuery5/${iteration}/${cycles}`,
     defaultParams,
   );
 };
