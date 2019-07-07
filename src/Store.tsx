@@ -1,5 +1,6 @@
 import createStore, { Module, StoreonEvents } from 'storeon';
 import persistState from '@storeon/localstorage';
+import { refreshAuthorization } from './API';
 import crossTab from '@storeon/crosstab';
 
 export interface IUserState {
@@ -78,13 +79,17 @@ export const userModule: Module<IPreloadedState, Events> = (
     },
   }));
 
-  store.on('user/logout', ({ user }) => ({
-    user: {
-      ...user,
-      token: '',
-      isAuthenticated: false,
-    },
-  }));
+  store.on('user/logout', ({ user }) => {
+    refreshAuthorization();
+
+    return {
+      user: {
+        ...user,
+        token: '',
+        isAuthenticated: false,
+      },
+    };
+  });
 
   store.on('user/setAPIQueryHistory', ({ user }, payload) => ({
     user: {
